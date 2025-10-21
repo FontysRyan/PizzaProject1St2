@@ -6,7 +6,5 @@
 
 [node name="Control" parent="." instance=ExtResource("1_uocje")]
 custom_minimum_size = Vector2(500, 500)
-offset_left = 3.0
-offset_top = 2.0
-offset_right = 1151.0
-offset_bottom = 646.0
+offset_right = 1152.0
+offset_bottom = 648.0
