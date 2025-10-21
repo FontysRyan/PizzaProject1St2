@@ -77,48 +77,70 @@ text = "Round 1"
 horizontal_alignment = 1
 vertical_alignment = 3
 
+[node name="Padding" type="Panel" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
+
 [node name="Board" type="GridContainer" parent="MarginContainer/CenterContainer"]
-custom_minimum_size = Vector2(350, 350)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
 
 [node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel2" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel3" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel4" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel5" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel6" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel7" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel8" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Panel9" type="Panel" parent="MarginContainer/CenterContainer/Board"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="RightPanel" type="VBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(200, 200)
