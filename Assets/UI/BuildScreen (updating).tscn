@@ -1,0 +1,98 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn6smkpg6s5j7"]
+
+[ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_left = NodePath("HBoxContainer2")
+focus_neighbor_right = NodePath("HBoxContainer")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/TopBar/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Quit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/TopBar/HBoxContainer"]
+position = Vector2(-19.999996, 24)
+scale = Vector2(0.05000001, 0.05)
+texture = ExtResource("1_ahrpf")
+offset = Vector2(-200, 0)
+
+[node name="Label" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
+clip_contents = true
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 8
+text = "50"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CenterContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RoundsLabel" type="Label" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Round 1"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Board" type="GridContainer" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+columns = 3
+
+[node name="RightPanel" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="SavingIcon" type="TextureButton" parent="MarginContainer/RightPanel"]
+layout_mode = 2
+
+[node name="SavingLabel" type="Label" parent="MarginContainer/RightPanel/SavingIcon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Saving..."
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="FightButton" type="Button" parent="MarginContainer/BottomBar"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Fight"
