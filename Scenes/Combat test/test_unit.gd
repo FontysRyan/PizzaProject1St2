@@ -1,13 +1,16 @@
-extends RigidBody2D
+extends Node2D
 
-@export var faction: int = 1  # 1 = default/friendly, 2 = enemy
+enum Faction { FRIENDLY = 1, ENEMY = 2 }
+@export var faction: Faction = Faction.FRIENDLY
 
 func _ready():
 	var sprite: AnimatedSprite2D = $AnimatedSprite2D
+	var ring1: Sprite2D = $faction_Ring1
+	var ring2: Sprite2D = $faction_Ring2
 
-	# Flip sprite based on faction
-	match faction:
-		1:
-			sprite.flip_h = false  # Friendly (faces right)
-		2:
-			sprite.flip_h = true   # Enemy (faces left)
+	# Flip the unit if it's an enemy
+	sprite.flip_h = (faction == Faction.ENEMY)
+
+	# Show correct faction ring
+	ring1.visible = (faction == Faction.FRIENDLY)
+	ring2.visible = (faction == Faction.ENEMY)

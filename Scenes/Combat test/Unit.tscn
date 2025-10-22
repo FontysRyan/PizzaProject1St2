@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bw7kjd8cye6tv"]
+[gd_scene load_steps=13 format=3 uid="uid://bw7kjd8cye6tv"]
 
 [ext_resource type="Texture2D" uid="uid://b53ngx76ae4vt" path="res://Scenes/Combat test/placeholder-char.png" id="1_l5803"]
 [ext_resource type="Script" uid="uid://cknpvkd1wy8uu" path="res://Scenes/Combat test/test_unit.gd" id="1_m0ek5"]
+[ext_resource type="Texture2D" uid="uid://cbw0i8ppogg0h" path="res://Scenes/Combat test/white_ring.png" id="2_l7tgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myk75"]
 size = Vector2(17, 16)
@@ -58,13 +59,27 @@ radius = 442.81033
 radius = 88.703156
 
 [node name="Unit" type="RigidBody2D"]
-position = Vector2(7, 0)
 gravity_scale = 0.0
 script = ExtResource("1_m0ek5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_myk75")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(24, 0)
+
+[node name="faction_Ring1" type="Sprite2D" parent="."]
+modulate = Color(0, 0.5686275, 1, 1)
+position = Vector2(-8, 9)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+texture = ExtResource("2_l7tgc")
+
+[node name="faction_Ring2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(8, 9)
+texture = ExtResource("2_l7tgc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wynn8")
@@ -79,9 +94,10 @@ scale = Vector2(0.20000198, 1)
 shape = SubResource("RectangleShape2D_kvd21")
 
 [node name="Unit_finding_range" type="Area2D" parent="."]
-modulate = Color(1, 1, 1, 0.1882353)
+modulate = Color(1, 1, 1, 0.06666667)
 position = Vector2(-7, 0)
-scale = Vector2(-4.8699408, 4.902012)
+rotation = 3.1415927
+scale = Vector2(4.8699408, -4.902012)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Unit_finding_range"]
 shape = SubResource("CircleShape2D_auhav")
@@ -93,6 +109,3 @@ position = Vector2(-7, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
 position = Vector2(-0.5, -6)
 shape = SubResource("CircleShape2D_71klx")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(24, 0)
