@@ -1,10 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw7kjd8cye6tv"]
+[gd_scene load_steps=12 format=3 uid="uid://bw7kjd8cye6tv"]
+
+[ext_resource type="Texture2D" uid="uid://b53ngx76ae4vt" path="res://Scenes/Combat test/placeholder-char.png" id="1_l5803"]
+[ext_resource type="Script" uid="uid://cknpvkd1wy8uu" path="res://Scenes/Combat test/test_unit.gd" id="1_m0ek5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myk75"]
-size = Vector2(50, 64)
+size = Vector2(17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0ek5"]
+atlas = ExtResource("1_l5803")
+region = Rect2(432, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7tgc"]
+atlas = ExtResource("1_l5803")
+region = Rect2(624, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy03g"]
+atlas = ExtResource("1_l5803")
+region = Rect2(768, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m25i6"]
+atlas = ExtResource("1_l5803")
+region = Rect2(720, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wynn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0ek5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7tgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy03g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m25i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy03g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7tgc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvd21"]
-size = Vector2(153, 40)
+size = Vector2(153, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_auhav"]
 radius = 442.81033
@@ -13,34 +58,41 @@ radius = 442.81033
 radius = 88.703156
 
 [node name="Unit" type="RigidBody2D"]
+position = Vector2(7, 0)
+gravity_scale = 0.0
+script = ExtResource("1_m0ek5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_myk75")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-animation = &""
-autoplay = "Heard_sound"
-frame_progress = 0.7174561
+sprite_frames = SubResource("SpriteFrames_wynn8")
+autoplay = "default"
+frame_progress = 0.71144444
 
 [node name="Melee range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Melee range"]
-position = Vector2(-0.5, -6)
-scale = Vector2(0.5200013, 1)
+position = Vector2(-7, 0)
+scale = Vector2(0.20000198, 1)
 shape = SubResource("RectangleShape2D_kvd21")
 
 [node name="Unit_finding_range" type="Area2D" parent="."]
+modulate = Color(1, 1, 1, 0.1882353)
+position = Vector2(-7, 0)
+scale = Vector2(-4.8699408, 4.902012)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Unit_finding_range"]
-position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_auhav")
 debug_color = Color(0.86451447, 0.00060375215, 0.8657069, 0.41960785)
 
 [node name="attack_range" type="Area2D" parent="."]
+position = Vector2(-7, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
 position = Vector2(-0.5, -6)
 shape = SubResource("CircleShape2D_71klx")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(31, 0)
+position = Vector2(24, 0)
