@@ -1,0 +1,294 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn6smkpg6s5j7"]
+
+[ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
+[ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2x8r"]
+bg_color = Color(0.32697207, 0.44706702, 0.6812702, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1iif"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rs5d1"]
+bg_color = Color(0.54488236, 0.5812897, 0.82444507, 0.3529412)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.3647059, 0.88235295, 0.9764706, 0.49411765)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33jvu"]
+bg_color = Color(0.3019608, 0.47843137, 0.5686275, 0.49411765)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahrpf"]
+bg_color = Color(0.6239458, 0.34506497, 0.14683115, 0.27058825)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_left = NodePath("HBoxContainer2")
+focus_neighbor_right = NodePath("HBoxContainer")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/TopBar/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
+text = "Quit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/TopBar/HBoxContainer"]
+position = Vector2(-19.999996, 24)
+scale = Vector2(0.05000001, 0.05)
+texture = ExtResource("1_ahrpf")
+offset = Vector2(-200, 0)
+
+[node name="Label" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
+clip_contents = true
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 8
+text = "50"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Padding" type="Panel" parent="MarginContainer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
+
+[node name="CenterContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RoundsLabel" type="Label" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Round 1"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Padding" type="Panel" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
+
+[node name="Board" type="GridContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel2" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel4" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel5" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel6" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel7" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel8" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="Panel9" type="Panel" parent="MarginContainer/CenterContainer/Board"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_rs5d1")
+
+[node name="RightPanel" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/RightPanel"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 2
+
+[node name="RoundsLabel" type="Label" parent="MarginContainer/RightPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0.3647059, 0.88235295, 0.9764706, 0.49411765)
+theme_override_font_sizes/font_size = 50
+text = ">"
+vertical_alignment = 1
+
+[node name="SavingIconContainer" type="VBoxContainer" parent="MarginContainer/RightPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+
+[node name="SavingLabel" type="Label" parent="MarginContainer/RightPanel/HBoxContainer/SavingIconContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Saving..."
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/RightPanel/HBoxContainer/SavingIconContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_s1iif")
+
+[node name="Padding" type="Panel" parent="MarginContainer/RightPanel/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="MarginContainer/BottomBar"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_33jvu")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/BottomBar/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -37.5
+offset_right = 156.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme_override_constants/h_separation = 20
+columns = 4
+
+[node name="Panel7" type="Panel" parent="MarginContainer/BottomBar/Panel/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel8" type="Panel" parent="MarginContainer/BottomBar/Panel/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel9" type="Panel" parent="MarginContainer/BottomBar/Panel/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel10" type="Panel" parent="MarginContainer/BottomBar/Panel/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BottomBar"]
+layout_mode = 2
+alignment = 1
+
+[node name="SavingLabel" type="Label" parent="MarginContainer/BottomBar/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_ahrpf")
+text = "Drop a unit to Sell"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RerollButton" type="Button" parent="MarginContainer/BottomBar/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
+text = "Reroll"
+
+[node name="FightButton" type="Button" parent="MarginContainer/BottomBar"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
+text = "Fight"
