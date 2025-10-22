@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://brhx22nhwa0gu"]
+
+[ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_x40no"]
+
+[resource]
+script = ExtResource("1_x40no")
+type = ""
+description = ""
+max_hp = 25.0
+attack_speed = 2.0
+attack_amount = 1
+movement_speed = 5.0
+damage = 10.0
+crit_chance = 25.0
+crit_modifier = 50.0
+range = 50.0
+metadata/_custom_type_script = "uid://oi7bff77l8v2"
