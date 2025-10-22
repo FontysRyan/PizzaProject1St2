@@ -85,7 +85,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 20
-text = "Are you sure you want to leave?"
+text = "Are you sure you want to leave?
+(Your progress will be saved)"
 horizontal_alignment = 1
 vertical_alignment = 3
 
