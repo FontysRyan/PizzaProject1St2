@@ -3,7 +3,14 @@ extends Node
 @export var unit_scene: PackedScene
 enum Marker_Faction { FRIENDLY = 1, ENEMY = 2 }
 @export var faction: Marker_Faction
+var units_to_spawn = 9
+
+# Define signals
+signal player_units_spawned
+signal enemy_units_spawned
+
 func _ready():
+	var spawned_count = 0
 	var spawn_points = get_children()
 	for marker in spawn_points:
 		if marker is Marker2D:
@@ -21,5 +28,11 @@ func _ready():
 				unit.collision_mask = 1    # Mask: collides with EnemyUnits
 			add_child(unit)
 			print("Unit layer:", unit.collision_layer)
-			print("Unit mask:", unit.collision_mask)	
-		
+			print("Unit mask:", unit.collision_mask)
+			spawned_count += 1
+   # Check if we spawned all units
+	if spawned_count == units_to_spawn:
+		if faction == 1:
+			emit_signal("player_units_spawned")
+		elif faction == 2:
+			emit_signal("enemy_units_spawned")
