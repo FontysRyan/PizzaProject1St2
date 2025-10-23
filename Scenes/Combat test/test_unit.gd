@@ -29,3 +29,4 @@ func _ready():
 	# Show correct faction ring
 	ring1.visible = (faction == Faction.FRIENDLY)
 	ring2.visible = (faction == Faction.ENEMY)
+		

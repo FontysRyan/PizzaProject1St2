@@ -10,7 +10,16 @@ func _ready():
 			print(marker.name, marker.global_position)
 			var unit = unit_scene.instantiate()
 			unit.global_position = marker.global_position
+			print("UNIT BELONGS TO FACTION: " , faction)
 			unit.faction = faction    # set faction
 			unit.unit_type = "Archer"           # set unit type
+			if faction == 1:
+				unit.collision_layer = 1   # Layer: PlayerUnits
+				unit.collision_mask = 2    # Mask: collides with EnemyUnits
+			else:
+				unit.collision_layer = 2   # Layer: PlayerUnits
+				unit.collision_mask = 1    # Mask: collides with EnemyUnits
 			add_child(unit)
+			print("Unit layer:", unit.collision_layer)
+			print("Unit mask:", unit.collision_mask)	
 		
