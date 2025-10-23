@@ -68,6 +68,7 @@ tile_set = SubResource("TileSet_xycmw")
 [node name="Node" type="Node" parent="."]
 script = ExtResource("2_ewyk4")
 unit_scene = ExtResource("3_xycmw")
+faction = 1
 
 [node name="Tile0" type="Marker2D" parent="Node"]
 position = Vector2(56, 280)
@@ -95,3 +96,35 @@ position = Vector2(88, 344)
 
 [node name="Tile8" type="Marker2D" parent="Node"]
 position = Vector2(120, 344)
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("2_ewyk4")
+unit_scene = ExtResource("3_xycmw")
+faction = 2
+
+[node name="Tile0" type="Marker2D" parent="Node2"]
+position = Vector2(1016, 280)
+
+[node name="Tile1" type="Marker2D" parent="Node2"]
+position = Vector2(1048, 280)
+
+[node name="Tile2" type="Marker2D" parent="Node2"]
+position = Vector2(1080, 280)
+
+[node name="Tile3" type="Marker2D" parent="Node2"]
+position = Vector2(1016, 312)
+
+[node name="Tile4" type="Marker2D" parent="Node2"]
+position = Vector2(1048, 312)
+
+[node name="Tile5" type="Marker2D" parent="Node2"]
+position = Vector2(1080, 312)
+
+[node name="Tile6" type="Marker2D" parent="Node2"]
+position = Vector2(1016, 344)
+
+[node name="Tile7" type="Marker2D" parent="Node2"]
+position = Vector2(1048, 344)
+
+[node name="Tile8" type="Marker2D" parent="Node2"]
+position = Vector2(1080, 344)
