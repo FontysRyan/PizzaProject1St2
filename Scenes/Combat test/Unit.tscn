@@ -47,6 +47,11 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvd21"]
@@ -67,7 +72,7 @@ position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_myk75")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(24, 0)
+position = Vector2(10, 0)
 
 [node name="faction_Ring1" type="Sprite2D" parent="."]
 modulate = Color(0, 0.5686275, 1, 1)
@@ -83,8 +88,8 @@ texture = ExtResource("2_l7tgc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wynn8")
+animation = &"new_animation"
 autoplay = "default"
-frame_progress = 0.71144444
 
 [node name="Melee range" type="Area2D" parent="."]
 
