@@ -9,12 +9,12 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gperi"]
 bg_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2x8r"]
+bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1iif"]
 bg_color = Color(0.8007565, 0.49518055, 0.5903154, 1)
 draw_center = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2x8r"]
-bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rs5d1"]
 bg_color = Color(0.34901962, 0.4117647, 0.5294118, 0.4745098)
@@ -60,7 +60,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/PopupQuitMenu"]
-visible = false
 
 [node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer"]
 custom_minimum_size = Vector2(400, 400)
@@ -79,53 +78,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Padding2" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
-
 [node name="RoundsLabel" type="Label" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
-text = "Are you sure you want to leave?
-(Your progress will be saved)"
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
-custom_minimum_size = Vector2(50, 200)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="Padding2" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
-
-[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/HBoxContainer"]
+[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 z_index = 3
-custom_minimum_size = Vector2(100, 50)
+custom_minimum_size = Vector2(170, 65)
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
+size_flags_horizontal = 6
+size_flags_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
-text = "Yes"
+text = "Save & Quit"
 
-[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/HBoxContainer"]
+[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 z_index = 3
-custom_minimum_size = Vector2(100, 50)
+custom_minimum_size = Vector2(170, 65)
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 8
+size_flags_horizontal = 6
+size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
-text = "No"
-
-[node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
+text = "Return"
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -142,11 +119,11 @@ size_flags_horizontal = 2
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
-text = "Quit"
+text = "Settings"
 script = ExtResource("1_rs5d1")
 popup_path = NodePath("../../../PopupQuitMenu")
-YesButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/HBoxContainer/YesButton")
-NoButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/HBoxContainer/NoButton")
+YesButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/YesButton")
+NoButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/NoButton")
 canvaslayer_path = NodePath("../../../PopupQuitMenu/CanvasLayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
