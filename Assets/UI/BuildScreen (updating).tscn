@@ -60,6 +60,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/PopupQuitMenu"]
+visible = false
 
 [node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer"]
 custom_minimum_size = Vector2(400, 400)
