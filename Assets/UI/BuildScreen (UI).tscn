@@ -60,7 +60,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/PopupQuitMenu"]
-visible = false
 
 [node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer"]
 custom_minimum_size = Vector2(400, 400)
@@ -81,10 +80,17 @@ grow_vertical = 2
 
 [node name="SettingsLabel" type="Label" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 10
 theme_override_font_sizes/font_size = 40
-text = "Settings
-(progress is saved)"
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="SettingsLabel2" type="Label" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "(progress is saved)"
 horizontal_alignment = 1
 vertical_alignment = 3
 
