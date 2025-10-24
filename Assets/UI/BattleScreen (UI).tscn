@@ -95,7 +95,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu08q")
-text = "Quit to mainmenu"
+text = "Quit to main menu"
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
