@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dndvobnqtd7ol"]
 
-[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/quit_button.gd" id="1_okfpp"]
+[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_okfpp"]
 [ext_resource type="Script" uid="uid://bsjupm204txhm" path="res://Assets/UI/Scripts/speed_buttons_click_effects.gd" id="2_1gwd3"]
 [ext_resource type="Texture2D" uid="uid://23q216qiuetl" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/pauze.png" id="2_ovl0t"]
 [ext_resource type="Texture2D" uid="uid://bxnsrxtlmetll" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/play.png" id="3_1gwd3"]
@@ -71,7 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RoundsLabel" type="Label" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+[node name="SettingsLabel" type="Label" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 40
@@ -79,23 +79,23 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 3
 
-[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 z_index = 3
 custom_minimum_size = Vector2(170, 65)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu08q")
-text = "Save & Quit"
+text = "Return"
 
-[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 z_index = 3
 custom_minimum_size = Vector2(170, 65)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_fu08q")
-text = "Return"
+text = "Quit to main menu"
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
