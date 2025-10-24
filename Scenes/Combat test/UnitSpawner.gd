@@ -14,12 +14,13 @@ func _ready():
 	var spawn_points = get_children()
 	for marker in spawn_points:
 		if marker is Marker2D:
-			print(marker.name, marker.global_position)
+			#print(marker.name, marker.global_position)
 			var unit = unit_scene.instantiate()
 			unit.global_position = marker.global_position
-			print("UNIT BELONGS TO FACTION: " , faction)
+			#print("UNIT BELONGS TO FACTION: " , faction)
 			unit.faction = faction    # set faction
-			unit.unit_type = "Archer"           # set unit type
+			unit.unit_type = "Archer"   
+			unit.name = "UNIT"        # set unit type
 			if faction == 1:
 				unit.collision_layer = 1   # Layer: PlayerUnits
 				unit.collision_mask = 2    # Mask: collides with EnemyUnits
@@ -27,12 +28,12 @@ func _ready():
 				unit.collision_layer = 2   # Layer: PlayerUnits
 				unit.collision_mask = 1    # Mask: collides with EnemyUnits
 			add_child(unit)
-			print("Unit layer:", unit.collision_layer)
-			print("Unit mask:", unit.collision_mask)
+			#print("Unit layer:", unit.collision_layer)
+			#print("Unit mask:", unit.collision_mask)
 			spawned_count += 1
    # Check if we spawned all units
 	if spawned_count == units_to_spawn:
 		if faction == 1:
-			emit_signal("player_units_spawned")
+			call_deferred("emit_signal", "player_units_spawned")
 		elif faction == 2:
-			emit_signal("enemy_units_spawned")
+			call_deferred("emit_signal", "enemy_units_spawned")
