@@ -206,7 +206,7 @@ split_offset = 5
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container7"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Units healed:"
+text = "Units Healed:"
 horizontal_alignment = 2
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container7"]
