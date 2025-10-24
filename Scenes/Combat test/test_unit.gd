@@ -4,10 +4,16 @@ enum Faction { FRIENDLY = 1, ENEMY = 2 }
 @export var faction: Faction = Faction.FRIENDLY
 @export var stats: UnitStats #script
 @export var unit_type: String = "Archer"
+var Unit_in_Battle: bool = false
+@export var target: Node2D = null  # the unit’s current target
 
 
 func _ready():
 	# Load stats if none assigned
+	if faction == 1:
+		name = "Player_unit"
+	else:
+		name = "Enemy_unit"
 	if stats == null:
 		var path = "res://Resources/units/%s.tres" % unit_type
 		var res = load(path)
@@ -49,4 +55,31 @@ func _process(delta):
 
 func _on_battle_start():
 	print(name, " battle has started!")
+	Unit_in_Battle = true
+	_choose_target()
 	# Enable AI, start moving/attacking, etc.
+	
+func _choose_target():
+	var enemies := []
+	for unit in get_tree().get_nodes_in_group("units"):
+		if unit == self:
+			continue
+		if unit.faction != faction:
+			enemies.append(unit)
+
+	if enemies.is_empty():
+		target = null
+		return
+
+	var nearest_target: Node2D = enemies[0]
+	var nearest_dist := global_position.distance_to(nearest_target.global_position)
+
+	for enemy in enemies:
+		var dist = global_position.distance_to(enemy.global_position)
+		if dist < nearest_dist:
+			nearest_dist = dist
+			nearest_target = enemy
+
+	target = nearest_target
+	if target:
+		print(name, " is targeting ", target.name)
