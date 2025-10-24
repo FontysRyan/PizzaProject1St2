@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UnitPanel" load_steps=3 format=3 uid="uid://bnumldiqcfsoj"]
+
+[ext_resource type="Resource" uid="uid://bt4d44d6l6sk5" path="res://Resources/Rarities/1Common.tres" id="1_0gpc8"]
+[ext_resource type="Script" uid="uid://dnmytpxqgt262" path="res://Resources/unit panels/UnitPanel.gd" id="1_gcc5o"]
+
+[resource]
+script = ExtResource("1_gcc5o")
+rarity = ExtResource("1_0gpc8")
+metadata/_custom_type_script = "uid://dnmytpxqgt262"
