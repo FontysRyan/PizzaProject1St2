@@ -87,23 +87,23 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 3
 
-[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 z_index = 3
 custom_minimum_size = Vector2(170, 65)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
-text = "Save & Quit"
+text = "Return"
 
-[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
 z_index = 3
 custom_minimum_size = Vector2(170, 65)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
-text = "Return"
+text = "Save & Quit"
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
