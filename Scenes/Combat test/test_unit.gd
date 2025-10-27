@@ -23,6 +23,7 @@ func _ready():
 
 	if faction == 1:
 		name = "Player_" + file_name + "_unit"
+		stats.attack_speed += 0.1
 	else:
 		name = "Enemy_" + file_name + "_unit"
 	Current_hp = stats.max_hp
@@ -136,8 +137,6 @@ func _on_target_in_range():
 		print(name, " has stabbed ", target.name)
 	else:
 		print(name, " has shot ", target.name)
-
-
 
 	# Check for death
 	if target.Current_hp <= 0:
