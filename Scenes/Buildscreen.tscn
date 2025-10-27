@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1i5ujhj73u7f"]
 
-[ext_resource type="PackedScene" uid="uid://bn6smkpg6s5j7" path="res://Assets/UI/BuildScreen (updating).tscn" id="1_uocje"]
+[ext_resource type="PackedScene" uid="uid://bn6smkpg6s5j7" path="res://Assets/UI/BuildScreen (UI).tscn" id="1_uocje"]
 
 [node name="Buildscreen" type="Node2D"]
 

@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://bi7llxlror1tw"]
+[gd_scene load_steps=2 format=3 uid="uid://bi7llxlror1tw"]
+
+[ext_resource type="PackedScene" uid="uid://dndvobnqtd7ol" path="res://Assets/UI/BattleScreen (UI).tscn" id="1_m3alb"]
 
 [node name="Battlescreen" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_m3alb")]
+offset_right = 1152.0
+offset_bottom = 648.0

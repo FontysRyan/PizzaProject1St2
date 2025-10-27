@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dndvobnqtd7ol"]
+
+[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/quit_button.gd" id="1_okfpp"]
+[ext_resource type="Script" uid="uid://bsjupm204txhm" path="res://Assets/UI/Scripts/speed_buttons_click_effects.gd" id="2_1gwd3"]
+[ext_resource type="Texture2D" uid="uid://23q216qiuetl" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/pauze.png" id="2_ovl0t"]
+[ext_resource type="Texture2D" uid="uid://bxnsrxtlmetll" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/play.png" id="3_1gwd3"]
+[ext_resource type="Texture2D" uid="uid://j4df5dp3q0sc" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/fastforward.png" id="4_fu08q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovl0t"]
+bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_left = NodePath("SettingsContainer")
+focus_neighbor_right = NodePath("SpeedButtonContainer")
+
+[node name="SettingsContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/TopBar/SettingsContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ovl0t")
+text = "Settings"
+script = ExtResource("1_okfpp")
+popup_path = NodePath("../../../PopupQuitMenu")
+
+[node name="SpeedButtonContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("2_1gwd3")
+play_button_path = NodePath("PlayButton")
+pause_button_path = NodePath("PauseButton")
+fast_forward_button_path = NodePath("FastForwardButton")
+
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/TopBar/SpeedButtonContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("2_ovl0t")
+stretch_mode = 0
+
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/TopBar/SpeedButtonContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("3_1gwd3")
+stretch_mode = 0
+
+[node name="FastForwardButton" type="TextureButton" parent="MarginContainer/TopBar/SpeedButtonContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("4_fu08q")
+stretch_mode = 0

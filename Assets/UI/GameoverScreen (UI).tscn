@@ -1,0 +1,249 @@
+[gd_scene load_steps=3 format=3 uid="uid://borh5aeodwunb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28hf2"]
+bg_color = Color(0.0702, 0.30510002, 0.54, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lv2d4"]
+bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28hf2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderLabel" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "statistics"
+vertical_alignment = 1
+
+[node name="SubHeaderLabel" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "Gameplay Progress"
+vertical_alignment = 1
+
+[node name="Item1Container" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time Played:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00:00:00"
+
+[node name="Item2Container" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item2Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rounds Survived:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item2Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Item3Container" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item3Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Waves Survived:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item3Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="SubHeaderLabel2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "Economy"
+vertical_alignment = 1
+
+[node name="Item1Container2" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gold Spent:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="SubHeaderLabel3" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_font_sizes/font_size = 20
+text = "Unit Management"
+vertical_alignment = 1
+
+[node name="Item1Container3" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Units Placed:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Item1Container4" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Units Merged:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Item1Container5" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Units Lost:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Item1Container6" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container6"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Units Sold:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container6"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Item1Container7" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container7"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Units Healed:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container7"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Item1Container8" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container8"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Heal Amount Done:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container8"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_lv2d4")
+text = "Retry"
+
+[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lv2d4")
+text = "Return to main menu"
