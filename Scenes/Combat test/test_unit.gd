@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 enum Faction { FRIENDLY = 1, ENEMY = 2 }
 @export var faction: Faction = Faction.FRIENDLY
@@ -6,14 +6,12 @@ enum Faction { FRIENDLY = 1, ENEMY = 2 }
 @export var unit_type: String = "Archer"
 var Unit_in_Battle: bool = false
 @export var target: Node2D = null  # the unit’s current target
+@export var Current_hp: int
 
 
 func _ready():
 	# Load stats if none assigned
-	if faction == 1:
-		name = "Player_unit"
-	else:
-		name = "Enemy_unit"
+	
 	if stats == null:
 		var path = "res://Resources/units/%s.tres" % unit_type
 		var res = load(path)
@@ -21,7 +19,13 @@ func _ready():
 			stats = res
 		else:
 			push_warning("UnitStats resource not found at %s" % path)
+	var file_name = stats.resource_path.get_file().get_basename()
 
+	if faction == 1:
+		name = "Player_" + file_name + "_unit"
+	else:
+		name = "Enemy_" + file_name + "_unit"
+	Current_hp = stats.max_hp
 	var sprite: AnimatedSprite2D = $AnimatedSprite2D
 	var ring1: Sprite2D = $faction_Ring1
 	var ring2: Sprite2D = $faction_Ring2
@@ -51,6 +55,42 @@ func _process(delta):
 		if combat_system and combat_system.Battle_has_begun:
 			_on_battle_start()
 			set_process(false)  # stop checking after battle starts
+			
+var target_cooldown: float = 0.8  # seconds between target checks
+var time_since_last_target: float = 0.0
+
+
+var time_since_last_attack: float = 0.0
+func _physics_process(delta):
+	if not Unit_in_Battle:
+		return
+
+	# Update cooldown timer
+	time_since_last_target += delta
+	time_since_last_attack += delta
+
+	# Only pick a new target if cooldown has passed
+	if time_since_last_target >= target_cooldown or target == null or not is_instance_valid(target):
+		_choose_target()
+		time_since_last_target = 0.0
+
+	if target == null:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	
+	var distance_to_target = global_position.distance_to(target.global_position)
+	var direction = (target.global_position - global_position).normalized()
+	
+	if distance_to_target > stats.range:
+		velocity = direction * stats.movement_speed
+	else:
+		velocity = Vector2.ZERO
+		if time_since_last_attack >= stats.attack_speed or target == null or not is_instance_valid(target):
+			time_since_last_attack = 0.0
+			_on_target_in_range()
+	
+	move_and_slide()
 
 
 func _on_battle_start():
@@ -81,5 +121,26 @@ func _choose_target():
 			nearest_target = enemy
 
 	target = nearest_target
-	if target:
-		print(name, " is targeting ", target.name)
+	#if target:
+		#print(name, " is targeting ", target.name)
+
+func _on_target_in_range():
+	if target == null or not is_instance_valid(target):
+		return
+
+	# Basic attack printout
+	if stats.type == "melee":
+			# Deal damage
+		target.Current_hp -= stats.damage
+		print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
+		print(name, " has stabbed ", target.name)
+	else:
+		print(name, " has shot ", target.name)
+
+
+
+	# Check for death
+	if target.Current_hp <= 0:
+		print(target.name, " has been defeated!")
+		target.queue_free()
+		target = null

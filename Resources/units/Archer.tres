@@ -6,4 +6,7 @@
 script = ExtResource("1_8uu6i")
 type = "ranged"
 description = "weaker unit but shoots arrows faster"
+attack_speed = 1.2
+movement_speed = 50.0
+range = 400.0
 metadata/_custom_type_script = "uid://oi7bff77l8v2"

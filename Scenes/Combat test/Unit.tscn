@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cbw0i8ppogg0h" path="res://Scenes/Combat test/white_ring.png" id="2_l7tgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myk75"]
-size = Vector2(17, 16)
+size = Vector2(14.5, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0ek5"]
 atlas = ExtResource("1_l5803")
@@ -47,11 +47,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvd21"]
@@ -63,12 +58,12 @@ radius = 442.81033
 [sub_resource type="CircleShape2D" id="CircleShape2D_71klx"]
 radius = 88.703156
 
-[node name="Unit" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="Unit" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_m0ek5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 0)
+position = Vector2(-8.25, 0)
 shape = SubResource("RectangleShape2D_myk75")
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -77,7 +72,7 @@ position = Vector2(10, 0)
 [node name="faction_Ring1" type="Sprite2D" parent="."]
 modulate = Color(0, 0.5686275, 1, 1)
 position = Vector2(-8, 9)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(1, -1)
 texture = ExtResource("2_l7tgc")
 
@@ -88,10 +83,12 @@ texture = ExtResource("2_l7tgc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wynn8")
-animation = &"new_animation"
 autoplay = "default"
 
 [node name="Melee range" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Melee range"]
 position = Vector2(-7, 0)
@@ -99,9 +96,12 @@ scale = Vector2(0.20000198, 1)
 shape = SubResource("RectangleShape2D_kvd21")
 
 [node name="Unit_finding_range" type="Area2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.06666667)
+light_mask = 0
+visibility_layer = 0
 position = Vector2(-7, 0)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(4.8699408, -4.902012)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Unit_finding_range"]
@@ -110,6 +110,9 @@ debug_color = Color(0.86451447, 0.00060375215, 0.8657069, 0.41960785)
 
 [node name="attack_range" type="Area2D" parent="."]
 position = Vector2(-7, 0)
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
 position = Vector2(-0.5, -6)

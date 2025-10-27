@@ -4,14 +4,8 @@
 
 [resource]
 script = ExtResource("1_gno8c")
-type = ""
-description = ""
-max_hp = 25.0
-attack_speed = 2.0
-attack_amount = 1
-movement_speed = 5.0
-damage = 10.0
-crit_chance = 25.0
-crit_modifier = 50.0
-range = 50.0
+type = "melee"
+attack_speed = 1.0
+movement_speed = 25.0
+range = 5.0
 metadata/_custom_type_script = "uid://oi7bff77l8v2"
