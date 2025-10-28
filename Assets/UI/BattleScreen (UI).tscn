@@ -1,0 +1,326 @@
+[gd_scene load_steps=11 format=3 uid="uid://dndvobnqtd7ol"]
+
+[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_okfpp"]
+[ext_resource type="Script" uid="uid://bsjupm204txhm" path="res://Assets/UI/Scripts/speed_buttons_click_effects.gd" id="2_1gwd3"]
+[ext_resource type="Texture2D" uid="uid://23q216qiuetl" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/pauze.png" id="2_ovl0t"]
+[ext_resource type="Texture2D" uid="uid://bxnsrxtlmetll" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/play.png" id="3_1gwd3"]
+[ext_resource type="Texture2D" uid="uid://j4df5dp3q0sc" path="res://Assets/Sprites/UI related sprites/Selfmade icons (Ryan)/fastforward.png" id="4_fu08q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gwd3"]
+bg_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu08q"]
+bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovl0t"]
+bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qxqe"]
+bg_color = Color(0.34901962, 0.4117647, 0.5294118, 0.4745098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.54509807, 0.60784316, 0.7058824, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3ddf"]
+bg_color = Color(0.8007565, 0.49518055, 0.5903154, 1)
+draw_center = false
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupQuitMenu" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/PopupQuitMenu"]
+visible = false
+
+[node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer"]
+custom_minimum_size = Vector2(400, 400)
+offset_left = 376.0
+offset_top = 124.0
+offset_right = 776.0
+offset_bottom = 524.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1gwd3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsLabel" type="Label" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="NoButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+z_index = 3
+custom_minimum_size = Vector2(170, 65)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_fu08q")
+text = "Return"
+
+[node name="YesButton" type="Button" parent="MarginContainer/PopupQuitMenu/CanvasLayer/Padding/VBoxContainer"]
+z_index = 3
+custom_minimum_size = Vector2(170, 65)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fu08q")
+text = "Quit to main menu"
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_left = NodePath("SettingsContainer")
+focus_neighbor_right = NodePath("SpeedButtonContainer")
+
+[node name="SettingsContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/TopBar/SettingsContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ovl0t")
+text = "Settings"
+script = ExtResource("1_okfpp")
+popup_path = NodePath("../../../PopupQuitMenu")
+YesButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/YesButton")
+NoButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/NoButton")
+canvaslayer_path = NodePath("../../../PopupQuitMenu/CanvasLayer")
+
+[node name="SpeedButtonContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("2_1gwd3")
+play_button_path = NodePath("PlayButton")
+pause_button_path = NodePath("PauseButton")
+fast_forward_button_path = NodePath("FastForwardButton")
+
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/TopBar/SpeedButtonContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("2_ovl0t")
+stretch_mode = 0
+
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/TopBar/SpeedButtonContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("3_1gwd3")
+stretch_mode = 0
+
+[node name="FastForwardButton" type="TextureButton" parent="MarginContainer/TopBar/SpeedButtonContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture_normal = ExtResource("4_fu08q")
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -64.5
+offset_bottom = 64.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Board" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel4" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel5" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel6" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel7" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel8" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel9" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Padding2" type="Panel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q3ddf")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "PC"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Board" type="GridContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel4" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel5" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel6" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel7" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel8" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Panel9" type="Panel" parent="HBoxContainer/VBoxContainer2/Board" groups=["drop_zone"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
+
+[node name="Padding2" type="Panel" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q3ddf")

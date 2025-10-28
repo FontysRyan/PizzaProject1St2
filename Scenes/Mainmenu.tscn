@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://b45fmyvx5h0vm"]
+[gd_scene load_steps=2 format=3 uid="uid://b45fmyvx5h0vm"]
+
+[ext_resource type="PackedScene" uid="uid://cc4s2pp6kgokb" path="res://Assets/UI/MainmenuScreen (UI).tscn" id="1_6hnpv"]
 
 [node name="Mainmenu" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_6hnpv")]
+custom_minimum_size = Vector2(50, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
