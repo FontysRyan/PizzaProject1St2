@@ -136,7 +136,7 @@ func _choose_target():
 func _on_target_in_range():
 	if target == null or not is_instance_valid(target):
 		return
-
+	await get_tree().create_timer(0.2).timeout
 	# Basic attack printout
 	if stats.type == "melee":
 			# Deal damage
@@ -155,9 +155,28 @@ func _on_target_in_range():
 func on_shoot():
 	
 	var i = 0
-	while i < 1:
+	while i < stats.attack_amount:
+		if target == null or not is_instance_valid(target):
+			return
 		var Fired_Projectile = Projectile.instantiate()
+		if faction == 1:
+			Fired_Projectile.collision_layer = 1   # Layer: PlayerUnits
+			Fired_Projectile.collision_mask = 2    # Mask: collides with EnemyUnits
+		else:
+			Fired_Projectile.collision_layer = 2   # Layer: PlayerUnits
+			Fired_Projectile.collision_mask = 1    # Mask: collides with EnemyUnits
 		Fired_Projectile.position = global_position + Vector2(0,10)
 		Fired_Projectile.direction = (target.global_position - Fired_Projectile.position).normalized()
 		#Fired_Projectile.speed = stats.attack_speed
+		#Fired_Projectile.owner_faction = faction
+		Fired_Projectile.damage = stats.damage
 		get_parent().add_child(Fired_Projectile)
+		await get_tree().create_timer(0.1).timeout
+		i += 1
+
+func take_damage(amount):
+	print(name, " took ", amount, " damage!")
+	Current_hp -= amount
+	if Current_hp <= 0:
+		queue_free()
+	# TODO: Subtract health, trigger animation, check death, etc.

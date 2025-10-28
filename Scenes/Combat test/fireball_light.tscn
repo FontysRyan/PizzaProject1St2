@@ -30,12 +30,13 @@ radius = 10.049875
 
 [node name="Fireball_light" type="Area2D"]
 process_mode = 3
+collision_layer = 3
 script = ExtResource("1_dvv23")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v3hh6")
 autoplay = "default"
-frame_progress = 0.39756843
+frame_progress = 0.2712062
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 process_mode = 3
