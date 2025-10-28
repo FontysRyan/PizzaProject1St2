@@ -5,6 +5,11 @@
 [resource]
 script = ExtResource("1_7iqum")
 type = "melee"
+max_hp = 40.0
+attack_speed = 1.0
 movement_speed = 120.0
+damage = 15.0
+crit_chance = 30.0
+crit_modifier = 1.3
 range = 5.0
 metadata/_custom_type_script = "uid://oi7bff77l8v2"
