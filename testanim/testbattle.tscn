@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://fnyxaxpdknn5"]
+
+[ext_resource type="Script" uid="uid://prbetiw42w3y" path="res://testanim/scripts/BattleManager.gd" id="1_m8sfe"]
+
+[node name="Testbattle" type="Node2D"]
+script = ExtResource("1_m8sfe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(144, 81)
+zoom = Vector2(4, 4)
