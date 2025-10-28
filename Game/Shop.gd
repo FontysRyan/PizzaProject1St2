@@ -7,13 +7,13 @@ extends Node
 @onready var legendary = preload("res://Resources/Rarities/4Legendary.tres")
 #UnitPanels:
 @onready var archer = preload("res://Resources/unit panels/Archer.tres")
-@onready var knight = preload("res://Resources/unit panels/Archer.tres")
-@onready var melee_hero = preload("res://Resources/unit panels/Archer.tres")
-@onready var paladin = preload("res://Resources/unit panels/Archer.tres")
-@onready var pirate_captain = preload("res://Resources/unit panels/Archer.tres")
-@onready var pirate = preload("res://Resources/unit panels/Archer.tres")
-@onready var warrior = preload("res://Resources/unit panels/Archer.tres")
-@onready var wizard = preload("res://Resources/unit panels/Archer.tres")
+@onready var knight = preload("res://Resources/unit panels/Knight.tres")
+@onready var melee_hero = preload("res://Resources/unit panels/Melee hero.tres")
+@onready var paladin = preload("res://Resources/unit panels/Paladin.tres")
+@onready var pirate_captain = preload("res://Resources/unit panels/Pirate captain.tres")
+@onready var pirate = preload("res://Resources/unit panels/Pirate.tres")
+@onready var warrior = preload("res://Resources/unit panels/Warrior.tres")
+@onready var wizard = preload("res://Resources/unit panels/Wizard.tres")
 #list of units
 @onready var units = [archer, knight, melee_hero, paladin, pirate_captain, pirate, warrior, wizard]
 
@@ -23,6 +23,7 @@ var rng = RandomNumberGenerator.new()
 var shop_units = [archer, warrior]
 var return_unit = null
 
+#call this for every unit needed in shop
 func _get_shop_unit() -> UnitPanel:
 	rarity = _shop_rarity()
 	_shop_units(rarity)
