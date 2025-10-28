@@ -51,6 +51,6 @@ func PickUnitType() -> String:
 		3:
 			return "Warrior"
 		4:
-			return "Wizard"
+			return "Pirate"
 
 	return "" # default fallback

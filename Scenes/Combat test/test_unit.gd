@@ -7,11 +7,11 @@ enum Faction { FRIENDLY = 1, ENEMY = 2 }
 var Unit_in_Battle: bool = false
 @export var target: Node2D = null  # the unit’s current target
 @export var Current_hp: int
-
+@export var Projectile: PackedScene
 
 func _ready():
 	# Load stats if none assigned
-	
+
 	if stats == null:
 		var path = "res://Resources/units/%s.tres" % unit_type
 		var res = load(path)
@@ -28,6 +28,15 @@ func _ready():
 		name = "Enemy_" + file_name + "_unit"
 	Current_hp = stats.max_hp
 	var sprite: AnimatedSprite2D = $AnimatedSprite2D
+	match unit_type:
+		"Archer":
+			sprite.modulate = Color(0.197, 0.596, 0.148, 1.0)
+		"Knight":
+			sprite.modulate = Color(0.478, 0.369, 0.369, 1.0)
+		"Warrior":
+			sprite.modulate = Color(0.5, 0.5, 0.5)
+		"Wizard":
+			sprite.modulate = Color(0.462, 0.0, 0.484, 1.0)
 	var ring1: Sprite2D = $faction_Ring1
 	var ring2: Sprite2D = $faction_Ring2
 
