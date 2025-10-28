@@ -11,7 +11,6 @@ var Unit_in_Battle: bool = false
 
 func _ready():
 	# Load stats if none assigned
-
 	if stats == null:
 		var path = "res://Resources/units/%s.tres" % unit_type
 		var res = load(path)
@@ -35,7 +34,7 @@ func _ready():
 			sprite.modulate = Color(0.478, 0.369, 0.369, 1.0)
 		"Warrior":
 			sprite.modulate = Color(0.5, 0.5, 0.5)
-		"Wizard":
+		"Pirate":
 			sprite.modulate = Color(0.462, 0.0, 0.484, 1.0)
 	var ring1: Sprite2D = $faction_Ring1
 	var ring2: Sprite2D = $faction_Ring2
@@ -142,13 +141,23 @@ func _on_target_in_range():
 	if stats.type == "melee":
 			# Deal damage
 		target.Current_hp -= stats.damage
-		print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
-		print(name, " has stabbed ", target.name)
+		#print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
+		#print(name, " has stabbed ", target.name)
 	else:
-		print(name, " has shot ", target.name)
-
+		on_shoot()
+		#print(name, " has shot ", target.name)
+		
 	# Check for death
 	if target.Current_hp <= 0:
-		print(target.name, " has been defeated!")
+		#print(target.name, " has been defeated!")
 		target.queue_free()
 		target = null
+func on_shoot():
+	
+	var i = 0
+	while i < 1:
+		var Fired_Projectile = Projectile.instantiate()
+		Fired_Projectile.position = global_position + Vector2(0,10)
+		Fired_Projectile.direction = (target.global_position - Fired_Projectile.position).normalized()
+		#Fired_Projectile.speed = stats.attack_speed
+		get_parent().add_child(Fired_Projectile)

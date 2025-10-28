@@ -1,12 +1,12 @@
 extends Area2D
 
-@export var speed = 400
+@export var speed = 200
 @export var lifetime = 5.0
 var direction = Vector2.RIGHT  # will be set at spawn
 signal hit_target(body)
 
 func _ready():
-	connect("body_entered", Callable(self, "_on_body_entered"))
+	#connect("body_entered", Callable(self, "_on_body_entered"))
 	
 	# Auto-destroy after lifetime
 	await get_tree().create_timer(lifetime).timeout
@@ -14,9 +14,9 @@ func _ready():
 		queue_free()
 
 func _physics_process(delta):
+	print("Moving: ", direction, " | Speed: ", speed)
 	position += direction * speed * delta
-	
-	
+	rotation = direction.angle()
 
 func _on_body_entered(body):
 	# Ignore enemies and non-collisions
