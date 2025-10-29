@@ -22,7 +22,7 @@ func _ready():
 
 	if faction == 1:
 		name = "Player_" + file_name + "_unit"
-		stats.attack_speed += 0.1
+
 	else:
 		name = "Enemy_" + file_name + "_unit"
 	Current_hp = stats.max_hp
@@ -76,7 +76,6 @@ func _physics_process(delta):
 
 	# Update cooldown timer
 	time_since_last_target += delta
-	time_since_last_attack += delta
 
 	# Only pick a new target if cooldown has passed
 	if time_since_last_target >= target_cooldown or target == null or not is_instance_valid(target):
@@ -95,6 +94,7 @@ func _physics_process(delta):
 		velocity = direction * stats.movement_speed
 	else:
 		velocity = Vector2.ZERO
+		time_since_last_attack += delta
 		if time_since_last_attack >= stats.attack_speed or target == null or not is_instance_valid(target):
 			time_since_last_attack = 0.0
 			_on_target_in_range()
@@ -140,7 +140,8 @@ func _on_target_in_range():
 	# Basic attack printout
 	if stats.type == "melee":
 			# Deal damage
-		target.Current_hp -= stats.damage
+		if target.has_method("take_damage"):
+			target.take_damage(stats.damage)
 		#print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
 		#print(name, " has stabbed ", target.name)
 	else:
@@ -148,10 +149,10 @@ func _on_target_in_range():
 		#print(name, " has shot ", target.name)
 		
 	# Check for death
-	if target.Current_hp <= 0:
-		#print(target.name, " has been defeated!")
-		target.queue_free()
-		target = null
+	#if target.Current_hp <= 0:
+		##print(target.name, " has been defeated!")
+		#target.queue_free()
+		#target = null
 func on_shoot():
 	
 	var i = 0
@@ -175,8 +176,13 @@ func on_shoot():
 		i += 1
 
 func take_damage(amount):
-	print(name, " took ", amount, " damage!")
+	#print(name, " took ", amount, " damage!")
 	Current_hp -= amount
+	
 	if Current_hp <= 0:
+		Log_combat(1,amount)
 		queue_free()
 	# TODO: Subtract health, trigger animation, check death, etc.
+
+func Log_combat(event, ammount):
+	print("COMBAT LOG: event " , event, " caused ", ammount, " damage")

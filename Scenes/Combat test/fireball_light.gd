@@ -21,7 +21,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	# Ignore enemies and non-collisions
-	print("I GOT YOU")
+	#print("I GOT YOU")
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		queue_free()
