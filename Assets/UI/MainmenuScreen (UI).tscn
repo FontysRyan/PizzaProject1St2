@@ -48,6 +48,7 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_yth33")
 text = "Continue"
+script = ExtResource("1_p581q")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

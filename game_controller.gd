@@ -40,13 +40,14 @@ func phase_to_string(phase: GamePhase) -> String:
 			clear_run_data()
 			return "PRE_GAME"
 		GamePhase.BUILD:
-			advance_round()
 			return "BUILD"
 		GamePhase.FIGHT:
 			return "FIGHT"
 		GamePhase.DEATH:
 			return "DEATH"
 		GamePhase.POST_GAME:
+			advance_round()
+			set_phase(GamePhase.BUILD)
 			return "POST_GAME"
 		_:
 			return "UNKNOWN"
