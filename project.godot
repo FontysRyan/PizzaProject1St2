@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameController="*res://game_controller.gd"
+Stats="*res://Game/Stats.gd"
 
 [rendering]
 

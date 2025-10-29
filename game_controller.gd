@@ -10,7 +10,19 @@ enum GamePhase {
 
 @export var build_scene: String = "res://Assets/UI/BuildScreen (UI).tscn"
 @export var fight_scene: String = "res://Assets/UI/BattleScreen (UI).tscn"
+var stats = Stats
 var current_phase: GamePhase = GamePhase.PRE_GAME
+
+func _ready():
+	Stats.round = 1
+	Stats.wave = int(ceil(Stats.round / 2.0))
+	Stats.gold = 8 + (2 * Stats.round)
+	Stats.units_placed = 0
+	Stats.units_merged = 0
+	Stats.units_lost = 0
+	Stats.units_sold = 0
+	Stats.units_healed = 0
+	Stats.heal_amount_done = 0
 
 func set_phase(new_phase: GamePhase):
 	current_phase = new_phase
