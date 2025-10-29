@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="UnitPanel" load_steps=3 format=3 uid="uid://bnumldiqcfsoj"]
+[gd_resource type="Resource" script_class="UnitPanel" load_steps=4 format=3 uid="uid://bnumldiqcfsoj"]
 
 [ext_resource type="Resource" uid="uid://bt4d44d6l6sk5" path="res://Resources/Rarities/1Common.tres" id="1_0gpc8"]
 [ext_resource type="Script" uid="uid://dnmytpxqgt262" path="res://Resources/unit panels/UnitPanel.gd" id="1_gcc5o"]
+[ext_resource type="Texture2D" uid="uid://bmto1p0u8bt1q" path="res://Assets/Sprites/Archer.png" id="3_ac7bd"]
 
 [resource]
 script = ExtResource("1_gcc5o")
+texture = ExtResource("3_ac7bd")
 rarity = ExtResource("1_0gpc8")
 metadata/_custom_type_script = "uid://dnmytpxqgt262"
