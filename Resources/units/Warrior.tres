@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_7iqum")
 type = "melee"
-max_hp = 40.0
+max_hp = 60.0
 attack_speed = 1.0
 movement_speed = 120.0
 damage = 15.0
