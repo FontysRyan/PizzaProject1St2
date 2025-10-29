@@ -7,10 +7,7 @@ enum Marker_Faction { FRIENDLY = 1, ENEMY = 2 }
 
 func _ready():
 	var unit_types = load_unit_types(units_folder_path)
-	if unit_types.is_empty():
-		push_error("No unit .tres files found at: " + units_folder_path)
-		return
-	
+
 	var spawn_points = get_children()
 	for marker in spawn_points:
 		if marker is Marker2D:

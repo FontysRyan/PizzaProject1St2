@@ -47,11 +47,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvd21"]
@@ -88,7 +83,6 @@ texture = ExtResource("2_l7tgc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wynn8")
-animation = &"new_animation"
 autoplay = "default"
 
 [node name="Melee range" type="Area2D" parent="."]
