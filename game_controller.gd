@@ -37,8 +37,10 @@ func set_phase(new_phase: GamePhase):
 func phase_to_string(phase: GamePhase) -> String:
 	match phase:
 		GamePhase.PRE_GAME:
+			clear_run_data()
 			return "PRE_GAME"
 		GamePhase.BUILD:
+			advance_round()
 			return "BUILD"
 		GamePhase.FIGHT:
 			return "FIGHT"
@@ -54,3 +56,22 @@ func advance_round():
 	Stats.wave = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.rounds_survived = Stats.round - 1
+
+func clear_run_data():
+	Stats.gold = 0
+	Stats.round = 0
+	Stats.wave = 0
+	# Game over stats
+	# Gameplay progress
+	Stats.time_played = 0.0
+	Stats.rounds_survived = 0
+	Stats.waves_survived = 0
+	# Economy
+	Stats.gold_spent = 0
+	# Unit management
+	Stats.units_placed = 0
+	Stats.units_merged = 0
+	Stats.units_lost = 0
+	Stats.units_sold = 0
+	Stats.units_healed = 0
+	Stats.heal_amount_done = 0
