@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bw7kjd8cye6tv"]
+[gd_scene load_steps=14 format=3 uid="uid://bw7kjd8cye6tv"]
 
 [ext_resource type="Texture2D" uid="uid://b53ngx76ae4vt" path="res://Scenes/Combat test/placeholder-char.png" id="1_l5803"]
 [ext_resource type="Script" uid="uid://cknpvkd1wy8uu" path="res://Scenes/Combat test/test_unit.gd" id="1_m0ek5"]
@@ -7,34 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myk75"]
 size = Vector2(14.5, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wynn8"]
-atlas = ExtResource("1_l5803")
-region = Rect2(144, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aus1l"]
-atlas = ExtResource("1_l5803")
-region = Rect2(192, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m7kx1"]
-atlas = ExtResource("1_l5803")
-region = Rect2(240, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7wqex"]
-atlas = ExtResource("1_l5803")
-region = Rect2(288, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwxgn"]
-atlas = ExtResource("1_l5803")
-region = Rect2(336, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j4745"]
-atlas = ExtResource("1_l5803")
-region = Rect2(384, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a3wqe"]
-atlas = ExtResource("1_l5803")
-region = Rect2(432, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0ek5"]
 atlas = ExtResource("1_l5803")
@@ -54,32 +26,6 @@ region = Rect2(720, 0, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wynn8"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wynn8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aus1l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m7kx1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7wqex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwxgn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j4745")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a3wqe")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m0ek5")
@@ -139,9 +85,7 @@ texture = ExtResource("2_l7tgc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wynn8")
-animation = &"attack"
 autoplay = "default"
-frame_progress = 0.35286915
 
 [node name="Melee range" type="Area2D" parent="."]
 visible = false
