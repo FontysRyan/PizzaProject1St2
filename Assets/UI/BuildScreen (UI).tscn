@@ -36,7 +36,7 @@ bg_color = Color(0.1539, 0.17324999, 0.27, 0.5882353)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahrpf"]
 bg_color = Color(0.96862745, 0.47058824, 0.13725491, 0.5882353)
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +60,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/PopupQuitMenu"]
+visible = false
 
 [node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer"]
 custom_minimum_size = Vector2(400, 400)
