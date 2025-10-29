@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="UnitPanel" load_steps=3 format=3 uid="uid://bexuuniq02jht"]
+[gd_resource type="Resource" script_class="UnitPanel" load_steps=4 format=3 uid="uid://bexuuniq02jht"]
 
 [ext_resource type="Resource" uid="uid://b42e1nrmg486" path="res://Resources/Rarities/3Epic.tres" id="1_k0d8q"]
 [ext_resource type="Script" uid="uid://dnmytpxqgt262" path="res://Resources/unit panels/UnitPanel.gd" id="1_optxl"]
+[ext_resource type="Texture2D" uid="uid://bwitdq3pfvi31" path="res://Assets/Sprites/Pirate.png" id="3_bek7q"]
 
 [resource]
 script = ExtResource("1_optxl")
+texture = ExtResource("3_bek7q")
 rarity = ExtResource("1_k0d8q")
 metadata/_custom_type_script = "uid://dnmytpxqgt262"
