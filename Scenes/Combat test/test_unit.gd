@@ -140,6 +140,8 @@ func _on_target_in_range():
 	# Basic attack printout
 	if stats.type == "melee":
 			# Deal damage
+		if target == null or not is_instance_valid(target):
+			return
 		if target.has_method("take_damage"):
 			target.take_damage(stats.damage)
 		#print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
@@ -171,6 +173,7 @@ func on_shoot():
 		#Fired_Projectile.speed = stats.attack_speed
 		#Fired_Projectile.owner_faction = faction
 		Fired_Projectile.damage = stats.damage
+		Fired_Projectile.target = target
 		get_parent().add_child(Fired_Projectile)
 		await get_tree().create_timer(0.1).timeout
 		i += 1

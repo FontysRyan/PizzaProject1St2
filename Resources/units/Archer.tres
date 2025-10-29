@@ -6,8 +6,9 @@
 script = ExtResource("1_8uu6i")
 type = "ranged"
 description = "weaker unit but shoots arrows faster"
-movement_speed = 29.0
-damage = 17.0
+attack_speed = 1.5
+movement_speed = 30.0
+damage = 5.0
 crit_chance = 20.0
 crit_modifier = 1.5
 range = 250.0
