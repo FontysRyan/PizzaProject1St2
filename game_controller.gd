@@ -7,9 +7,10 @@ enum GamePhase {
 	DEATH,
 	POST_GAME
 }
-
-@export var build_scene: String = "res://Assets/UI/BuildScreen (UI).tscn"
-@export var fight_scene: String = "res://Assets/UI/BattleScreen (UI).tscn"
+@export var Main_scene: String = "res://Scenes/Mainmenu.tscn"
+@export var Death_scene: String = "res://Scenes/Gameover.tscn"
+@export var build_scene: String = "res://Scenes/Buildscreen.tscn"
+@export var fight_scene: String = "res://Scenes/Battlescreen.tscn"
 var stats = Stats
 var current_phase: GamePhase = GamePhase.PRE_GAME
 
@@ -28,10 +29,14 @@ func set_phase(new_phase: GamePhase):
 
 	# Handle scene change here
 	match new_phase:
+		GamePhase.PRE_GAME:
+			get_tree().change_scene_to_file(Main_scene)
 		GamePhase.BUILD:
 			get_tree().change_scene_to_file(build_scene)
 		GamePhase.FIGHT:
 			get_tree().change_scene_to_file(fight_scene)
+		GamePhase.DEATH:
+			get_tree().change_scene_to_file(Death_scene)
 		# You can add other scene changes if needed for DEATH/POST_GAME
 
 func phase_to_string(phase: GamePhase) -> String:
