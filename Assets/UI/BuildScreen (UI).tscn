@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=15 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
 [ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/quit_button.gd" id="1_rs5d1"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
+[ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Player_Build_manager.gd" id="3_hrd7a"]
 [ext_resource type="Script" uid="uid://41huljs83d6e" path="res://Assets/UI/Scripts/Draggable.gd" id="3_k2x8r"]
 [ext_resource type="Texture2D" uid="uid://boq8n1qyyrldk" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/user-person.png" id="5_33jvu"]
 
@@ -174,6 +175,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+script = ExtResource("3_hrd7a")
 
 [node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/Board" groups=["drop_zone"]]
 custom_minimum_size = Vector2(75, 75)
