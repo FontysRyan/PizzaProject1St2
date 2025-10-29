@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwteoofvisww8"
-path="res://.godot/imported/Arrow01(32x32).png-615622842faed4b2e68e2e27fbc4425e.ctex"
+uid="uid://dtdxa3ro2vx8f"
+path="res://.godot/imported/Priate-Sheet.png-665910f59a305948665de206a2176aba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testanim/Arrow01(32x32).png"
-dest_files=["res://.godot/imported/Arrow01(32x32).png-615622842faed4b2e68e2e27fbc4425e.ctex"]
+source_file="res://Assets/Sprites/Priate-Sheet.png"
+dest_files=["res://.godot/imported/Priate-Sheet.png-665910f59a305948665de206a2176aba.ctex"]
 
 [params]
 

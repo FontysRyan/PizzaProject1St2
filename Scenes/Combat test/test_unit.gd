@@ -8,6 +8,14 @@ var Unit_in_Battle: bool = false
 @export var target: Node2D = null  # the unit’s current target
 @export var Current_hp: int
 @export var Projectile: PackedScene
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+const CLASS_FRAMES := {
+	"Warrior": "res://Assets/Sprites/warrior_frames.tres",
+	"Archer":  "res://Assets/Sprites/archer_frames.tres",
+	"Pirate":  "res://Assets/Sprites/pirate_frames.tres",
+	"Knight":  "res://Assets/Sprites/knight_frames.tres",
+}
+
 
 func _ready():
 	# Load stats if none assigned
@@ -22,20 +30,20 @@ func _ready():
 
 	if faction == 1:
 		name = "Player_" + file_name + "_unit"
-		stats.attack_speed += 0.1
+
 	else:
 		name = "Enemy_" + file_name + "_unit"
 	Current_hp = stats.max_hp
-	var sprite: AnimatedSprite2D = $AnimatedSprite2D
+	
 	match unit_type:
 		"Archer":
-			sprite.modulate = Color(0.197, 0.596, 0.148, 1.0)
+			sprite.sprite_frames = load(CLASS_FRAMES["Archer"]);
 		"Knight":
-			sprite.modulate = Color(0.478, 0.369, 0.369, 1.0)
+			sprite.sprite_frames = load(CLASS_FRAMES["Knight"]);
 		"Warrior":
-			sprite.modulate = Color(0.5, 0.5, 0.5)
+			sprite.sprite_frames = load(CLASS_FRAMES["Warrior"]);
 		"Pirate":
-			sprite.modulate = Color(0.462, 0.0, 0.484, 1.0)
+			sprite.sprite_frames = load(CLASS_FRAMES["Pirate"]);
 	var ring1: Sprite2D = $faction_Ring1
 	var ring2: Sprite2D = $faction_Ring2
 
@@ -76,7 +84,6 @@ func _physics_process(delta):
 
 	# Update cooldown timer
 	time_since_last_target += delta
-	time_since_last_attack += delta
 
 	# Only pick a new target if cooldown has passed
 	if time_since_last_target >= target_cooldown or target == null or not is_instance_valid(target):
@@ -95,6 +102,7 @@ func _physics_process(delta):
 		velocity = direction * stats.movement_speed
 	else:
 		velocity = Vector2.ZERO
+		time_since_last_attack += delta
 		if time_since_last_attack >= stats.attack_speed or target == null or not is_instance_valid(target):
 			time_since_last_attack = 0.0
 			_on_target_in_range()
@@ -130,6 +138,7 @@ func _choose_target():
 			nearest_target = enemy
 
 	target = nearest_target
+	sprite.play("run")
 	#if target:
 		#print(name, " is targeting ", target.name)
 
@@ -137,10 +146,14 @@ func _on_target_in_range():
 	if target == null or not is_instance_valid(target):
 		return
 	await get_tree().create_timer(0.2).timeout
+	sprite.play("attack")
 	# Basic attack printout
 	if stats.type == "melee":
 			# Deal damage
-		target.Current_hp -= stats.damage
+		if target == null or not is_instance_valid(target):
+			return
+		if target.has_method("take_damage"):
+			target.take_damage(stats.damage)
 		#print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
 		#print(name, " has stabbed ", target.name)
 	else:
@@ -148,10 +161,10 @@ func _on_target_in_range():
 		#print(name, " has shot ", target.name)
 		
 	# Check for death
-	if target.Current_hp <= 0:
-		#print(target.name, " has been defeated!")
-		target.queue_free()
-		target = null
+	#if target.Current_hp <= 0:
+		##print(target.name, " has been defeated!")
+		#target.queue_free()
+		#target = null
 func on_shoot():
 	
 	var i = 0
@@ -170,13 +183,19 @@ func on_shoot():
 		#Fired_Projectile.speed = stats.attack_speed
 		#Fired_Projectile.owner_faction = faction
 		Fired_Projectile.damage = stats.damage
+		Fired_Projectile.target = target
 		get_parent().add_child(Fired_Projectile)
 		await get_tree().create_timer(0.1).timeout
 		i += 1
 
 func take_damage(amount):
-	print(name, " took ", amount, " damage!")
+	#print(name, " took ", amount, " damage!")
 	Current_hp -= amount
+	
 	if Current_hp <= 0:
+		Log_combat(1,amount)
 		queue_free()
 	# TODO: Subtract health, trigger animation, check death, etc.
+
+func Log_combat(event, ammount):
+	print("COMBAT LOG: event " , event, " caused ", ammount, " damage")

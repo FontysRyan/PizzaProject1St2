@@ -1,0 +1,154 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://brmtiismguhog"]
+
+[ext_resource type="Texture2D" uid="uid://dtdxa3ro2vx8f" path="res://Assets/Sprites/Priate-Sheet.png" id="1_iryvp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofqk7"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlu58"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(48, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7k0m"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(96, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k1t4"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(144, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qc8u"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(192, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qw21"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwjif"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54o8g"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed2mi"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unqh2"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7388m"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iryvp"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i864u"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(48, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejmh4"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(96, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0t3i"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(144, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g22sc"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(192, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfoq8"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(240, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exnly"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(288, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3spw"]
+atlas = ExtResource("1_iryvp")
+region = Rect2(336, 32, 48, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofqk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlu58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7k0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k1t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qc8u")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qw21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwjif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54o8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed2mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unqh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7388m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iryvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i864u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejmh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0t3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g22sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfoq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exnly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3spw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]

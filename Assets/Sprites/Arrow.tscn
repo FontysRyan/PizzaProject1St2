@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://i7s10k7pdckj"]
 
 [ext_resource type="Script" uid="uid://blulrnru5e346" path="res://testanim/arrow.gd" id="1_5udgh"]
-[ext_resource type="Texture2D" uid="uid://dwteoofvisww8" path="res://testanim/Arrow01(32x32).png" id="1_kuypb"]
+[ext_resource type="Texture2D" uid="uid://dwteoofvisww8" path="res://Assets/Sprites/Arrow01(32x32).png" id="1_kuypb"]
 
 [node name="Arrow" type="Node2D"]
 scale = Vector2(2, 2)
