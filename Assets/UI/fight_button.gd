@@ -5,5 +5,4 @@ func _ready():
 	pressed.connect(_on_pressed)
 
 func _on_pressed():
-	print("⚔️ Switching to combat scene...")
-	get_tree().change_scene_to_file(next_scene)
+	GameController.set_phase(GameController.GamePhase.FIGHT)
