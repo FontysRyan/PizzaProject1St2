@@ -47,9 +47,9 @@ func PickUnitType() -> String:
 		1:
 			return "Archer"  # example
 		2:
-			return "Knight"
-		3:
 			return "Warrior"
+		3:
+			return "Knight"
 		4:
 			return "Pirate"
 

@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_gno8c")
 type = "melee"
-max_hp = 60.0
-movement_speed = 25.0
+max_hp = 120.0
+movement_speed = 35.0
 damage = 6.0
 crit_chance = 5.0
 crit_modifier = 2.0
