@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://64x1l1gr4cdq"]
+[gd_scene load_steps=2 format=3 uid="uid://64x1l1gr4cdq"]
+
+[ext_resource type="PackedScene" uid="uid://borh5aeodwunb" path="res://Assets/UI/GameoverScreen (UI).tscn" id="1_y7nek"]
 
 [node name="Gameover" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_y7nek")]
+offset_right = 1152.0
+offset_bottom = 648.0
