@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc4s2pp6kgokb"]
+[gd_scene load_steps=4 format=3 uid="uid://pexbkdjuejoo"]
 
 [ext_resource type="Script" uid="uid://bsfsy01wr8kjh" path="res://Assets/UI/Scripts/quit_button.gd" id="1_axkyu"]
+[ext_resource type="Script" uid="uid://buaoh615qln0x" path="res://Assets/UI/new_button.gd" id="1_p581q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yth33"]
 bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
@@ -40,6 +41,7 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_yth33")
 text = "New"
+script = ExtResource("1_p581q")
 
 [node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
