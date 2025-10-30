@@ -1,6 +1,7 @@
+class_name Unit_Panel
 extends Panel
 
-@export var panel: UnitPanel
+var panel: UnitPanel
 var unit_level: int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

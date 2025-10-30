@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=15 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
+[ext_resource type="Script" uid="uid://bkffrqf8ce2n3" path="res://Assets/UI/build_screen_(ui).gd" id="1_hrd7a"]
 [ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_rs5d1"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
 [ext_resource type="Script" uid="uid://41huljs83d6e" path="res://Assets/UI/Scripts/Draggable.gd" id="3_k2x8r"]
@@ -43,6 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hrd7a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
