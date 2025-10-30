@@ -13,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$"../../../TopBar/HBoxContainer/GoldLabel".text = str(Stats.gold)
 
 
 func _on_reroll_button_pressed() -> void:

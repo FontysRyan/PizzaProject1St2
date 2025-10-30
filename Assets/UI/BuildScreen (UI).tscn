@@ -143,7 +143,7 @@ scale = Vector2(0.05000001, 0.05)
 texture = ExtResource("1_ahrpf")
 offset = Vector2(-200, 0)
 
-[node name="Label" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
+[node name="GoldLabel" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
 clip_contents = true
 layout_direction = 3
 layout_mode = 2
