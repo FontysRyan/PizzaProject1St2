@@ -22,6 +22,8 @@ func _ready():
 	var wave_number = Stats.wave
 	var min_units = clamp(wave_number, 1, spawn_points.size())
 	var max_units = clamp(wave_number + 1, 1, spawn_points.size())
+	if min_units > max_units:
+		min_units = max_units
 	var units_to_spawn = randi_range(min_units, max_units)
 
 	spawn_points.shuffle()
