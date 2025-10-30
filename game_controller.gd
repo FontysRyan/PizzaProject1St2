@@ -81,3 +81,23 @@ func clear_run_data():
 	Stats.units_sold = 0
 	Stats.units_healed = 0
 	Stats.heal_amount_done = 0
+	
+var current_build_slots: Array = []  # Holds 9 slots with resource names
+
+func update_build_slots(slots: Array) -> void:
+	if slots.size() != 9:
+		push_warning("Build slots list size is not 9!")
+	current_build_slots = slots.duplicate()
+	print("[GameController] Build slots updated: ", current_build_slots)
+
+# Returns an array of 9 build slots (resource paths as strings)
+func get_build_slots() -> Array:
+	var slots := []
+	# Assuming your Player_Build_Manager tracks the slots in a dictionary
+	# e.g., build_slots = { "Panel_1": "res://Resources/units/Archer.tres", ... }
+	var build_manager = get_node("/root/PlayerBuildManager") # adjust path if needed
+	if build_manager:
+		for i in range(1, 10):
+			var panel_name = "Panel_%d" % i
+			slots.append(build_manager.build_slots.get(panel_name, null))
+	return slots
