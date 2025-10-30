@@ -36,7 +36,13 @@ func _process(delta):
 			
 			unit_names.append(child_name)
 	
-	GameController.update_build_slots(unit_names)
+	#GameController.update_build_slots(unit_names)
+
+
+			
+
+	
+
 
 
 # Public API
