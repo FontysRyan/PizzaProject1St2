@@ -1,25 +1,24 @@
 extends Node
 
-#active stats
-var gold
-var round
-var wave
+# Active stats
+var gold: int = 0
+var round: int = 0
+var wave: int = 0
 
-#game over stats:
-
-#Gameplay Progress:
-var time_played
-var rounds_survived
-var waves_survived
-#Economy:
-var gold_spent
-#Unit Management:
-var units_placed
-var units_merged
-var units_lost
-var units_sold
-var units_healed
-var heal_amount_done
+# Game over stats
+# Gameplay progress
+var time_played: float = 0.0
+var rounds_survived: int = 0
+var waves_survived: int = 0
+# Economy
+var gold_spent: int = 0
+# Unit management
+var units_placed: int = 0
+var units_merged: int = 0
+var units_lost: int = 0
+var units_sold: int = 0
+var units_healed: int = 0
+var heal_amount_done: int = 0
 
 func _next_round():
 	round += 1
