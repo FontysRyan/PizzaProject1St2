@@ -24,6 +24,14 @@ func _process(delta):
 					print(panel.name, " now has unit: ", child_name)
 				else:
 					print(panel.name, " is now empty")
+<<<<<<< Updated upstream
+=======
+			
+			unit_names.append(child_name)
+	
+
+
+>>>>>>> Stashed changes
 
 # Public API
 func get_unit_at(panel_name: String) -> String:
