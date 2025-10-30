@@ -15,6 +15,7 @@ var panel: UnitPanel
 var unit_level: int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	panel = shop_algorithm._get_shop_unit()
 	var color = panel.rarity.color
 	add_theme_color_override("UnitPanel", color)
 	var texture = panel.texture
