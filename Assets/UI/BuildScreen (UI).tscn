@@ -143,7 +143,7 @@ scale = Vector2(0.05000001, 0.05)
 texture = ExtResource("1_ahrpf")
 offset = Vector2(-200, 0)
 
-[node name="Label" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
+[node name="GoldLabel" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
 clip_contents = true
 layout_direction = 3
 layout_mode = 2
@@ -379,3 +379,5 @@ size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Fight"
 script = ExtResource("7_eabrk")
+
+[connection signal="pressed" from="MarginContainer/BottomBar/VBoxContainer/RerollButton" to="MarginContainer/BottomBar/ShopFrame/GridContainer" method="_on_reroll_button_pressed"]

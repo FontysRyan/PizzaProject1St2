@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameController="*res://game_controller.gd"
 Stats="*res://Game/Stats.gd"
+Inputs="*res://Game/Inputs.gd"
 
 [rendering]
 
