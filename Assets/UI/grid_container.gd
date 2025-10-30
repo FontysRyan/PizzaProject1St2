@@ -22,10 +22,10 @@ func _ready() -> void:
 	tile4._create_panel()
 	print("tile4.panel: ", tile4.panel)
 
-	self.add_child(tile1)
-	self.add_child(tile2)
-	self.add_child(tile3)
-	self.add_child(tile4)
+	# self.add_child(tile1)
+	# self.add_child(tile2)
+	# self.add_child(tile3)
+	# self.add_child(tile4)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
