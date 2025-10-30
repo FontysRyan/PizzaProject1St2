@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://borh5aeodwunb"]
+[gd_scene load_steps=5 format=3 uid="uid://cg8fagjmx1b1i"]
+
+[ext_resource type="Script" uid="uid://b1e8oso8oehhd" path="res://Assets/UI/Retry_btn.gd" id="1_lv2d4"]
+[ext_resource type="Script" uid="uid://bir7hxegb8bdm" path="res://Assets/UI/Return_menu.gd" id="2_fp1bh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28hf2"]
 bg_color = Color(0.0702, 0.30510002, 0.54, 1)
@@ -240,6 +243,7 @@ layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_lv2d4")
 text = "Retry"
+script = ExtResource("1_lv2d4")
 
 [node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 40)
@@ -247,3 +251,4 @@ layout_mode = 2
 size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_lv2d4")
 text = "Return to main menu"
+script = ExtResource("2_fp1bh")

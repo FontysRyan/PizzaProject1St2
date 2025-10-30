@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=16 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
-[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_rs5d1"]
+[ext_resource type="Script" uid="uid://bsfsy01wr8kjh" path="res://Assets/UI/Scripts/quit_button.gd" id="1_rs5d1"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
+[ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Player_Build_manager.gd" id="3_hrd7a"]
 [ext_resource type="Script" uid="uid://41huljs83d6e" path="res://Assets/UI/Scripts/Draggable.gd" id="3_k2x8r"]
 [ext_resource type="Texture2D" uid="uid://boq8n1qyyrldk" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/user-person.png" id="5_33jvu"]
+[ext_resource type="Script" uid="uid://bxt5br8giet22" path="res://Assets/UI/fight_button.gd" id="7_eabrk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gperi"]
 bg_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
@@ -130,10 +132,6 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Settings"
 script = ExtResource("1_rs5d1")
-popup_path = NodePath("../../../PopupQuitMenu")
-YesButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/YesButton")
-NoButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/NoButton")
-canvaslayer_path = NodePath("../../../PopupQuitMenu/CanvasLayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
 layout_mode = 2
@@ -183,6 +181,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+script = ExtResource("3_hrd7a")
 
 [node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/Board" groups=["drop_zone"]]
 custom_minimum_size = Vector2(75, 75)
@@ -449,3 +448,4 @@ size_flags_horizontal = 10
 size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Fight"
+script = ExtResource("7_eabrk")

@@ -23,12 +23,15 @@ func _ready():
 			unit.faction = faction    # set faction
 			unit.unit_type = unit_type     # set unit type
 			if faction == 1:
+				unit.add_to_group("Friendly_units")
 				unit.collision_layer = 1   # Layer: PlayerUnits
 				#unit.collision_mask = 2    # Mask: collides with EnemyUnits
 			else:
+				unit.add_to_group("Enemy_units")
 				unit.collision_layer = 2   # Layer: PlayerUnits
 				#unit.collision_mask = 1    # Mask: collides with EnemyUnits
 			unit.add_to_group("units")
+			
 			add_child(unit)
 			#print("Unit layer:", unit.collision_layer)
 			#print("Unit mask:", unit.collision_mask)
