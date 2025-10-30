@@ -8,4 +8,3 @@
 custom_minimum_size = Vector2(500, 500)
 offset_right = 1152.0
 offset_bottom = 648.0
-script = null
