@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=16 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
-[ext_resource type="Script" uid="uid://bkffrqf8ce2n3" path="res://Assets/UI/build_screen_(ui).gd" id="1_hrd7a"]
-[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_rs5d1"]
+[ext_resource type="Script" uid="uid://bsfsy01wr8kjh" path="res://Assets/UI/Scripts/quit_button.gd" id="1_rs5d1"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
+[ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Player_Build_manager.gd" id="3_hrd7a"]
 [ext_resource type="Script" uid="uid://41huljs83d6e" path="res://Assets/UI/Scripts/Draggable.gd" id="3_k2x8r"]
 [ext_resource type="Texture2D" uid="uid://boq8n1qyyrldk" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/user-person.png" id="5_33jvu"]
+[ext_resource type="Script" uid="uid://bxt5br8giet22" path="res://Assets/UI/fight_button.gd" id="7_eabrk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gperi"]
 bg_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
@@ -37,14 +38,13 @@ bg_color = Color(0.1539, 0.17324999, 0.27, 0.5882353)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahrpf"]
 bg_color = Color(0.96862745, 0.47058824, 0.13725491, 0.5882353)
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hrd7a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -62,6 +62,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/PopupQuitMenu"]
+visible = false
 
 [node name="Padding" type="Panel" parent="MarginContainer/PopupQuitMenu/CanvasLayer"]
 custom_minimum_size = Vector2(400, 400)
@@ -131,10 +132,6 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Settings"
 script = ExtResource("1_rs5d1")
-popup_path = NodePath("../../../PopupQuitMenu")
-YesButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/YesButton")
-NoButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/NoButton")
-canvaslayer_path = NodePath("../../../PopupQuitMenu/CanvasLayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar"]
 layout_mode = 2
@@ -184,6 +181,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+script = ExtResource("3_hrd7a")
 
 [node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/Board" groups=["drop_zone"]]
 custom_minimum_size = Vector2(75, 75)
@@ -450,3 +448,4 @@ size_flags_horizontal = 10
 size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Fight"
+script = ExtResource("7_eabrk")

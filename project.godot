@@ -15,6 +15,11 @@ run/main_scene="uid://b45fmyvx5h0vm"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameController="*res://game_controller.gd"
+Stats="*res://Game/Stats.gd"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
