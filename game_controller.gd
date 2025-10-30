@@ -58,7 +58,7 @@ func phase_to_string(phase: GamePhase) -> String:
 			return "UNKNOWN"
 
 func advance_round():
-	Stats.round = 1
+	Stats.round += 1
 	Stats.wave = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.rounds_survived = Stats.round - 1
