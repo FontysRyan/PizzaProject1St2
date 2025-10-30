@@ -47,8 +47,8 @@ func _ready():
 			unit.initialize_unit()
 
 		if unit.stats:
-			var hp = unit.stats.max_hp if "max_hp" in unit.stats else "?"
-			var dmg = unit.stats.damage if "damage" in unit.stats else "?"
+			var hp = unit.stats.get("max_hp", "?")
+			var dmg = unit.stats.get("damage", "?")
 			print("Spawned:", unit.name, "| Type:", unit.unit_type, "| Faction:", faction, "| HP:", hp, "| Damage:", dmg)
 		else:
 			print("Unit stats missing for:", unit.unit_type)
