@@ -379,3 +379,5 @@ size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Fight"
 script = ExtResource("7_eabrk")
+
+[connection signal="pressed" from="MarginContainer/BottomBar/VBoxContainer/RerollButton" to="MarginContainer/BottomBar/ShopFrame/GridContainer" method="_on_reroll_button_pressed"]
