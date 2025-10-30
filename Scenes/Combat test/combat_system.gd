@@ -39,9 +39,11 @@ func check_battle_end():
 	if not friendly_alive:
 		print("Player lost!")
 		Battle_has_begun = false
+		await get_tree().create_timer(1).timeout
 		GameController.set_phase(GameController.GamePhase.DEATH)
 	elif not enemy_alive:
 		print("Player won!")
 		Battle_has_begun = false
+		await get_tree().create_timer(1).timeout
 		GameController.set_phase(GameController.GamePhase.POST_GAME)
 		GameController.advance_round()
