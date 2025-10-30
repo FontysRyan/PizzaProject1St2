@@ -8,7 +8,22 @@ extends GridContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("test")
+	roll()
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	$"../../../TopBar/HBoxContainer/GoldLabel".text = str(Stats.gold)
+
+
+func _on_reroll_button_pressed() -> void:
+	if Stats.gold < 1:
+		pass
+	else:
+		Stats._take_gold(1)
+		roll()
+
+func roll() -> void:
 	tile1.panel = shop._get_shop_unit()
 	tile1._create_panel()
 	print("tile1.panel: ", tile1.panel)
@@ -22,11 +37,7 @@ func _ready() -> void:
 	tile4._create_panel()
 	print("tile4.panel: ", tile4.panel)
 
-	# self.add_child(tile1)
-	# self.add_child(tile2)
-	# self.add_child(tile3)
-	# self.add_child(tile4)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	self.add_child(tile1)
+	self.add_child(tile2)
+	self.add_child(tile3)
+	self.add_child(tile4)

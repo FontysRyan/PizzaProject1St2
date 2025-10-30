@@ -81,3 +81,6 @@ func clear_run_data():
 	Stats.units_sold = 0
 	Stats.units_healed = 0
 	Stats.heal_amount_done = 0
+
+	
+var current_build_slots: Array = []  # Holds 9 slots with resource names

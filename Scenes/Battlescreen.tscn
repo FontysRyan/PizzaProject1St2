@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi7llxlror1tw"]
+[gd_scene load_steps=6 format=3 uid="uid://bi7llxlror1tw"]
 
 [ext_resource type="Script" uid="uid://17ri2p5alefk" path="res://Scenes/Combat test/combat_system.gd" id="1_5gxo4"]
 [ext_resource type="PackedScene" uid="uid://dndvobnqtd7ol" path="res://Assets/UI/BattleScreen (UI).tscn" id="1_m3alb"]
 [ext_resource type="Script" uid="uid://l2su46g4ecrn" path="res://Scenes/Combat test/UnitSpawner.gd" id="3_16koh"]
+[ext_resource type="Script" uid="uid://cb5o215gcolup" path="res://Scenes/player_spawner.gd" id="3_kmdb4"]
 [ext_resource type="PackedScene" uid="uid://bw7kjd8cye6tv" path="res://Scenes/Combat test/Unit.tscn" id="4_kmdb4"]
 
 [node name="Battlescreen" type="Node2D"]
@@ -13,9 +14,8 @@ offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="PlayerSpawner" type="Node" parent="."]
-script = ExtResource("3_16koh")
+script = ExtResource("3_kmdb4")
 unit_scene = ExtResource("4_kmdb4")
-faction = 1
 
 [node name="Tile0" type="Marker2D" parent="PlayerSpawner"]
 position = Vector2(66, 316)
