@@ -18,10 +18,13 @@ func _create_empty_panel() -> void:
 	# Ensure these nodes are correctly referenced and instantiated if needed
 	if $SpriteTexture == null:
 		print("Error: SpriteTexture node not found")
+		return
 	if $PriceLabel == null:
 		print("Error: PriceLabel node not found")
+		return
 	if $LevelLabel == null:
 		print("Error: LevelLabel node not found")
+		return
 
 func _fill_panel() -> void:
 	var color = panel.rarity.color
