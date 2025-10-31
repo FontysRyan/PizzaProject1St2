@@ -7,13 +7,13 @@ var original_parent: Node = null
 var original_position: Vector2 = Vector2.ZERO
 var in_shop: bool = true
 const ALLOW_SWAP: bool = true
-var panel = preload("res://Resources/unit panels/UnitPanel.gd")
+var panel: UnitPanel
 var unit_level: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
-
+	panel = preload("res://Resources/unit panels/UnitPanel.gd").new()
 func _create_empty_panel() -> void:
 	# Ensure these nodes are correctly referenced and instantiated if needed
 	if $SpriteTexture == null:
