@@ -16,25 +16,30 @@ func _process(delta):
 
 	for panel in get_children():
 		if panel is Panel:
-			var child_name = "empty"  # default if no child
+			var child_name: String = "empty"
 
 			if panel.get_child_count() > 0:
 				var unit_tile = panel.get_child(0)
 				
-				# Safely check for resource path
 				if "panel" in unit_tile and unit_tile.panel:
-					child_name = unit_tile.panel.resource_path.get_file()
+					var p = unit_tile.panel
+					#print("q" + p.name)
+					if p is UnitPanel:
+						# If it's a resource, get the file name
+						child_name = p.unit_name
+					else:
+						child_name = "unknown"
 				else:
-					child_name = unit_tile.name
+					child_name = "unknown"
 
 			# Detect slot change
-			if build_slots.get(panel.name, "") != child_name:
+			if build_slots.get(panel.name) != child_name:
 				build_slots[panel.name] = child_name
 
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				GameController.update_build_slot(slot_index, child_name)
 
-				if child_name != "empty":
+				if child_name != "empty" || child_name != "unknown" || child_name != null:
 					print(panel.name, " now has unit: ", child_name)
 				else:
 					print(panel.name, " is now empty")
@@ -44,6 +49,7 @@ func _process(delta):
 	# Optional debugging snapshot
 	if unit_names.size() == 9:
 		pass
+
 
 
 # Public API

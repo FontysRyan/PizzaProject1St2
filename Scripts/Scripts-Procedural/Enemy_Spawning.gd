@@ -41,6 +41,7 @@ func _ready():
 		unit.faction = faction
 		unit.unit_type = unit_type_name
 		unit.stats = random_unit_data
+		unit.collision_layer = 2
 		unit.add_to_group("Enemy_units")
 		unit.add_to_group("units")
 

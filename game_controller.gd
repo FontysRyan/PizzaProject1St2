@@ -54,6 +54,7 @@ func phase_to_string(phase: GamePhase) -> String:
 	match phase:
 		GamePhase.PRE_GAME:
 			clear_run_data()
+			TEMP_clear_build()
 			return "PRE_GAME"
 		GamePhase.BUILD:
 			return "BUILD"
@@ -61,8 +62,10 @@ func phase_to_string(phase: GamePhase) -> String:
 			return "FIGHT"
 		GamePhase.DEATH:
 			return "DEATH"
+			TEMP_clear_build()
 		GamePhase.POST_GAME:
 			advance_round()
+			TEMP_clear_build()
 			set_phase(GamePhase.BUILD)
 			return "POST_GAME"
 		_:
@@ -96,6 +99,8 @@ func clear_run_data():
 	Stats.units_sold = 0
 	Stats.units_healed = 0
 	Stats.heal_amount_done = 0
+	
+
 
 func update_build_slot(slot_index: int, resource_path: String) -> void:
 	# Remove ".tres" if present
@@ -122,3 +127,19 @@ func get_build_slots() -> Array:
 		unit_slot4, unit_slot5, unit_slot6,
 		unit_slot7, unit_slot8, unit_slot9
 	]
+	
+func TEMP_clear_build():
+	unit_slot1 = ""
+	unit_slot2 = ""
+	unit_slot3 = ""
+	unit_slot4 = ""
+	unit_slot5 = ""
+	unit_slot6 = ""
+	unit_slot7 = ""
+	unit_slot8 = ""
+	unit_slot9 = ""
+
+func set_game_speed(scale: float) -> void:
+	# Clamp to prevent negative or absurd values
+	Engine.time_scale = clamp(scale, 0.0, 10.0)
+	print("Game speed set to:", Engine.time_scale)

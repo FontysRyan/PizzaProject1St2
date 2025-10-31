@@ -53,6 +53,7 @@ func _on_pressed():
 		if canvaslayer:
 			if canvaslayer.has_method("show"):
 				canvaslayer.show()
+				GameController.set_game_speed(0)
 			else:
 				canvaslayer.visible = true
 
@@ -61,6 +62,7 @@ func _on_yes_pressed():
 	GameController.set_phase(GameController.GamePhase.PRE_GAME)
 
 func _on_no_pressed():
+	GameController.set_game_speed(1)
 	if not popup:
 		return
 	# no: close the container/popup and hide canvaslayer

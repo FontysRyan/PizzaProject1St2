@@ -33,6 +33,22 @@ func _on_button_gui_input(event: InputEvent, btn: TextureButton) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			animate_press(btn)
+			match btn:
+				play_button:
+					# TODO: handle play button press
+					GameController.set_game_speed(1)
+					pass
+				pause_button:
+					# TODO: handle pause button press
+					GameController.set_game_speed(0)
+					pass
+				fast_forward_button:
+					# TODO: handle fast forward button press
+					GameController.set_game_speed(5)
+					pass
+				_:
+					# Unknown button (fallback)
+					pass
 		else:
 			animate_release(btn)
 
