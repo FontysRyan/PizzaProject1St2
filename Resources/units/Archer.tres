@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://0grmnnif7id6"]
+
+[ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_8uu6i"]
+
+[resource]
+script = ExtResource("1_8uu6i")
+type = "ranged"
+description = "weaker unit but shoots arrows faster"
+attack_speed = 1.5
+movement_speed = 30.0
+damage = 5.0
+crit_chance = 20.0
+crit_modifier = 1.5
+range = 250.0
+metadata/_custom_type_script = "uid://oi7bff77l8v2"

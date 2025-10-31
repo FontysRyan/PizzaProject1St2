@@ -11,5 +11,16 @@ config_version=5
 [application]
 
 config/name="Pizzaproject1NexusArena"
+run/main_scene="uid://b45fmyvx5h0vm"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameController="*res://game_controller.gd"
+Stats="*res://Game/Stats.gd"
+Inputs="*res://Game/Inputs.gd"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

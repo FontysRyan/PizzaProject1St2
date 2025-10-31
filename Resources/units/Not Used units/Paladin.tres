@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dl0nkgdnr1wcx"]
+
+[ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_uixen"]
+
+[resource]
+script = ExtResource("1_uixen")
+max_hp = 55.0
+attack_speed = 1.9
+damage = 11.0
+crit_chance = 5.0
+crit_modifier = 2.0
+range = 5.0
+metadata/_custom_type_script = "uid://oi7bff77l8v2"
