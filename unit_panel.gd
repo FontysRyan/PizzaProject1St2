@@ -7,24 +7,21 @@ var original_parent: Node = null
 var original_position: Vector2 = Vector2.ZERO
 var in_shop: bool = true
 const ALLOW_SWAP: bool = true
-var panel: UnitPanel
+var panel = preload("res://Resources/unit panels/UnitPanel.gd")
 var unit_level: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
-	panel = preload("res://Resources/unit panels/UnitPanel.gd").new()
+
 func _create_empty_panel() -> void:
 	# Ensure these nodes are correctly referenced and instantiated if needed
 	if $SpriteTexture == null:
 		print("Error: SpriteTexture node not found")
-		return
 	if $PriceLabel == null:
 		print("Error: PriceLabel node not found")
-		return
 	if $LevelLabel == null:
 		print("Error: LevelLabel node not found")
-		return
 
 func _fill_panel() -> void:
 	var color = panel.rarity.color
@@ -97,6 +94,10 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	_snap_to_target(drop_target)
 	in_shop = false
 
+	# Subtract the price when the panel is successfully placed on a drop target
+	var price = panel.rarity.cost
+	Stats._take_gold(price)
+
 func _move_to_target(drop_target: Control) -> void:
 	if get_parent() != drop_target:
 		if get_parent():
@@ -137,7 +138,7 @@ func _restore_original_position() -> void:
 		if get_parent():
 			get_parent().remove_child(self)
 		original_parent.add_child(self)
-	position = original_position
+		position = original_position
 	if original_parent and original_parent.is_in_group("drop_zone"):
 		original_parent.set_meta("occupied_by", self)
 
