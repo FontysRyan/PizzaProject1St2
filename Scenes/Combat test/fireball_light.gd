@@ -32,6 +32,7 @@ func _on_body_entered(body):
 	# --- Case 1: Target still alive and matches the collision ---
 	if is_instance_valid(target) and body == target:
 		has_hit = true
+		print("eeeeeeeeeee")
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
 		queue_free()
