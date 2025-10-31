@@ -57,8 +57,8 @@ func _on_pressed():
 				canvaslayer.visible = true
 
 func _on_yes_pressed():
-	# yes: quit the application
-	get_tree().quit()
+	# yes: go back to main menu
+	GameController.set_phase(GameController.GamePhase.PRE_GAME)
 
 func _on_no_pressed():
 	if not popup:

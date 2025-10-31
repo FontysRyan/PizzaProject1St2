@@ -1,7 +1,7 @@
 extends Node
 
 # Active stats
-var gold: int = 50
+var gold: int = 10
 var round: int = 0
 var wave: int = 0
 
