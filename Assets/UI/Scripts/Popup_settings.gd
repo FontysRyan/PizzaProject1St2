@@ -57,7 +57,7 @@ func _on_pressed():
 				canvaslayer.visible = true
 
 func _on_yes_pressed():
-	# yes: go back to main menu
+	# yes: quit the application
 	GameController.set_phase(GameController.GamePhase.PRE_GAME)
 
 func _on_no_pressed():
