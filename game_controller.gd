@@ -62,7 +62,10 @@ func advance_round():
 	Stats.wave = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.rounds_survived = Stats.round - 1
-
+func begin_game():
+	Stats.round = 1
+	Stats.wave = int(ceil(Stats.round / 2.0))
+	Stats.gold = 8 + (2 * Stats.round)
 func clear_run_data():
 	Stats.gold = 0
 	Stats.round = 0
@@ -83,4 +86,12 @@ func clear_run_data():
 	Stats.heal_amount_done = 0
 
 	
-var current_build_slots: Array = []  # Holds 9 slots with resource names
+var unit_slot1
+var unit_slot2
+var unit_slot3
+var unit_slot4
+var unit_slot5
+var unit_slot6
+var unit_slot7
+var unit_slot8
+var unit_slot9
