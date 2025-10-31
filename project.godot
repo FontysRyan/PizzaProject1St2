@@ -10,11 +10,18 @@ config_version=5
 
 [application]
 
-config/name="pizzagame"
+config/name="Pizzaproject1NexusArena"
+run/main_scene="uid://b45fmyvx5h0vm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<Updatedupstreamconfig/name="pizzagame"
+
+[autoload]
+
+GameController="*res://game_controller.gd"
+Stats="*res://Game/Stats.gd"
+Inputs="*res://Game/Inputs.gd"
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
