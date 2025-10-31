@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=17 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
 [ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_t1wl5"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
+[ext_resource type="Script" uid="uid://bmnxbw6jjv2hy" path="res://Assets/UI/rounds_label.gd" id="3_cqpcw"]
 [ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Player_Build_manager.gd" id="3_hrd7a"]
 [ext_resource type="Script" uid="uid://bqgw4x0it3st6" path="res://Game/Shop.gd" id="5_45w1l"]
 [ext_resource type="Script" uid="uid://ddmxi7aqtsxxu" path="res://Assets/UI/grid_container.gd" id="5_hrd7a"]
@@ -173,6 +174,7 @@ theme_override_font_sizes/font_size = 30
 text = "Round 1"
 horizontal_alignment = 1
 vertical_alignment = 3
+script = ExtResource("3_cqpcw")
 
 [node name="Padding" type="Panel" parent="MarginContainer/CenterContainer"]
 custom_minimum_size = Vector2(0, 5)

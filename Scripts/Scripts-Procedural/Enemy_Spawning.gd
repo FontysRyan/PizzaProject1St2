@@ -34,8 +34,6 @@ func _ready():
 		var random_unit_data = unit_types.pick_random()
 		var unit_type_name = random_unit_data.get_meta("unit_type_name", "Unknown")
 
-		print("Spawning random unit:", unit_type_name)
-
 		var unit = unit_scene.instantiate()
 		unit.global_position = marker.global_position
 		unit.faction = faction
