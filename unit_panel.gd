@@ -134,7 +134,7 @@ func _restore_original_position() -> void:
 		if get_parent():
 			get_parent().remove_child(self)
 		original_parent.add_child(self)
-		position = original_position
+	position = original_position
 	if original_parent and original_parent.is_in_group("drop_zone"):
 		original_parent.set_meta("occupied_by", self)
 
