@@ -1,20 +1,15 @@
 extends GridContainer
 
 @onready var shop = get_parent()
-@onready var tile1: Unit_Panel = $UnitPanel
-@onready var tile2: Unit_Panel = $UnitPanel2
-@onready var tile3: Unit_Panel = $UnitPanel3
-@onready var tile4: Unit_Panel = $UnitPanel4
+@onready var panel_scene = preload("res://unit_panel.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	roll()
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$"../../../TopBar/HBoxContainer/GoldLabel".text = str(Stats.gold)
-
 
 func _on_reroll_button_pressed() -> void:
 	if Stats.gold < 1:
@@ -24,20 +19,16 @@ func _on_reroll_button_pressed() -> void:
 		roll()
 
 func roll() -> void:
-	tile1.panel = shop._get_shop_unit()
-	tile1._create_panel()
-	print("tile1.panel: ", tile1.panel)
-	tile2.panel = shop._get_shop_unit()
-	tile2._create_panel()
-	print("tile2.panel: ", tile2.panel)
-	tile3.panel = shop._get_shop_unit()
-	tile3._create_panel()
-	print("tile3.panel: ", tile3.panel)
-	tile4.panel = shop._get_shop_unit()
-	tile4._create_panel()
-	print("tile4.panel: ", tile4.panel)
+	# Clear existing panels
+	for child in get_children():
+		if child is Unit_Panel:
+			child.queue_free()
 
-	self.add_child(tile1)
-	self.add_child(tile2)
-	self.add_child(tile3)
-	self.add_child(tile4)
+	# Create new panels
+	for i in range(4):
+		var temp_panel = panel_scene.instantiate()  # Use instantiate() for Godot 4.x
+		temp_panel.panel = shop._get_shop_unit()
+		temp_panel._create_empty_panel()
+		temp_panel._fill_panel()
+		print("temp_panel.panel: ", temp_panel.panel)
+		self.add_child(temp_panel)
