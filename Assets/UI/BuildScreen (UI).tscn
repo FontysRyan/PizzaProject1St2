@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=17 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
-[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_rs5d1"]
+[ext_resource type="Script" uid="uid://dypjgmsweym6i" path="res://Assets/UI/Scripts/Main_menu.gd" id="1_cqpcw"]
+[ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_t1wl5"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
-[ext_resource type="Script" uid="uid://41huljs83d6e" path="res://Assets/UI/Scripts/Draggable.gd" id="3_k2x8r"]
-[ext_resource type="Texture2D" uid="uid://boq8n1qyyrldk" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/user-person.png" id="5_33jvu"]
+[ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Player_Build_manager.gd" id="3_hrd7a"]
+[ext_resource type="Script" uid="uid://bqgw4x0it3st6" path="res://Game/Shop.gd" id="5_45w1l"]
+[ext_resource type="Script" uid="uid://ddmxi7aqtsxxu" path="res://Assets/UI/grid_container.gd" id="5_hrd7a"]
+[ext_resource type="Script" uid="uid://bxt5br8giet22" path="res://Assets/UI/fight_button.gd" id="7_eabrk"]
+[ext_resource type="PackedScene" uid="uid://dapklguvhsdf2" path="res://unit_panel.tscn" id="7_t1wl5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gperi"]
 bg_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
@@ -28,15 +32,13 @@ border_blend = true
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33jvu"]
 bg_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs5d1"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14f0d"]
 bg_color = Color(0.1539, 0.17324999, 0.27, 0.5882353)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahrpf"]
 bg_color = Color(0.96862745, 0.47058824, 0.13725491, 0.5882353)
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,6 +113,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Return to main menu"
+script = ExtResource("1_cqpcw")
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -128,7 +131,7 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Settings"
-script = ExtResource("1_rs5d1")
+script = ExtResource("1_t1wl5")
 popup_path = NodePath("../../../PopupQuitMenu")
 YesButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/YesButton")
 NoButton_path = NodePath("../../../PopupQuitMenu/CanvasLayer/Padding/VBoxContainer/NoButton")
@@ -145,7 +148,7 @@ scale = Vector2(0.05000001, 0.05)
 texture = ExtResource("1_ahrpf")
 offset = Vector2(-200, 0)
 
-[node name="Label" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
+[node name="GoldLabel" type="Label" parent="MarginContainer/TopBar/HBoxContainer"]
 clip_contents = true
 layout_direction = 3
 layout_mode = 2
@@ -182,6 +185,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+script = ExtResource("3_hrd7a")
 
 [node name="Panel" type="Panel" parent="MarginContainer/CenterContainer/Board" groups=["drop_zone"]]
 custom_minimum_size = Vector2(75, 75)
@@ -300,107 +304,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_33jvu")
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/BottomBar/ShopFrame"]
-z_index = 2
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -37.5
-offset_right = 156.0
-offset_bottom = 37.5
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 1
-theme_override_constants/h_separation = 20
-columns = 4
-
-[node name="Panel7" type="Panel" parent="MarginContainer/BottomBar/ShopFrame/GridContainer"]
-z_index = 3
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rs5d1")
-script = ExtResource("3_k2x8r")
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/BottomBar/ShopFrame/GridContainer/Panel7"]
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_33jvu")
-expand_mode = 2
-
-[node name="Panel8" type="Panel" parent="MarginContainer/BottomBar/ShopFrame/GridContainer"]
-z_index = 3
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rs5d1")
-script = ExtResource("3_k2x8r")
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/BottomBar/ShopFrame/GridContainer/Panel8"]
-modulate = Color(0.14901961, 1, 1, 1)
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_33jvu")
-expand_mode = 2
-
-[node name="Panel9" type="Panel" parent="MarginContainer/BottomBar/ShopFrame/GridContainer"]
-z_index = 3
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rs5d1")
-script = ExtResource("3_k2x8r")
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/BottomBar/ShopFrame/GridContainer/Panel9"]
-modulate = Color(0.9700758, 0.89819235, 0.04444503, 1)
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_33jvu")
-expand_mode = 2
-
-[node name="Panel10" type="Panel" parent="MarginContainer/BottomBar/ShopFrame/GridContainer"]
-z_index = 3
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rs5d1")
-script = ExtResource("3_k2x8r")
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/BottomBar/ShopFrame/GridContainer/Panel10"]
-modulate = Color(1, 0.39999998, 0.39999998, 1)
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_33jvu")
-expand_mode = 2
+script = ExtResource("5_45w1l")
 
 [node name="Panel" type="Panel" parent="MarginContainer/BottomBar/ShopFrame"]
 custom_minimum_size = Vector2(380, 80)
@@ -419,6 +323,37 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_14f0d")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/BottomBar/ShopFrame"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -37.5
+offset_right = 156.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme_override_constants/h_separation = 20
+columns = 4
+script = ExtResource("5_hrd7a")
+
+[node name="UnitPanel" parent="MarginContainer/BottomBar/ShopFrame/GridContainer" instance=ExtResource("7_t1wl5")]
+layout_mode = 2
+
+[node name="UnitPanel2" parent="MarginContainer/BottomBar/ShopFrame/GridContainer" instance=ExtResource("7_t1wl5")]
+layout_mode = 2
+
+[node name="UnitPanel3" parent="MarginContainer/BottomBar/ShopFrame/GridContainer" instance=ExtResource("7_t1wl5")]
+layout_mode = 2
+
+[node name="UnitPanel4" parent="MarginContainer/BottomBar/ShopFrame/GridContainer" instance=ExtResource("7_t1wl5")]
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BottomBar"]
 layout_mode = 2
@@ -448,3 +383,6 @@ size_flags_horizontal = 10
 size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Fight"
+script = ExtResource("7_eabrk")
+
+[connection signal="pressed" from="MarginContainer/BottomBar/VBoxContainer/RerollButton" to="MarginContainer/BottomBar/ShopFrame/GridContainer" method="_on_reroll_button_pressed"]

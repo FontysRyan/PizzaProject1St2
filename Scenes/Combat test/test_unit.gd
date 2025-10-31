@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum Faction { FRIENDLY = 1, ENEMY = 2 }
 @export var faction: Faction = Faction.FRIENDLY
 @export var stats: UnitStats #script
-@export var unit_type: String = "Archer"
+@export var unit_type: String
 var Unit_in_Battle: bool = false
 @export var target: Node2D = null  # the unit’s current target
 @export var Current_hp: int
