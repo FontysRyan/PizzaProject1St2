@@ -5,28 +5,29 @@ var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var original_parent: Node = null
 var original_position: Vector2 = Vector2.ZERO
-
-# Mark if the piece is in the shop (cannot swap while in shop)
 var in_shop: bool = true
-
-# Enable swapping behavior when dropping onto an occupied grid cell
 const ALLOW_SWAP: bool = true
-
-var panel: UnitPanel
+var panel = preload("res://Resources/unit panels/UnitPanel.gd")
 var unit_level: int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
 
-func _create_panel() -> void:
+func _create_empty_panel() -> void:
+	# Ensure these nodes are correctly referenced and instantiated if needed
+	if $SpriteTexture == null:
+		print("Error: SpriteTexture node not found")
+	if $PriceLabel == null:
+		print("Error: PriceLabel node not found")
+	if $LevelLabel == null:
+		print("Error: LevelLabel node not found")
+
+func _fill_panel() -> void:
 	var color = panel.rarity.color
 	add_theme_color_override("UnitPanel", color)
 	var texture = panel.texture
-	if has_node("SpriteTexture"):
-		print("SpriteTexture node found!")
-		$SpriteTexture.texture = texture
-	else:
-		print("SpriteTexture node not found!")
+	$SpriteTexture.texture = texture
 	var price = panel.rarity.cost
 	$PriceLabel.text = str(price)
 	var level = "Lvl: " + str(unit_level)
@@ -48,12 +49,10 @@ func _start_drag(event: InputEventMouseButton) -> void:
 	dragging = true
 	original_parent = get_parent()
 	original_position = position
-
 	# Clear previous occupancy if picking up from a grid
 	if original_parent and original_parent.is_in_group("drop_zone") and original_parent.has_meta("occupied_by"):
 		if original_parent.get_meta("occupied_by") == self:
 			original_parent.set_meta("occupied_by", null)
-
 	drag_offset = get_viewport().get_mouse_position() - global_position
 	global_position = get_viewport().get_mouse_position() - drag_offset
 
@@ -61,7 +60,6 @@ func _stop_drag(event: InputEventMouseButton) -> void:
 	dragging = false
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 	var drop_target: Control = _get_drop_target_at_point(mouse_pos)
-
 	if drop_target:
 		_place_on_drop_target(drop_target)
 	else:
@@ -74,18 +72,15 @@ func _place_on_drop_target(drop_target: Control) -> void:
 		if node.has_meta("occupied_by") and node.get_meta("occupied_by") == self:
 			my_slot = node
 			break
-
 	# If dropped back on same slot, just snap
 	if drop_target == my_slot:
 		drop_target.set_meta("occupied_by", self)
 		_snap_to_target(drop_target)
 		in_shop = false
 		return
-
 	var occupant: Control = null
 	if drop_target.has_meta("occupied_by"):
 		occupant = drop_target.get_meta("occupied_by")
-
 	# Swap only allowed if piece is NOT in shop and occupant is valid
 	if ALLOW_SWAP and occupant != null and is_instance_valid(occupant) and occupant != self and not in_shop:
 		_swap_with_occupant(drop_target, occupant, my_slot)
@@ -93,12 +88,15 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	elif occupant != null:
 		_restore_original_position()
 		return
-
 	# Free to drop
 	_move_to_target(drop_target)
 	drop_target.set_meta("occupied_by", self)
 	_snap_to_target(drop_target)
 	in_shop = false
+
+	# Subtract the price when the panel is successfully placed on a drop target
+	var price = panel.rarity.cost
+	Stats._take_gold(price)
 
 func _move_to_target(drop_target: Control) -> void:
 	if get_parent() != drop_target:
@@ -113,27 +111,23 @@ func _swap_with_occupant(drop_target: Control, occupant: Control, my_slot: Contr
 		if node.has_meta("occupied_by") and node.get_meta("occupied_by") == occupant:
 			occupant_slot = node
 			break
-
 	# Fallbacks
 	if my_slot == null:
 		my_slot = original_parent
 	if occupant_slot == null:
 		occupant_slot = occupant.get_parent()
-
 	# Move occupant into my current slot
 	if occupant_slot != null and my_slot != null:
 		if occupant.get_parent():
 			occupant.get_parent().remove_child(occupant)
 		my_slot.add_child(occupant)
 		my_slot.set_meta("occupied_by", occupant)
-
 	# Move self into drop_target
 	if get_parent():
 		get_parent().remove_child(self)
 	drop_target.add_child(self)
 	drop_target.set_meta("occupied_by", self)
 	in_shop = false
-
 	# Snap both pieces
 	_snap_to_target(drop_target)
 	if is_instance_valid(occupant) and occupant.has_method("_snap_to_target"):
@@ -144,15 +138,12 @@ func _restore_original_position() -> void:
 		if get_parent():
 			get_parent().remove_child(self)
 		original_parent.add_child(self)
-
-	position = original_position
-
+		position = original_position
 	if original_parent and original_parent.is_in_group("drop_zone"):
 		original_parent.set_meta("occupied_by", self)
 
 func _snap_to_target(drop_target: Control) -> void:
 	var local_pos: Vector2 = drop_target.get_local_mouse_position() - drag_offset
-
 	if drop_target.has_meta("cell_size"):
 		var cell = drop_target.get_meta("cell_size")
 		if typeof(cell) == TYPE_VECTOR2:
