@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dkfbjvj80ag3o"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="UnitSelection" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpawnControls" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SpawnPlayerBtn" type="Button" parent="SpawnControls"]
+layout_mode = 2
+text = "Spawn Player Unit"
+
+[node name="SpawnEnemyBtn" type="Button" parent="SpawnControls"]
+layout_mode = 2
+text = "Restart Battle"
+
+[node name="ClearAllBtn" type="Button" parent="SpawnControls"]
+layout_mode = 2
+text = "Restart Battle"
+
+[node name="RestartBtn" type="Button" parent="SpawnControls"]
+layout_mode = 2
+text = "Restart Battle"
+
+[node name="RandomizeBtn" type="Button" parent="SpawnControls"]
+layout_mode = 2
+text = "Randomize Teams"
+
+[node name="BattleInfo" type="VBoxContainer" parent="."]
+offset_top = 50.0
+offset_right = 70.0
+offset_bottom = 127.0
+
+[node name="PlayerCount" type="Label" parent="BattleInfo"]
+layout_mode = 2
+text = "Player: 0"
+
+[node name="EnemyCount" type="Label" parent="BattleInfo"]
+layout_mode = 2
+text = "Enemy: 0"
+
+[node name="BattleStatus" type="Label" parent="BattleInfo"]
+layout_mode = 2
+text = "BATTLE!"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://4lnm2c6hdvhl"]
+
+[ext_resource type="Script" uid="uid://c8gyvisltw2eg" path="res://Scenes/VFX test/unit.gd" id="1_52abl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52abl"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n58i"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_52abl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_52abl")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3n58i")

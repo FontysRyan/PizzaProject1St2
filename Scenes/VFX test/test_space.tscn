@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://dafcsgvibtbrq"]
+
+[ext_resource type="Script" uid="uid://6gnojpw25n3o" path="res://Scenes/VFX test/test_space.gd" id="1_wua64"]
+[ext_resource type="PackedScene" uid="uid://dkfbjvj80ag3o" path="res://Scenes/VFX test/ui.tscn" id="2_jkd0t"]
+[ext_resource type="Script" uid="uid://cd6ek8ppqstwy" path="res://Scenes/VFX test/unit_resource.gd" id="2_m6sn1"]
+[ext_resource type="Resource" uid="uid://x1pi8hwpehrg" path="res://Scenes/VFX test/archer_resource.tres" id="3_ea8e5"]
+[ext_resource type="Resource" uid="uid://2ls7px8qda7g" path="res://Scenes/VFX test/knight_resource.tres" id="4_6bpd2"]
+[ext_resource type="Resource" uid="uid://c1ujklf5pr4c2" path="res://Scenes/VFX test/pirate_resource.tres" id="5_on734"]
+[ext_resource type="Resource" uid="uid://ccbg4enb3iiin" path="res://Scenes/VFX test/warrior_resource.tres" id="6_jrmpt"]
+
+[node name="TestSpace" type="Node2D"]
+script = ExtResource("1_wua64")
+unit_resources = Array[ExtResource("2_m6sn1")]([ExtResource("3_ea8e5"), ExtResource("4_6bpd2"), ExtResource("5_on734"), ExtResource("6_jrmpt")])
+
+[node name="SpawnAreas" type="Node2D" parent="."]
+
+[node name="PlayerSpawnArea" type="ColorRect" parent="SpawnAreas"]
+offset_left = 100.0
+offset_top = 125.0
+offset_right = 300.0
+offset_bottom = 525.0
+
+[node name="EnemySpawnArea" type="ColorRect" parent="SpawnAreas"]
+offset_left = 850.0
+offset_top = 125.0
+offset_right = 1050.0
+offset_bottom = 525.0
+color = Color(0.89411765, 0, 0, 0.18039216)
+
+[node name="UI" parent="." instance=ExtResource("2_jkd0t")]
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
