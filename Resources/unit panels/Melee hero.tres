@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitPanel" load_steps=4 format=3 uid="uid://crxprr2xexfkm"]
+
+[ext_resource type="Resource" uid="uid://m20c85ovgf2i" path="res://Resources/Rarities/4Legendary.tres" id="1_iroyb"]
+[ext_resource type="Script" uid="uid://dnmytpxqgt262" path="res://Resources/unit panels/UnitPanel.gd" id="1_ksgoj"]
+[ext_resource type="Texture2D" uid="uid://b1p6iobdpigbg" path="res://Assets/Sprites/Warrior.png" id="3_d44q5"]
+
+[resource]
+script = ExtResource("1_ksgoj")
+texture = ExtResource("3_d44q5")
+rarity = ExtResource("1_iroyb")
+metadata/_custom_type_script = "uid://dnmytpxqgt262"

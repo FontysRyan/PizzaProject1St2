@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dapklguvhsdf2"]
+
+[ext_resource type="Script" uid="uid://b8d82qhubvv2t" path="res://unit_panel.gd" id="1_7mbbl"]
+[ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="2_86h88"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mbbl"]
+
+[node name="UnitPanel" type="Panel"]
+custom_minimum_size = Vector2(75, 75)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7mbbl")
+
+[node name="SpriteTexture" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 57.0
+offset_bottom = 23.0
+text = "Lvl: 1"
+label_settings = SubResource("LabelSettings_7mbbl")
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 52.0
+offset_right = 57.0
+offset_bottom = 75.0
+text = "10"
+label_settings = SubResource("LabelSettings_7mbbl")
+
+[node name="Coin1_png" type="Sprite2D" parent="."]
+position = Vector2(65, 64)
+scale = Vector2(0.026, 0.025)
+texture = ExtResource("2_86h88")

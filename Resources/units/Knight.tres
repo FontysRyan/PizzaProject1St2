@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://cpn2t6b3mgb3o"]
+
+[ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_gno8c"]
+
+[resource]
+script = ExtResource("1_gno8c")
+type = "melee"
+max_hp = 120.0
+movement_speed = 35.0
+damage = 6.0
+crit_chance = 5.0
+crit_modifier = 2.0
+range = 5.0
+metadata/_custom_type_script = "uid://oi7bff77l8v2"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dxkl7k0rty7n8"]
+
+[ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_1w28j"]
+
+[resource]
+script = ExtResource("1_1w28j")
+attack_speed = 1.3
+attack_amount = 2
+crit_chance = 7.0
+crit_modifier = 1.7
+range = 360.0
+metadata/_custom_type_script = "uid://oi7bff77l8v2"
