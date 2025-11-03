@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://0grmnnif7id6"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://0grmnnif7id6"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_8uu6i"]
+[ext_resource type="Texture2D" uid="uid://bmto1p0u8bt1q" path="res://Assets/Sprites/Archer.png" id="2_korsa"]
 
 [resource]
 script = ExtResource("1_8uu6i")
+texture = ExtResource("2_korsa")
 type = "ranged"
 description = "weaker unit but shoots arrows faster"
 attack_speed = 1.5

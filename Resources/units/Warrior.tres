@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://1owfk7c4krkq"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://1owfk7c4krkq"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_7iqum"]
+[ext_resource type="Texture2D" uid="uid://b1p6iobdpigbg" path="res://Assets/Sprites/Warrior.png" id="2_nyp00"]
 
 [resource]
 script = ExtResource("1_7iqum")
+texture = ExtResource("2_nyp00")
 type = "melee"
 max_hp = 60.0
 attack_speed = 1.0

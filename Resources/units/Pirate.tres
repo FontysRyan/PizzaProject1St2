@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://dp350yeq2o0mt"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dp350yeq2o0mt"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_bk1no"]
+[ext_resource type="Texture2D" uid="uid://bwitdq3pfvi31" path="res://Assets/Sprites/Pirate.png" id="2_h2kas"]
 
 [resource]
 script = ExtResource("1_bk1no")
+texture = ExtResource("2_h2kas")
+type = "ranged"
 max_hp = 30.0
 attack_speed = 2.5
 attack_amount = 2
