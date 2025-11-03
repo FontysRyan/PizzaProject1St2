@@ -42,6 +42,7 @@ func set_phase(new_phase: GamePhase):
 	match new_phase:
 		GamePhase.PRE_GAME:
 			get_tree().change_scene_to_file(Main_scene)
+			get_tree().paused = false
 		GamePhase.BUILD:
 			get_tree().change_scene_to_file(build_scene)
 		GamePhase.FIGHT:
