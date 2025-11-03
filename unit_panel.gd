@@ -26,7 +26,7 @@ func _create_empty_panel() -> void:
 func _fill_panel() -> void:
 	var color = panel.rarity.color
 	add_theme_color_override("UnitPanel", color)
-	var texture = panel.texture
+	var texture = panel.unit_stats.texture
 	$SpriteTexture.texture = texture
 	var price = panel.rarity.cost
 	$PriceLabel.text = str(price)

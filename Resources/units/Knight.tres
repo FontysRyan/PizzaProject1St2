@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://cpn2t6b3mgb3o"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://cpn2t6b3mgb3o"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_gno8c"]
+[ext_resource type="Texture2D" uid="uid://chx50gxqmtx0y" path="res://Assets/Sprites/knight.png" id="2_smyvy"]
 
 [resource]
 script = ExtResource("1_gno8c")
+texture = ExtResource("2_smyvy")
 type = "melee"
 max_hp = 120.0
 movement_speed = 35.0
