@@ -4,6 +4,7 @@ extends Node
 enum Marker_Faction { FRIENDLY = 1, ENEMY = 2 }
 @export var faction: Marker_Faction
 @export var units_folder_path: String = "res://Resources/units/"
+signal enemy_units_spawned
 
 func _ready():
 	var unit_types = load_unit_types(units_folder_path)
@@ -33,25 +34,25 @@ func _ready():
 		var random_unit_data = unit_types.pick_random()
 		var unit_type_name = random_unit_data.get_meta("unit_type_name", "Unknown")
 
-		print("Spawning random unit:", unit_type_name)
-
 		var unit = unit_scene.instantiate()
 		unit.global_position = marker.global_position
 		unit.faction = faction
 		unit.unit_type = unit_type_name
 		unit.stats = random_unit_data
+		unit.collision_layer = 2   # Layer: PlayerUnits
+		unit.add_to_group("Enemy_units")
+		unit.add_to_group("units")
 
 		add_child(unit)
-
+	
 		if unit.has_method("initialize_unit"):
 			unit.initialize_unit()
 
 		if unit.stats:
-			var hp = unit.stats.get("max_hp", "?")
-			var dmg = unit.stats.get("damage", "?")
-			print("Spawned:", unit.name, "| Type:", unit.unit_type, "| Faction:", faction, "| HP:", hp, "| Damage:", dmg)
+			print("Spawned:", unit.name, "| Type:", unit.unit_type, "| Faction:", faction)
 		else:
 			print("Unit stats missing for:", unit.unit_type)
+	call_deferred("emit_signal", "enemy_units_spawned")
 
 
 func load_unit_types(folder_path: String) -> Array:

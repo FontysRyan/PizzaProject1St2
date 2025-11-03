@@ -1,7 +1,7 @@
 extends Node
 
 # Active stats
-var gold: int = 0
+var gold: int = 10
 var round: int = 0
 var wave: int = 0
 
@@ -21,7 +21,6 @@ var units_healed: int = 0
 var heal_amount_done: int = 0
 
 func _next_round():
-	round += 1
 	rounds_survived += 1
 
 func _next_wave():

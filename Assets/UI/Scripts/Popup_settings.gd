@@ -58,7 +58,7 @@ func _on_pressed():
 
 func _on_yes_pressed():
 	# yes: quit the application
-	get_tree().quit()
+	GameController.set_phase(GameController.GamePhase.PRE_GAME)
 
 func _on_no_pressed():
 	if not popup:

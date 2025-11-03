@@ -45,12 +45,12 @@ func _shop_rarity() -> Rarity:
 		tempRandom -= 10000
 	if tempRandom < 5000:
 		return common
-	elif tempRandom < 8000:
+	else: #tempRandom < 8000:
 		return rare
-	elif tempRandom < 9500:
-		return epic
-	else:
-		return legendary
+	#elif tempRandom < 9500:
+		#return epic
+	#else:
+		#return legendary
 
 func _shop_units(get_rarity: Rarity) -> void:
 	shop_units.clear()
@@ -58,3 +58,7 @@ func _shop_units(get_rarity: Rarity) -> void:
 		if unit.rarity == get_rarity:
 			shop_units.append(unit)
 	print("Available units for rarity ", get_rarity, ": ", shop_units)
+
+
+func _on_reroll_button_pressed() -> void:
+	pass # Replace with function body.

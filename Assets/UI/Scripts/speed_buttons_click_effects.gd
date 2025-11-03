@@ -14,6 +14,7 @@ var original_colors: Dictionary = {}      # btn -> Color
 const ACTIVE_COLOR := Color(0.0, 1.4, 1.0, 1.0)
 
 func _ready() -> void:
+	
 	for btn_path in [play_button_path, pause_button_path, fast_forward_button_path]:
 		var btn: TextureButton = get_node_or_null(btn_path)
 		if btn:
@@ -77,3 +78,11 @@ func _update_button_colors() -> void:
 	for btn in [play_button, pause_button, fast_forward_button]:
 		if btn:
 			btn.modulate = _target_color(btn)
+
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = true
+
+
+func _on_play_button_pressed() -> void:
+	get_tree().paused = false

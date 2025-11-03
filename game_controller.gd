@@ -31,6 +31,7 @@ func set_phase(new_phase: GamePhase):
 	match new_phase:
 		GamePhase.PRE_GAME:
 			get_tree().change_scene_to_file(Main_scene)
+			get_tree().paused = false
 		GamePhase.BUILD:
 			get_tree().change_scene_to_file(build_scene)
 		GamePhase.FIGHT:
@@ -51,7 +52,6 @@ func phase_to_string(phase: GamePhase) -> String:
 		GamePhase.DEATH:
 			return "DEATH"
 		GamePhase.POST_GAME:
-			advance_round()
 			set_phase(GamePhase.BUILD)
 			return "POST_GAME"
 		_:
@@ -81,3 +81,6 @@ func clear_run_data():
 	Stats.units_sold = 0
 	Stats.units_healed = 0
 	Stats.heal_amount_done = 0
+
+	
+var current_build_slots: Array = []  # Holds 9 slots with resource names
