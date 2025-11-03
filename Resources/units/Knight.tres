@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_resource type="Resource" script_class="UnitStats" load_steps=11 format=3 uid="uid://cpn2t6b3mgb3o"]
+=======
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://cpn2t6b3mgb3o"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_gno8c"]
 [ext_resource type="Texture2D" uid="uid://dhhdqgjwoiwi8" path="res://Assets/Sprites/Knight-Sheet1.png" id="2_bu3nc"]
@@ -54,10 +58,22 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_gno8c"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("1_gno8c")
+<<<<<<< Updated upstream
 texture = ExtResource("2_smyvy")
 sprite_frame = SubResource("SpriteFrames_wafrp")
+=======
+sprite_frames = SubResource("SpriteFrames_gno8c")
+>>>>>>> Stashed changes
 type = "melee"
 max_hp = 120.0
 movement_speed = 35.0
