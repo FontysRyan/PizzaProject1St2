@@ -21,7 +21,6 @@ var units_healed: int = 0
 var heal_amount_done: int = 0
 
 func _next_round():
-	round += 1
 	rounds_survived += 1
 
 func _next_wave():

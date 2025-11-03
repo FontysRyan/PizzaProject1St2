@@ -34,18 +34,17 @@ func _ready():
 		var random_unit_data = unit_types.pick_random()
 		var unit_type_name = random_unit_data.get_meta("unit_type_name", "Unknown")
 
-		print("Spawning random unit:", unit_type_name)
-
 		var unit = unit_scene.instantiate()
 		unit.global_position = marker.global_position
 		unit.faction = faction
 		unit.unit_type = unit_type_name
 		unit.stats = random_unit_data
+		unit.collision_layer = 2   # Layer: PlayerUnits
 		unit.add_to_group("Enemy_units")
 		unit.add_to_group("units")
 
 		add_child(unit)
-
+	
 		if unit.has_method("initialize_unit"):
 			unit.initialize_unit()
 
