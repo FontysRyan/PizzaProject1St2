@@ -6,6 +6,7 @@ class_name Unit
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
 @onready var health_bar = $HealthBar
+@onready var camera: Camera2D = $Camera2D
 
 enum STATE { IDLE, MOVING, ATTACKING, DEAD }
 var current_state: STATE = STATE.IDLE
@@ -84,8 +85,6 @@ func _physics_process(delta):
 	if not is_initialized or current_state == STATE.DEAD:
 		return
 	
-	 if Engine.get_frames_drawn() % 60 == 0:  # Print every second
-		debug_movement()
 	# Handle attack cooldown
 	if attack_cooldown > 0:
 		attack_cooldown -= delta
@@ -189,28 +188,12 @@ func take_damage(amount: int):
 		
 	current_health -= amount
 	update_health_bar()
-	
-	# Visual feedback - flash red and camera shake
-	if sprite:
-		var tween = create_tween()
-		tween.tween_property(sprite, "modulate", Color.RED, 0.1)
-		tween.tween_property(sprite, "modulate", Color.WHITE, 0.1)
-	
+
 	# Trigger camera shake
-	trigger_camera_shake()
+	
 	
 	if current_health <= 0:
 		die()
-
-func trigger_camera_shake():
-	var camera = get_viewport().get_camera_2d()
-	if camera and camera.has_method("shake_camera"):
-		camera.shake_camera(0.3, 8)
-	else:
-		# Fallback: try to find camera in scene
-		var cameras = get_tree().get_nodes_in_group("camera")
-		if cameras.size() > 0 and cameras[0].has_method("shake_camera"):
-			cameras[0].shake_camera(0.3, 8)
 
 func update_health_bar():
 	if health_bar and health_bar.has_node("Foreground"):

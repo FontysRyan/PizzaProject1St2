@@ -252,5 +252,7 @@ animations = [{
 [resource]
 script = ExtResource("1_rc1li")
 unit_name = "Archer"
+attack_range = 200.0
+move_speed = 130
 sprite_frames = SubResource("SpriteFrames_u4cxa")
 projectile_scene = ExtResource("1_2ve7c")

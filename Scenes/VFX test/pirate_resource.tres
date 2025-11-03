@@ -224,5 +224,7 @@ animations = [{
 [resource]
 script = ExtResource("1_enig1")
 unit_name = "Pirate"
+attack_range = 150.0
+move_speed = 120
 sprite_frames = SubResource("SpriteFrames_wa8qv")
 projectile_scene = ExtResource("1_bwdea")
