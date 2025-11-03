@@ -3,7 +3,7 @@ extends Resource
 
 #Character sprite
 @export var texture: Texture2D
-
+@export var sprite_frames: SpriteFrames
 #Stats
 @export var type: String = ""
 @export var description: String = ""
