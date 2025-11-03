@@ -4,7 +4,7 @@ extends Node
 var gold: int = 10
 var round: int = 0
 var wave: int = 0
-
+var waves_in_round: int = 0
 # Game over stats
 # Gameplay progress
 var time_played: float = 0.0
