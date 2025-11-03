@@ -172,7 +172,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
 
-[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+[node name="Panel1" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -324,3 +324,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8qxqe")
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q3ddf")
+
+[connection signal="pressed" from="MarginContainer/TopBar/SpeedButtonContainer/PauseButton" to="MarginContainer/TopBar/SpeedButtonContainer" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TopBar/SpeedButtonContainer/PlayButton" to="MarginContainer/TopBar/SpeedButtonContainer" method="_on_play_button_pressed"]

@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_1xb2f")
+unit_name = "warrior"
 texture = ExtResource("3_uc2it")
 rarity = ExtResource("1_hmlvd")
 metadata/_custom_type_script = "uid://dnmytpxqgt262"
