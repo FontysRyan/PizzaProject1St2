@@ -34,3 +34,4 @@ color = Color(0.89411765, 0, 0, 0.18039216)
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

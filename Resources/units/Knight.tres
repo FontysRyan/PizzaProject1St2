@@ -1,11 +1,63 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://cpn2t6b3mgb3o"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=11 format=3 uid="uid://cpn2t6b3mgb3o"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_gno8c"]
+[ext_resource type="Texture2D" uid="uid://dhhdqgjwoiwi8" path="res://Assets/Sprites/Knight-Sheet1.png" id="2_bu3nc"]
 [ext_resource type="Texture2D" uid="uid://chx50gxqmtx0y" path="res://Assets/Sprites/knight.png" id="2_smyvy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu8ck"]
+atlas = ExtResource("2_bu3nc")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhf4h"]
+atlas = ExtResource("2_bu3nc")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_340ru"]
+atlas = ExtResource("2_bu3nc")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e1ey"]
+atlas = ExtResource("2_bu3nc")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md2st"]
+atlas = ExtResource("2_bu3nc")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h74h4"]
+atlas = ExtResource("2_bu3nc")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wafrp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vu8ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhf4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_340ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e1ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md2st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h74h4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [resource]
 script = ExtResource("1_gno8c")
 texture = ExtResource("2_smyvy")
+sprite_frame = SubResource("SpriteFrames_wafrp")
 type = "melee"
 max_hp = 120.0
 movement_speed = 35.0

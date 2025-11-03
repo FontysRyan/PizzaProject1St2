@@ -1,11 +1,63 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://1owfk7c4krkq"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=11 format=3 uid="uid://1owfk7c4krkq"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_7iqum"]
+[ext_resource type="Texture2D" uid="uid://78upjs2pvvc6" path="res://Assets/Sprites/Warrior-Sheet.png" id="2_igrd6"]
 [ext_resource type="Texture2D" uid="uid://b1p6iobdpigbg" path="res://Assets/Sprites/Warrior.png" id="2_nyp00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pidqb"]
+atlas = ExtResource("2_igrd6")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a44ud"]
+atlas = ExtResource("2_igrd6")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk8ns"]
+atlas = ExtResource("2_igrd6")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e10p"]
+atlas = ExtResource("2_igrd6")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmkbm"]
+atlas = ExtResource("2_igrd6")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_588xq"]
+atlas = ExtResource("2_igrd6")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w074m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pidqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a44ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk8ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e10p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmkbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_588xq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [resource]
 script = ExtResource("1_7iqum")
 texture = ExtResource("2_nyp00")
+sprite_frame = SubResource("SpriteFrames_w074m")
 type = "melee"
 max_hp = 60.0
 attack_speed = 1.0

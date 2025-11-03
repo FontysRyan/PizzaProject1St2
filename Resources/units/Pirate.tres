@@ -1,11 +1,63 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dp350yeq2o0mt"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=11 format=3 uid="uid://dp350yeq2o0mt"]
 
 [ext_resource type="Script" uid="uid://oi7bff77l8v2" path="res://Resources/units/UnitStats.gd" id="1_bk1no"]
+[ext_resource type="Texture2D" uid="uid://dnyskqqbgohy8" path="res://Assets/Sprites/Priate-Sheet.png" id="2_grb2l"]
 [ext_resource type="Texture2D" uid="uid://bwitdq3pfvi31" path="res://Assets/Sprites/Pirate.png" id="2_h2kas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiirk"]
+atlas = ExtResource("2_grb2l")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awsaq"]
+atlas = ExtResource("2_grb2l")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qy0x"]
+atlas = ExtResource("2_grb2l")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntrpi"]
+atlas = ExtResource("2_grb2l")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldskb"]
+atlas = ExtResource("2_grb2l")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iypts"]
+atlas = ExtResource("2_grb2l")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7aacm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiirk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awsaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qy0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntrpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldskb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iypts")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [resource]
 script = ExtResource("1_bk1no")
 texture = ExtResource("2_h2kas")
+sprite_frame = SubResource("SpriteFrames_7aacm")
 type = "ranged"
 max_hp = 30.0
 attack_speed = 2.5
