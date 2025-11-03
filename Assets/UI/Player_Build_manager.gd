@@ -39,7 +39,7 @@ func _process(delta):
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				GameController.update_build_slot(slot_index, child_name)
 
-				if child_name != "empty" || child_name != "unknown" || child_name != null:
+				if child_name != "empty" && child_name != "unknown" && child_name != null:
 					print(panel.name, " now has unit: ", child_name)
 				else:
 					print(panel.name, " is now empty")
