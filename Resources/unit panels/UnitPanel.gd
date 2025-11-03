@@ -2,5 +2,5 @@ class_name UnitPanel
 extends Resource
 
 @export var unit_name: String
-@export var texture: Texture2D
+@export var unit_stats: UnitStats
 @export var rarity: Rarity

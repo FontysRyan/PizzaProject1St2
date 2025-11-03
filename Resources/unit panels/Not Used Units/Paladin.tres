@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitPanel" load_steps=4 format=3 uid="uid://bexuuniq02jht"]
+
+[ext_resource type="Resource" uid="uid://b42e1nrmg486" path="res://Resources/Rarities/3Epic.tres" id="1_ra8c4"]
+[ext_resource type="Script" uid="uid://dnmytpxqgt262" path="res://Resources/unit panels/UnitPanel.gd" id="2_tqq1s"]
+[ext_resource type="Resource" uid="uid://dl0nkgdnr1wcx" path="res://Resources/units/Not Used units/Paladin.tres" id="3_be3u0"]
+
+[resource]
+script = ExtResource("2_tqq1s")
+unit_name = "paladin"
+unit_stats = ExtResource("3_be3u0")
+rarity = ExtResource("1_ra8c4")
+metadata/_custom_type_script = "uid://dnmytpxqgt262"
