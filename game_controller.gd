@@ -62,8 +62,8 @@ func phase_to_string(phase: GamePhase) -> String:
 		GamePhase.FIGHT:
 			return "FIGHT"
 		GamePhase.DEATH:
-			return "DEATH"
 			TEMP_clear_build()
+			return "DEATH"
 		GamePhase.POST_GAME:
 			advance_round()
 			TEMP_clear_build()
