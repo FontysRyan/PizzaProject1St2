@@ -172,7 +172,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
 
-[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
+[node name="Panel1" type="Panel" parent="HBoxContainer/VBoxContainer/Board" groups=["drop_zone"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
