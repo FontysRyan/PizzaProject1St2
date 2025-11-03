@@ -25,19 +25,24 @@ var selected_unit_index: int = 0
 var battle_started: bool = false
 var formation_positions: Dictionary = {}
 
+# Add to TestSpace.gd
+@onready var camera: Camera2D = $Camera2D
+
 func _ready():
 	# Wait for all nodes to be ready
 	await get_tree().process_frame
 	
-	# Check if unit resources are assigned
-	if unit_resources.size() == 0:
-		push_error("CRITICAL: No unit resources assigned! Please assign unit resources in the inspector.")
-		show_error_message()
-		return
+	# Make sure camera is current
+	if camera:
+		camera.make_current()
+		camera.add_to_group("camera")
+	else:
+		push_warning("No camera found in scene - camera shake won't work")
 	
 	setup_ui()
 	setup_formations()
 	start_battle()
+
 
 func show_error_message():
 	var error_label = Label.new()

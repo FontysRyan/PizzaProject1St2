@@ -7,7 +7,7 @@ class_name Unit
 @onready var sprite = $AnimatedSprite2D
 @onready var health_bar = $HealthBar
 
-enum STATE { IDLE, MOVING, ATTACKING, HIT, DEAD }
+enum STATE { IDLE, MOVING, ATTACKING, DEAD }
 var current_state: STATE = STATE.IDLE
 var target: Unit = null
 var team: String = "player"
@@ -35,10 +35,6 @@ func initialize(resource: UnitResource, unit_team: String, start_position: Vecto
 	
 	# Setup will happen in _ready() now that we're initialized
 	setup_from_resource()
-	
-	if sprite:
-		if team == "enemy":
-			sprite.flip_h = true
 	
 	# Enable physics processing now that we're set up
 	set_physics_process(true)
@@ -81,8 +77,6 @@ func change_state(new_state: STATE):
 			play_animation(unit_resource.run_anim)
 		STATE.ATTACKING:
 			play_animation(unit_resource.attack_anim)
-		STATE.HIT:
-			play_animation(unit_resource.hit_anim)
 		STATE.DEAD:
 			play_animation(unit_resource.dead_anim)
 
@@ -90,6 +84,8 @@ func _physics_process(delta):
 	if not is_initialized or current_state == STATE.DEAD:
 		return
 	
+	 if Engine.get_frames_drawn() % 60 == 0:  # Print every second
+		debug_movement()
 	# Handle attack cooldown
 	if attack_cooldown > 0:
 		attack_cooldown -= delta
@@ -114,11 +110,10 @@ func handle_combat_movement(delta):
 	if distance_to_target <= unit_resource.attack_range:
 		# In range to attack
 		velocity = Vector2.ZERO
+		change_state(STATE.IDLE)
 		
-		# Face the target
-		var direction_to_target = (target.position - position).normalized()
-		if sprite:
-			sprite.flip_h = direction_to_target.x < 0 if team == "player" else direction_to_target.x > 0
+		# Face the target based on team
+		update_sprite_direction_to_target()
 		
 		if attack_cooldown <= 0:
 			change_state(STATE.ATTACKING)
@@ -129,11 +124,30 @@ func handle_combat_movement(delta):
 		velocity = direction * unit_resource.move_speed
 		change_state(STATE.MOVING)
 		
-		# Face the direction of movement
-		if sprite:
-			sprite.flip_h = direction.x < 0 if team == "player" else direction.x > 0
+		# Update sprite direction while moving
+		update_sprite_direction_movement(direction)
 	
 	move_and_slide()
+
+func update_sprite_direction_to_target():
+	if not sprite or not target:
+		return
+	
+	# Simple rule: players face right, enemies face left
+	if team == "player":
+		sprite.flip_h = target.position.x < position.x
+	else:
+		sprite.flip_h = target.position.x > position.x
+
+func update_sprite_direction_movement(direction: Vector2):
+	if not sprite:
+		return
+	
+	# Simple rule: players face movement direction, enemies face opposite
+	if team == "player":
+		sprite.flip_h = direction.x < 0
+	else:
+		sprite.flip_h = direction.x > 0
 
 func attack_target():
 	if not target or (target.has_method("is_dead") and target.is_dead()):
@@ -176,20 +190,27 @@ func take_damage(amount: int):
 	current_health -= amount
 	update_health_bar()
 	
-	# Visual feedback
+	# Visual feedback - flash red and camera shake
 	if sprite:
 		var tween = create_tween()
 		tween.tween_property(sprite, "modulate", Color.RED, 0.1)
 		tween.tween_property(sprite, "modulate", Color.WHITE, 0.1)
 	
+	# Trigger camera shake
+	trigger_camera_shake()
+	
 	if current_health <= 0:
 		die()
+
+func trigger_camera_shake():
+	var camera = get_viewport().get_camera_2d()
+	if camera and camera.has_method("shake_camera"):
+		camera.shake_camera(0.3, 8)
 	else:
-		change_state(STATE.HIT)
-		# Return to idle after hit animation
-		await get_tree().create_timer(0.3).timeout
-		if current_state != STATE.DEAD:
-			change_state(STATE.IDLE)
+		# Fallback: try to find camera in scene
+		var cameras = get_tree().get_nodes_in_group("camera")
+		if cameras.size() > 0 and cameras[0].has_method("shake_camera"):
+			cameras[0].shake_camera(0.3, 8)
 
 func update_health_bar():
 	if health_bar and health_bar.has_node("Foreground"):
@@ -241,3 +262,14 @@ func play_animation(anim_name: String):
 		animation_player.play(anim_name)
 	elif sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
 		sprite.play(anim_name)
+
+func debug_movement():
+	if target:
+		var distance = position.distance_to(target.position)
+		print(unit_resource.unit_name, " [", team, "] - State: ", current_state, 
+			  " | Target: ", target.unit_resource.unit_name, 
+			  " | Distance: ", distance, 
+			  " | Attack Range: ", unit_resource.attack_range,
+			  " | Velocity: ", velocity)
+	else:
+		print(unit_resource.unit_name, " [", team, "] - State: ", current_state, " | No target")

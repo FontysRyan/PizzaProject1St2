@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dafcsgvibtbrq"]
+[gd_scene load_steps=9 format=3 uid="uid://dafcsgvibtbrq"]
 
 [ext_resource type="Script" uid="uid://6gnojpw25n3o" path="res://Scenes/VFX test/test_space.gd" id="1_wua64"]
 [ext_resource type="PackedScene" uid="uid://dkfbjvj80ag3o" path="res://Scenes/VFX test/ui.tscn" id="2_jkd0t"]
@@ -7,10 +7,15 @@
 [ext_resource type="Resource" uid="uid://2ls7px8qda7g" path="res://Scenes/VFX test/knight_resource.tres" id="4_6bpd2"]
 [ext_resource type="Resource" uid="uid://c1ujklf5pr4c2" path="res://Scenes/VFX test/pirate_resource.tres" id="5_on734"]
 [ext_resource type="Resource" uid="uid://ccbg4enb3iiin" path="res://Scenes/VFX test/warrior_resource.tres" id="6_jrmpt"]
+[ext_resource type="Script" uid="uid://kwg2w5e2i8qn" path="res://Scenes/VFX test/camera2dshake.gd" id="7_ea8e5"]
 
 [node name="TestSpace" type="Node2D"]
 script = ExtResource("1_wua64")
 unit_resources = Array[ExtResource("2_m6sn1")]([ExtResource("3_ea8e5"), ExtResource("4_6bpd2"), ExtResource("5_on734"), ExtResource("6_jrmpt")])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("7_ea8e5")
 
 [node name="SpawnAreas" type="Node2D" parent="."]
 
