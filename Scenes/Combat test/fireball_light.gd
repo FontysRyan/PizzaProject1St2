@@ -22,6 +22,8 @@ func _physics_process(delta):
 	#print("Moving: ", direction, " | Speed: ", speed)
 	if sprite.animation != projectile:
 		sprite.play(projectile)
+		if projectile == "Bullet":
+			scale = Vector2(0.1, 0.1)
 	position += direction * speed * delta
 	rotation = direction.angle()
 

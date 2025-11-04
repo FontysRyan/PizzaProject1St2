@@ -1,11 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://u82t2h2a2dw3"]
+[gd_scene load_steps=11 format=3 uid="uid://u82t2h2a2dw3"]
 
 [ext_resource type="Script" uid="uid://bfswc0ax41a8h" path="res://Scenes/Combat test/fireball_light.gd" id="1_dvv23"]
 [ext_resource type="Texture2D" uid="uid://bn7y5at2xcb88" path="res://Assets/Sprites/Arrow.png" id="2_jrxtp"]
 [ext_resource type="Texture2D" uid="uid://djtrgc1n0ngj3" path="res://Scenes/Combat test/FireBall.png" id="3_drflv"]
+[ext_resource type="Texture2D" uid="uid://dddnoggkbxv4p" path="res://Assets/Sprites/Bullet.png" id="3_tkmmq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drflv"]
 atlas = ExtResource("2_jrxtp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e46vd"]
+atlas = ExtResource("3_tkmmq")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tkmmq"]
@@ -26,7 +31,10 @@ animations = [{
 "name": &"Arrow",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e46vd")
+}],
 "loop": true,
 "name": &"Bullet",
 "speed": 5.0
@@ -54,7 +62,7 @@ script = ExtResource("1_dvv23")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v3hh6")
-animation = &"Arrow"
+animation = &"Bullet"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 process_mode = 3
