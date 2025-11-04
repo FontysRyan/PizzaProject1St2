@@ -5,12 +5,14 @@ extends Area2D
 var direction = Vector2.RIGHT  # will be set at spawn
 var damage: int
 signal hit_target(body)
+@export var projectile: String
 @export var target: CharacterBody2D
 var has_hit = false
-
+var sprite
 func _ready():
+	sprite = $AnimatedSprite2D
 	connect("body_entered", Callable(self, "_on_body_entered"))
-	
+	print(projectile)
 	# Auto-destroy after lifetime
 	await get_tree().create_timer(lifetime).timeout
 	if is_inside_tree():
@@ -18,6 +20,8 @@ func _ready():
 
 func _physics_process(delta):
 	#print("Moving: ", direction, " | Speed: ", speed)
+	if sprite.animation != projectile:
+		sprite.play(projectile)
 	position += direction * speed * delta
 	rotation = direction.angle()
 

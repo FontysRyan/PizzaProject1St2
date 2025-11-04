@@ -58,7 +58,6 @@ func _ready():
 			else:
 				set_process(true)  # start polling in _process()
 
-
 func _process(delta):
 	var combat_system_node = get_tree().get_current_scene()
 	if combat_system_node:
@@ -157,6 +156,7 @@ func _on_target_in_range():
 		#print(name, " has stabbed ", target.name)
 	else:
 		on_shoot()
+		
 		#print(name, " has shot ", target.name)
 		
 	# Check for death
@@ -165,9 +165,11 @@ func _on_target_in_range():
 		#target.queue_free()
 		#target = null
 func on_shoot():
-	
+
 	var i = 0
 	while i < stats.attack_amount:
+		sprite.play("attack")
+		await sprite.animation_finished
 		if target == null or not is_instance_valid(target):
 			return
 		var Fired_Projectile = Projectile.instantiate()
@@ -177,6 +179,7 @@ func on_shoot():
 		else:
 			Fired_Projectile.collision_layer = 2   # Layer: PlayerUnits
 			Fired_Projectile.collision_mask = 1    # Mask: collides with EnemyUnits
+		Fired_Projectile.projectile = stats.projectile
 		Fired_Projectile.position = global_position + Vector2(0,10)
 		Fired_Projectile.direction = (target.global_position - Fired_Projectile.position).normalized()
 		#Fired_Projectile.speed = stats.attack_speed
@@ -193,7 +196,8 @@ func take_damage(amount):
 	
 	if Current_hp <= 0:
 		Log_combat(1,amount)
-		sprite.play("dead")
+		if sprite.animation != "dead":
+			sprite.play("dead")
 		await sprite.animation_finished
 		queue_free()
 	# TODO: Subtract health, trigger animation, check death, etc.

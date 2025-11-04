@@ -37,7 +37,7 @@ func _on_button_gui_input(event: InputEvent, btn: TextureButton) -> void:
 			match btn:
 				play_button:
 					# TODO: handle play button press
-					GameController.set_game_speed(0.2)
+					GameController.set_game_speed(1)
 					pass
 				pause_button:
 					# TODO: handle pause button press

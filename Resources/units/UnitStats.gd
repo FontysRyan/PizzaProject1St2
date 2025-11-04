@@ -5,6 +5,7 @@ extends Resource
 @export var texture: Texture2D
 @export var sprite_frames: SpriteFrames
 #Stats
+@export var projectile: String = ""
 @export var type: String = ""
 @export var description: String = ""
 @export var max_hp: float = 25.0
