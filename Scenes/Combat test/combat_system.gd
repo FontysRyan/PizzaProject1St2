@@ -8,8 +8,6 @@ var Battle_has_begun: bool = false
 @export var enemy_spawner: Node
 
 func _ready():
-	var player_spawner = $PlayerSpawner
-	var enemy_spawner = $EnemySpawner
 	player_spawner.connect("player_units_spawned", Callable(self, "_on_player_units_spawned"))
 	print("Connected PlayerSpawner signal")
 	enemy_spawner.connect("enemy_units_spawned", Callable(self, "_on_enemy_units_spawned"))
