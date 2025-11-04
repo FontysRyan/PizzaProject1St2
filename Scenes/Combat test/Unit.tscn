@@ -139,9 +139,7 @@ texture = ExtResource("2_l7tgc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wynn8")
-animation = &"attack"
 autoplay = "default"
-frame_progress = 0.35286915
 
 [node name="Melee range" type="Area2D" parent="."]
 visible = false
