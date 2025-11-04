@@ -4,6 +4,8 @@ class_name CombatSystem
 var player_units_spawned: bool = false
 var enemy_units_spawned: bool = false
 var Battle_has_begun: bool = false
+@export var player_spawner: Node
+@export var enemy_spawner: Node
 
 func _ready():
 	var player_spawner = $PlayerSpawner
@@ -43,6 +45,9 @@ func check_battle_end():
 		GameController.set_phase(GameController.GamePhase.DEATH)
 	elif not enemy_alive:
 		print("Player won!")
-		Battle_has_begun = false
-		await get_tree().create_timer(1).timeout
-		GameController.set_phase(GameController.GamePhase.POST_GAME)
+		if(Stats.wave == Stats.waves_in_round):
+			Battle_has_begun = false
+			await get_tree().create_timer(1).timeout
+			GameController.set_phase(GameController.GamePhase.POST_GAME)
+		else: 
+			enemy_spawner.enemy_wave_incoming()

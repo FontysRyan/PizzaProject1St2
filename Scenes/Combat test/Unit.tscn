@@ -166,6 +166,7 @@ shape = SubResource("CircleShape2D_auhav")
 debug_color = Color(0.86451447, 0.00060375215, 0.8657069, 0.41960785)
 
 [node name="attack_range" type="Area2D" parent="."]
+visible = false
 position = Vector2(-7, 0)
 scale = Vector2(0.2, 0.2)
 collision_layer = 0
