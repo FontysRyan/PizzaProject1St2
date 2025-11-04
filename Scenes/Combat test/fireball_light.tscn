@@ -1,27 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://u82t2h2a2dw3"]
+[gd_scene load_steps=11 format=3 uid="uid://u82t2h2a2dw3"]
 
 [ext_resource type="Script" uid="uid://bfswc0ax41a8h" path="res://Scenes/Combat test/fireball_light.gd" id="1_dvv23"]
-[ext_resource type="Texture2D" uid="uid://djtrgc1n0ngj3" path="res://Scenes/Combat test/FireBall.png" id="2_jrxtp"]
+[ext_resource type="Texture2D" uid="uid://bn7y5at2xcb88" path="res://Assets/Sprites/Arrow.png" id="2_jrxtp"]
+[ext_resource type="Texture2D" uid="uid://djtrgc1n0ngj3" path="res://Scenes/Combat test/FireBall.png" id="3_drflv"]
+[ext_resource type="Texture2D" uid="uid://dddnoggkbxv4p" path="res://Assets/Sprites/Bullet.png" id="3_tkmmq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drflv"]
 atlas = ExtResource("2_jrxtp")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e46vd"]
+atlas = ExtResource("3_tkmmq")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tkmmq"]
-atlas = ExtResource("2_jrxtp")
+atlas = ExtResource("3_drflv")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blg03"]
+atlas = ExtResource("3_drflv")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v3hh6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_drflv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tkmmq")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Arrow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e46vd")
+}],
+"loop": true,
+"name": &"Bullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkmmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blg03")
+}],
+"loop": true,
+"name": &"Fireball",
 "speed": 5.0
 }]
 
@@ -30,13 +56,13 @@ radius = 10.049875
 
 [node name="Fireball_light" type="Area2D"]
 process_mode = 3
+scale = Vector2(2, 2)
 collision_layer = 3
 script = ExtResource("1_dvv23")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v3hh6")
-autoplay = "default"
-frame_progress = 0.2712062
+animation = &"Bullet"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 process_mode = 3
