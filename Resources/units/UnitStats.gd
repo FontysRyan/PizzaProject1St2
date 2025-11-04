@@ -7,6 +7,7 @@ extends Resource
 #Stats
 @export var type: String = ""
 @export var description: String = ""
+@export var lore: String = ""
 @export var max_hp: float = 25.0
 @export var attack_speed: float = 2.0
 @export var attack_amount: int = 1
