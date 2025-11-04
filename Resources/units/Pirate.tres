@@ -130,9 +130,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ntrpi")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -147,7 +147,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ix72d")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 8.0
 }, {
@@ -187,7 +187,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_olstd")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 8.0
 }, {
@@ -225,6 +225,7 @@ animations = [{
 script = ExtResource("1_bk1no")
 texture = ExtResource("2_h2kas")
 sprite_frames = SubResource("SpriteFrames_rsod1")
+projectile = "Bullet"
 type = "ranged"
 max_hp = 30.0
 attack_speed = 2.5

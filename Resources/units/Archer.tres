@@ -158,7 +158,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u0dp4")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 12.0
 }, {
@@ -175,7 +175,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rsg2s")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 8.0
 }, {
@@ -215,7 +215,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2b05v")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -253,6 +253,7 @@ animations = [{
 script = ExtResource("1_8uu6i")
 texture = ExtResource("2_korsa")
 sprite_frames = SubResource("SpriteFrames_axeie")
+projectile = "Arrow"
 type = "ranged"
 description = "weaker unit but shoots arrows faster"
 attack_speed = 1.5
