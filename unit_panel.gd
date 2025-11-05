@@ -26,7 +26,7 @@ func _create_empty_panel() -> void:
 func _fill_panel() -> void:
 	var color = panel.rarity.color
 	add_theme_color_override("UnitPanel", color)
-	var texture = panel.texture
+	var texture = panel.unit_stats.texture
 	$SpriteTexture.texture = texture
 	var price = panel.rarity.cost
 	$PriceLabel.text = str(price)
@@ -58,10 +58,13 @@ func _start_drag(event: InputEventMouseButton) -> void:
 
 func _stop_drag(event: InputEventMouseButton) -> void:
 	dragging = false
-	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
-	var drop_target: Control = _get_drop_target_at_point(mouse_pos)
-	if drop_target:
-		_place_on_drop_target(drop_target)
+	if Stats.gold >= panel.rarity.cost:
+		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+		var drop_target: Control = _get_drop_target_at_point(mouse_pos)
+		if drop_target:
+			_place_on_drop_target(drop_target)
+		else:
+			_restore_original_position()
 	else:
 		_restore_original_position()
 
@@ -96,7 +99,11 @@ func _place_on_drop_target(drop_target: Control) -> void:
 
 	# Subtract the price when the panel is successfully placed on a drop target
 	var price = panel.rarity.cost
-	Stats._take_gold(price)
+	if panel.bought:
+		return
+	else:
+		panel.bought = true
+		Stats._take_gold(price)
 
 func _move_to_target(drop_target: Control) -> void:
 	if get_parent() != drop_target:
@@ -134,7 +141,7 @@ func _swap_with_occupant(drop_target: Control, occupant: Control, my_slot: Contr
 		occupant._snap_to_target(my_slot)
 
 func _restore_original_position() -> void:
-	if original_parent and get_parent() != original_parent:
+	if original_parent and get_parent() == original_parent:
 		if get_parent():
 			get_parent().remove_child(self)
 		original_parent.add_child(self)

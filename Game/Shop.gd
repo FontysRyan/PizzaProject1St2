@@ -4,12 +4,12 @@ extends Node
 # UnitPanels:
 @export var archer = preload("res://Resources/unit panels/Archer.tres")
 @export var knight = preload("res://Resources/unit panels/Knight.tres")
-@export var melee_hero = preload("res://Resources/unit panels/Melee hero.tres")
-@export var paladin = preload("res://Resources/unit panels/Paladin.tres")
-@export var pirate_captain = preload("res://Resources/unit panels/Pirate captain.tres")
+@export var melee_hero = preload("res://Resources/unit panels/Not Used units/Melee hero.tres")
+@export var paladin = preload("res://Resources/unit panels/Not Used units/Paladin.tres")
+@export var pirate_captain = preload("res://Resources/unit panels/Not Used units/Pirate captain.tres")
 @export var pirate = preload("res://Resources/unit panels/Pirate.tres")
 @export var warrior = preload("res://Resources/unit panels/Warrior.tres")
-@export var wizard = preload("res://Resources/unit panels/Wizard.tres")
+@export var wizard = preload("res://Resources/unit panels/Not Used units/Wizard.tres")
 
 # Rarities:
 @export var common = preload("res://Resources/Rarities/1Common.tres")
@@ -54,7 +54,7 @@ func _shop_rarity() -> Rarity:
 
 func _shop_units(get_rarity: Rarity) -> void:
 	shop_units.clear()
-	for unit in units:
+	for unit: UnitPanel in units:
 		if unit.rarity == get_rarity:
 			shop_units.append(unit)
 	print("Available units for rarity ", get_rarity, ": ", shop_units)
