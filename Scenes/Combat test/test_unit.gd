@@ -108,7 +108,7 @@ func _physics_process(delta):
 
 
 func _on_battle_start():
-	print(name, " battle has started!")
+	#print(name, " battle has started!")
 	Unit_in_Battle = true
 	_choose_target()
 	# Enable AI, start moving/attacking, etc.
