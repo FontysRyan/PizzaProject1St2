@@ -15,15 +15,15 @@ var stats = Stats
 var current_phase: GamePhase = GamePhase.PRE_GAME
 
 # ===== UNIT SLOT EXPORTS =====
-@export var unit_slot1: String = ""
-@export var unit_slot2: String = ""
-@export var unit_slot3: String = ""
-@export var unit_slot4: String = ""
-@export var unit_slot5: String = ""
-@export var unit_slot6: String = ""
-@export var unit_slot7: String = ""
-@export var unit_slot8: String = ""
-@export var unit_slot9: String = ""
+@export var unit_slot1: UnitStats = null
+@export var unit_slot2: UnitStats = null
+@export var unit_slot3: UnitStats = null
+@export var unit_slot4: UnitStats = null
+@export var unit_slot5: UnitStats = null
+@export var unit_slot6: UnitStats = null
+@export var unit_slot7: UnitStats = null
+@export var unit_slot8: UnitStats = null
+@export var unit_slot9: UnitStats = null
 
 func _ready():
 	Stats.round = 0
@@ -103,9 +103,9 @@ func clear_run_data():
 	
 
 
-func update_build_slot(slot_index: int, resource_path: String) -> void:
+func update_build_slot(slot_index: int, resource_path: UnitStats) -> void:
 	# Remove ".tres" if present
-	var clean_name = resource_path.get_file().get_basename() if resource_path != "" else ""
+	var clean_name = resource_path if resource_path != null else null
 	
 	match slot_index:
 		1: unit_slot1 = clean_name
@@ -130,15 +130,15 @@ func get_build_slots() -> Array:
 	]
 	
 func TEMP_clear_build():
-	unit_slot1 = ""
-	unit_slot2 = ""
-	unit_slot3 = ""
-	unit_slot4 = ""
-	unit_slot5 = ""
-	unit_slot6 = ""
-	unit_slot7 = ""
-	unit_slot8 = ""
-	unit_slot9 = ""
+	unit_slot1 = null
+	unit_slot2 = null
+	unit_slot3 = null
+	unit_slot4 = null
+	unit_slot5 = null
+	unit_slot6 = null
+	unit_slot7 = null
+	unit_slot8 = null
+	unit_slot9 = null
 
 func set_game_speed(scale: float) -> void:
 	# Clamp to prevent negative or absurd values

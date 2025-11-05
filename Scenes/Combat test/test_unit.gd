@@ -9,6 +9,7 @@ var Unit_in_Battle: bool = false
 @export var Current_hp: int
 @export var Projectile: PackedScene
 @export var sprite: AnimatedSprite2D
+
 func _ready():
 	# Load stats if none assigned
 	if stats == null:
@@ -18,7 +19,7 @@ func _ready():
 			stats = res
 		else:
 			push_warning("UnitStats resource not found at %s" % path)
-	var file_name = stats.resource_path.get_file().get_basename()
+	var file_name = stats.get_basename()
 
 	if faction == 1:
 		name = "Player_" + file_name + "_unit"

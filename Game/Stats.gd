@@ -20,6 +20,8 @@ var units_sold: int = 0
 var units_healed: int = 0
 var heal_amount_done: int = 0
 
+var units: Array
+
 func _next_round():
 	rounds_survived += 1
 
@@ -39,4 +41,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	units = GameController.get_build_slots()

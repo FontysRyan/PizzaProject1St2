@@ -5,6 +5,11 @@ var build_slots := {}  # { "Panel_1": "Archer" / "empty" }
 
 func _ready():
 	for panel in get_children():
+		var j: int = 0
+		for i in Stats.units:
+			panel = get_child(j)
+			panel.add_child(i)
+			j += 1
 		if panel is Panel:
 			if panel.get_child_count() > 0:
 				build_slots[panel.name] = panel.get_child(0).name
@@ -16,7 +21,7 @@ func _process(delta):
 
 	for panel in get_children():
 		if panel is Panel:
-			var child_name: String = "empty"
+			var child_name: Resource = null
 
 			if panel.get_child_count() > 0:
 				var unit_tile = panel.get_child(0)
@@ -26,11 +31,11 @@ func _process(delta):
 					#print("q" + p.name)
 					if p is UnitPanel:
 						# If it's a resource, get the file name
-						child_name = p.unit_name
+						child_name = p.unit_stats
 					else:
-						child_name = "unknown"
+						child_name = null
 				else:
-					child_name = "unknown"
+					child_name = null
 
 			# Detect slot change
 			if build_slots.get(panel.name) != child_name:
@@ -39,7 +44,7 @@ func _process(delta):
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				GameController.update_build_slot(slot_index, child_name)
 
-				if child_name != "empty" && child_name != "unknown" && child_name != null:
+				if child_name != null && child_name != null && child_name != null:
 					print(panel.name, " now has unit: ", child_name)
 				else:
 					print(panel.name, " is now empty")

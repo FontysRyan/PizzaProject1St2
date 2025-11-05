@@ -20,15 +20,16 @@ func _ready():
 
 		# Get unit type from GameController
 		var slot_name = "unit_slot%d" % (i + 1)
+		var unit_stats: UnitStats = null
 		var unit_type: String = ""
-		if slot_name in GameController:
-			unit_type = GameController.get(slot_name)
+		if slot_name in Stats.units:
+			unit_stats = Stats.units.get(slot_name)
 			# Skip empty slots
-			if unit_type == "" or unit_type == "empty" or unit_type == null:
+			if unit_type == "" or unit_type == "empty" or unit_type == null or unit_stats == null:
 				print("Slot %d empty, skipping" % (i + 1))
 				continue
 			# Remove .tres if present
-			unit_type = unit_type.get_basename()
+			unit_type = unit_stats.get_basename()
 		else:
 			print("Slot %d missing in GameController, skipping" % (i + 1))
 			continue
@@ -38,6 +39,7 @@ func _ready():
 		unit.global_position = marker.global_position
 		unit.faction = faction
 		unit.unit_type = unit_type
+		unit.stats = unit_stats
 
 		if faction == Marker_Faction.FRIENDLY:
 			unit.add_to_group("Friendly_units")
