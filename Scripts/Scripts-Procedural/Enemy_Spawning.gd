@@ -15,7 +15,7 @@ func start_waves():
 	# Start from the *next* wave since the first one already spawned
 	Stats.wave += 1
 
-	while Stats.wave < Stats.waves_in_round:
+	while Stats.wave <= Stats.waves_in_round:
 		# Wait before spawning the next wave
 		await get_tree().create_timer(60).timeout
 
