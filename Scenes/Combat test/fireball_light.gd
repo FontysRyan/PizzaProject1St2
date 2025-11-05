@@ -12,7 +12,6 @@ var sprite
 func _ready():
 	sprite = $AnimatedSprite2D
 	connect("body_entered", Callable(self, "_on_body_entered"))
-	print(projectile)
 	# Auto-destroy after lifetime
 	await get_tree().create_timer(lifetime).timeout
 	if is_inside_tree():
