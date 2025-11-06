@@ -8,7 +8,7 @@ var Unit_in_Battle: bool = false
 @export var target: Node2D = null  # the unit’s current target
 @export var Current_hp: int
 @export var Projectile: PackedScene
-
+@export var sprite: AnimatedSprite2D
 func _ready():
 	# Load stats if none assigned
 	if stats == null:
@@ -26,16 +26,18 @@ func _ready():
 	else:
 		name = "Enemy_" + file_name + "_unit"
 	Current_hp = stats.max_hp
-	var sprite: AnimatedSprite2D = $AnimatedSprite2D
-	match unit_type:
-		"Archer":
-			sprite.modulate = Color(0.197, 0.596, 0.148, 1.0)
-		"Knight":
-			sprite.modulate = Color(0.478, 0.369, 0.369, 1.0)
-		"Warrior":
-			sprite.modulate = Color(0.5, 0.5, 0.5)
-		"Pirate":
-			sprite.modulate = Color(0.462, 0.0, 0.484, 1.0)
+	sprite = $AnimatedSprite2D
+	#match unit_type:
+		#"Archer":
+			#sprite.modulate = Color(0.197, 0.596, 0.148, 1.0)
+		#"Knight":
+			#sprite.modulate = Color(0.478, 0.369, 0.369, 1.0)
+		#"Warrior":
+			#sprite.modulate = Color(0.5, 0.5, 0.5)
+		#"Pirate":
+			#sprite.modulate = Color(0.462, 0.0, 0.484, 1.0)
+	sprite.sprite_frames = stats.sprite_frames
+	sprite.play("default")
 	var ring1: Sprite2D = $faction_Ring1
 	var ring2: Sprite2D = $faction_Ring2
 
@@ -55,7 +57,6 @@ func _ready():
 				_on_battle_start()
 			else:
 				set_process(true)  # start polling in _process()
-
 
 func _process(delta):
 	var combat_system_node = get_tree().get_current_scene()
@@ -92,7 +93,11 @@ func _physics_process(delta):
 	
 	if distance_to_target > stats.range:
 		velocity = direction * stats.movement_speed
+		if sprite.animation == "default":
+			sprite.play("run")
 	else:
+		if sprite.animation == "run":
+			sprite.play("default")
 		velocity = Vector2.ZERO
 		time_since_last_attack += delta
 		if time_since_last_attack >= stats.attack_speed or target == null or not is_instance_valid(target):
@@ -132,6 +137,7 @@ func _choose_target():
 	target = nearest_target
 	#if target:
 		#print(name, " is targeting ", target.name)
+	#sprite.play("run")
 
 func _on_target_in_range():
 	if target == null or not is_instance_valid(target):
@@ -140,14 +146,17 @@ func _on_target_in_range():
 	# Basic attack printout
 	if stats.type == "melee":
 			# Deal damage
+		sprite.play("attack")
 		if target == null or not is_instance_valid(target):
 			return
 		if target.has_method("take_damage"):
-			target.take_damage(stats.damage)
+			if(target.Current_hp > 0):
+				target.take_damage(stats.damage)
 		#print(target.name, " HP:", target.Current_hp, "/", target.stats.max_hp)
 		#print(name, " has stabbed ", target.name)
 	else:
 		on_shoot()
+		
 		#print(name, " has shot ", target.name)
 		
 	# Check for death
@@ -156,9 +165,11 @@ func _on_target_in_range():
 		#target.queue_free()
 		#target = null
 func on_shoot():
-	
+
 	var i = 0
 	while i < stats.attack_amount:
+		sprite.play("attack")
+		await sprite.animation_finished
 		if target == null or not is_instance_valid(target):
 			return
 		var Fired_Projectile = Projectile.instantiate()
@@ -168,6 +179,7 @@ func on_shoot():
 		else:
 			Fired_Projectile.collision_layer = 2   # Layer: PlayerUnits
 			Fired_Projectile.collision_mask = 1    # Mask: collides with EnemyUnits
+		Fired_Projectile.projectile = stats.projectile
 		Fired_Projectile.position = global_position + Vector2(0,10)
 		Fired_Projectile.direction = (target.global_position - Fired_Projectile.position).normalized()
 		#Fired_Projectile.speed = stats.attack_speed
@@ -184,6 +196,9 @@ func take_damage(amount):
 	
 	if Current_hp <= 0:
 		Log_combat(1,amount)
+		if sprite.animation != "dead":
+			sprite.play("dead")
+		await sprite.animation_finished
 		queue_free()
 	# TODO: Subtract health, trigger animation, check death, etc.
 

@@ -54,6 +54,7 @@ func set_phase(new_phase: GamePhase):
 func phase_to_string(phase: GamePhase) -> String:
 	match phase:
 		GamePhase.PRE_GAME:
+			set_game_speed(1)
 			clear_run_data()
 			TEMP_clear_build()
 			return "PRE_GAME"
@@ -63,8 +64,10 @@ func phase_to_string(phase: GamePhase) -> String:
 			return "FIGHT"
 		GamePhase.DEATH:
 			TEMP_clear_build()
+			set_game_speed(1)
 			return "DEATH"
 		GamePhase.POST_GAME:
+			set_game_speed(1)
 			advance_round()
 			TEMP_clear_build()
 			set_phase(GamePhase.BUILD)
@@ -74,18 +77,23 @@ func phase_to_string(phase: GamePhase) -> String:
 
 func advance_round():
 	Stats.round += 1
-	Stats.wave = int(ceil(Stats.round / 2.0))
+	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.rounds_survived = Stats.round - 1
-	
+
+#func advance_wave():
+	#if Stats.wave != Stats.waves_in_round:
+		#Stats.wave += 1
+	#else:
+		#set_phase(GamePhase.POST_GAME)
 func begin_game():
 	Stats.round = 1
-	Stats.wave = int(ceil(Stats.round / 2.0))
+	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 func clear_run_data():
 	Stats.gold = 0
 	Stats.round = 1
-	Stats.wave = 0
+	Stats.wave = 1
 	# Game over stats
 	# Gameplay progress
 	Stats.time_played = 0.0
