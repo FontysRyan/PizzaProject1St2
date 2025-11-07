@@ -1,0 +1,142 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmdw5marsb48u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smb0v"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+bg_color = Color(0.54669994, 0.6092983, 0.71, 0.39215687)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.228, 0.26813337, 0.4, 0.39215687)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Tooltip" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="BackgroundContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_smb0v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Warrior"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TypeTitleLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "Type:"
+
+[node name="TypeLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Melee"
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DamageTitleLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "Damage:"
+
+[node name="DamageLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+text = "10"
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MaxHPTitleLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "HP:"
+
+[node name="MaxHPLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+text = "20"
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AttackSpeedTitleLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "Attack Speed:"
+
+[node name="AttackSpeedLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+text = "1.5"
+
+[node name="HSplitContainer5" type="HSplitContainer" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RangeTitleLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "Range:"
+
+[node name="RangeLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+text = "5"
+
+[node name="HSplitContainer6" type="HSplitContainer" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CritTitleLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer6"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "Crit Chance:"
+
+[node name="CritLabel" type="Label" parent="BackgroundContainer/VBoxContainer/HSplitContainer6"]
+layout_mode = 2
+text = "10%"
+
+[node name="DescriptionLabel" type="Label" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 4
+text = "Description:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "This is a description
+lorem ipsum"
+fit_content = true
+
+[node name="RarityLabel" type="Label" parent="BackgroundContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
