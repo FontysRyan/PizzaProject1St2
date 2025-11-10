@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpfjpechu6k75"]
+
+[ext_resource type="Texture2D" uid="uid://dgsv0dm7y7uru" path="res://Assets/Sprites/Envirement/Props/Rock/rock 1.png" id="1_86os2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3wq6"]
+atlas = ExtResource("1_86os2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dikon"]
+atlas = ExtResource("1_86os2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpbkr"]
+atlas = ExtResource("1_86os2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6xjt"]
+atlas = ExtResource("1_86os2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii0ra"]
+atlas = ExtResource("1_86os2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcbdm"]
+atlas = ExtResource("1_86os2")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf4dm"]
+atlas = ExtResource("1_86os2")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh5nc"]
+atlas = ExtResource("1_86os2")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csfrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3wq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dikon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpbkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6xjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii0ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcbdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf4dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh5nc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Rock" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_csfrl")
+autoplay = "default"
+frame_progress = 0.28466603
