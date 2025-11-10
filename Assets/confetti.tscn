@@ -1,4 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjnopdpyd8os3"]
+[gd_scene load_steps=6 format=3 uid="uid://bjnopdpyd8os3"]
+
+[sub_resource type="Gradient" id="Gradient_7c5ul"]
+offsets = PackedFloat32Array(0, 0.1889401, 0.19354838, 0.41013825, 0.6105991, 0.80875576, 0.99308753)
+colors = PackedColorArray(0.9882353, 0, 0, 1, 0.99687356, 0.04136575, 0, 1, 0, 0.5264286, 0.7860972, 1, 0, 0.50501794, 0.77302223, 1, 0.91304904, 0.46812135, 3.85046e-07, 1, 0.8927727, 0.5040424, 1.1551381e-06, 1, 0.85120505, 0.42017832, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y7vj8"]
+gradient = SubResource("Gradient_7c5ul")
 
 [sub_resource type="Curve" id="Curve_7c5ul"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9796334, 0.5541193), 0.0, 0.0, 0, 0]
@@ -10,17 +17,19 @@ curve = SubResource("Curve_7c5ul")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vj36u"]
 particle_flag_disable_z = true
 spread = 180.0
-initial_velocity_min = 30.0
-initial_velocity_max = 75.0
-gravity = Vector3(0, 45, 0)
+initial_velocity_min = 33.44
+initial_velocity_max = 78.049995
+gravity = Vector3(0, 150, 0)
 damping_min = 29.027
 damping_max = 29.027
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_y7vj8")
+color_initial_ramp = SubResource("GradientTexture1D_y7vj8")
 
 [node name="Confetti" type="GPUParticles2D"]
 emitting = false
 amount = 100
+lifetime = 5.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.13
