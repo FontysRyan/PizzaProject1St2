@@ -191,7 +191,6 @@ func take_damage(amount: int):
 
 	# Trigger camera shake
 	
-	
 	if current_health <= 0:
 		die()
 
@@ -208,6 +207,7 @@ func update_health_bar():
 			foreground.modulate = Color.YELLOW
 		else:
 			foreground.modulate = Color.RED
+
 
 func die():
 	change_state(STATE.DEAD)
