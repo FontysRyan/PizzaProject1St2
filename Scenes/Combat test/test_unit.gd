@@ -9,6 +9,8 @@ var Unit_in_Battle: bool = false
 @export var Current_hp: int
 @export var Projectile: PackedScene
 @export var sprite: AnimatedSprite2D
+@onready var health_bar = $HealthBar
+
 func _ready():
 	# Load stats if none assigned
 	if stats == null:
@@ -43,7 +45,8 @@ func _ready():
 
 	# Flip the unit if it's an enemy
 	sprite.flip_h = (faction == Faction.ENEMY)
-
+	if faction == Faction.ENEMY:
+		health_bar.position = Vector2(8,-4)
 	# Show correct faction ring
 	ring1.visible = (faction == Faction.FRIENDLY)
 	ring2.visible = (faction == Faction.ENEMY)
@@ -193,7 +196,7 @@ func on_shoot():
 func take_damage(amount):
 	#print(name, " took ", amount, " damage!")
 	Current_hp -= amount
-	
+	update_health_bar()
 	if Current_hp <= 0:
 		Log_combat(1,amount)
 		if sprite.animation != "dead":
@@ -201,6 +204,21 @@ func take_damage(amount):
 		await sprite.animation_finished
 		queue_free()
 	# TODO: Subtract health, trigger animation, check death, etc.
+
+func update_health_bar():
+	if health_bar and health_bar.has_node("Foreground"):
+		var health_ratio = float(Current_hp) / float(stats.max_hp)
+		var foreground = health_bar.get_node("Foreground")
+		foreground.scale.x = health_ratio
+		
+		# Change color based on health
+		if health_ratio > 0.6:
+			foreground.modulate = Color.GREEN
+		elif health_ratio > 0.3:
+			foreground.modulate = Color.YELLOW
+		else:
+			foreground.modulate = Color.RED
+
 
 func Log_combat(event, ammount):
 	print("COMBAT LOG: event " , event, " caused ", ammount, " damage")

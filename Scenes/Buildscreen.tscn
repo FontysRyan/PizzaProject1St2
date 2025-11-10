@@ -26,12 +26,11 @@ position = Vector2(492, 73)
 zoom = Vector2(2, 2)
 
 [node name="Lily" parent="." instance=ExtResource("3_wfe8h")]
-position = Vector2(-145, -12)
-scale = Vector2(2, 2)
+position = Vector2(-149, -65)
 
 [node name="Lily2" parent="." instance=ExtResource("3_wfe8h")]
 position = Vector2(-236, -113)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 
 [node name="Lily3" parent="." instance=ExtResource("3_wfe8h")]
 position = Vector2(-66, -108)
