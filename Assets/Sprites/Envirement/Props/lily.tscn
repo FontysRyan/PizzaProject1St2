@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct37o381yqf0t"]
+
+[ext_resource type="Texture2D" uid="uid://cpd5p1geq54du" path="res://Assets/Sprites/Envirement/Props/Water Lily/water lily 2.png" id="1_m7q82"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wbnm"]
+atlas = ExtResource("1_m7q82")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hthfq"]
+atlas = ExtResource("1_m7q82")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpgww"]
+atlas = ExtResource("1_m7q82")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxhbw"]
+atlas = ExtResource("1_m7q82")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qm0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wbnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hthfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpgww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxhbw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lily" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0qm0g")
+autoplay = "default"
+frame_progress = 0.35200152
