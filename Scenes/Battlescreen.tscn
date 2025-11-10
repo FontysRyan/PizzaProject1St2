@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://6f0jout702sg" path="res://Scripts/Scripts-Procedural/Enemy_Spawning.gd" id="5_16koh"]
 [ext_resource type="PackedScene" uid="uid://dthwo3j0ritfl" path="res://Assets/Sprites/Envirement/TileMap.tscn" id="6_kmdb4"]
 
-[node name="Battlescreen" type="Node2D"]
+[node name="Battlescreen" type="Node2D" node_paths=PackedStringArray("player_spawner", "enemy_spawner")]
 script = ExtResource("1_5gxo4")
+player_spawner = NodePath("PlayerSpawner")
+enemy_spawner = NodePath("EnemySpawner")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
