@@ -80,7 +80,6 @@ func advance_round():
 	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.rounds_survived = Stats.round - 1
-
 #func advance_wave():
 	#if Stats.wave != Stats.waves_in_round:
 		#Stats.wave += 1

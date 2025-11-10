@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1i5ujhj73u7f"]
+[gd_scene load_steps=7 format=3 uid="uid://c1i5ujhj73u7f"]
 
 [ext_resource type="PackedScene" uid="uid://bn6smkpg6s5j7" path="res://Assets/UI/BuildScreen (UI).tscn" id="1_uocje"]
 [ext_resource type="PackedScene" uid="uid://dthwo3j0ritfl" path="res://Assets/Sprites/Envirement/TileMap.tscn" id="2_54rdj"]
 [ext_resource type="PackedScene" uid="uid://ct37o381yqf0t" path="res://Assets/Sprites/Envirement/Props/lily.tscn" id="3_wfe8h"]
 [ext_resource type="PackedScene" uid="uid://cpfjpechu6k75" path="res://Assets/Sprites/Envirement/Props/rock.tscn" id="4_mg8o1"]
+[ext_resource type="PackedScene" uid="uid://bjnopdpyd8os3" path="res://Assets/confetti.tscn" id="5_mg8o1"]
+[ext_resource type="Script" uid="uid://cackj4kanx4pk" path="res://Assets/confetti.gd" id="6_ylh0w"]
 
 [node name="Buildscreen" type="Node2D"]
 
@@ -43,3 +45,8 @@ scale = Vector2(3, 3)
 [node name="Rock2" parent="." instance=ExtResource("4_mg8o1")]
 position = Vector2(-134, -114)
 scale = Vector2(2, 2)
+
+[node name="Confetti" parent="." instance=ExtResource("5_mg8o1")]
+position = Vector2(-5, -8)
+scale = Vector2(10, 10)
+script = ExtResource("6_ylh0w")

@@ -12,7 +12,8 @@ func _ready():
 	print("Connected PlayerSpawner signal")
 	enemy_spawner.connect("enemy_units_spawned", Callable(self, "_on_enemy_units_spawned"))
 	print("Connected EnemySpawner signal")
-
+	
+	
 func _process(delta):
 	if Battle_has_begun:
 		check_battle_end()
