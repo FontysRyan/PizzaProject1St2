@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjnopdpyd8os3"]
+
+[sub_resource type="Curve" id="Curve_7c5ul"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9796334, 0.5541193), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y7vj8"]
+curve = SubResource("Curve_7c5ul")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vj36u"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 45, 0)
+damping_min = 29.027
+damping_max = 29.027
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_y7vj8")
+
+[node name="Confetti" type="GPUParticles2D"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+randomness = 0.13
+process_material = SubResource("ParticleProcessMaterial_vj36u")
