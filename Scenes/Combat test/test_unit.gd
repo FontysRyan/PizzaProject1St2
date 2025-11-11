@@ -10,8 +10,11 @@ var Unit_in_Battle: bool = false
 @export var Projectile: PackedScene
 @export var sprite: AnimatedSprite2D
 @onready var health_bar = $HealthBar
+@onready var camera2D : Camera2D = get_tree().current_scene.get_node("Camera2D")
+@export var cameraShakeNoise : FastNoiseLite
 
 func _ready():
+	cameraShakeNoise = FastNoiseLite.new()
 	# Load stats if none assigned
 	if stats == null:
 		var path = "res://Resources/units/%s.tres" % unit_type
@@ -196,6 +199,12 @@ func on_shoot():
 func take_damage(amount):
 	#print(name, " took ", amount, " damage!")
 	Current_hp -= amount
+	var tween = get_tree().create_tween()
+	tween.tween_method(setshader_BlinkIntensity, 1.0, 0.0, 0.5)
+	
+	var camera_tween = get_tree().create_tween()
+	camera_tween.tween_method(Callable(self, "StartCameraShake"), 5.0, 0.0, 0.5)
+
 	update_health_bar()
 	if Current_hp <= 0:
 		Log_combat(1,amount)
@@ -219,6 +228,22 @@ func update_health_bar():
 		else:
 			foreground.modulate = Color.RED
 
+func StartCameraShake(intensity: float) -> void:
+	if camera2D == null:
+		return
+
+	# Time in seconds, scaled so noise changes quickly
+	var t := float(Time.get_ticks_msec()) * 0.01
+
+	var noise_x := cameraShakeNoise.get_noise_1d(t)
+	var noise_y := cameraShakeNoise.get_noise_1d(t + 200.0) # offset so x & y differ
+
+	# noise is usually in -1..1, so multiply by intensity for pixels
+	camera2D.offset.x = noise_x * intensity
+	camera2D.offset.y = noise_y * intensity
+
+func setshader_BlinkIntensity(newValue : float):
+	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
 func Log_combat(event, ammount):
 	print("COMBAT LOG: event " , event, " caused ", ammount, " damage")
