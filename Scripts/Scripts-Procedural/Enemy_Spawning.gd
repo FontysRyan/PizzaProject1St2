@@ -7,7 +7,7 @@ enum Marker_Faction { FRIENDLY = 1, ENEMY = 2 }
 signal enemy_units_spawned
 
 func _ready():
-	print("Starting first wave:", Stats.wave, " Total waves: ", Stats.waves_in_round)
+	#print("Starting first wave:", Stats.wave, " Total waves: ", Stats.waves_in_round)
 	enemy_wave_incoming()
 	#call_deferred("start_waves") # schedule the wave loop
 
@@ -95,6 +95,7 @@ func load_unit_types(folder_path: String) -> Array:
 	return unit_types
 
 func enemy_wave_incoming():
+	print("Starting wave:", Stats.wave, " Total waves: ", Stats.waves_in_round)
 	var unit_types = load_unit_types(units_folder_path)
 	print("Loaded unit types:", unit_types.size())
 	var spawn_points: Array = []

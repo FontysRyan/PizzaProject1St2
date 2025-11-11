@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://bya7bnuwsrh0r"]
 
 [ext_resource type="Script" uid="uid://17ri2p5alefk" path="res://Scenes/Combat test/combat_system.gd" id="1_1cbh1"]
-[ext_resource type="Script" uid="uid://l2su46g4ecrn" path="res://Scenes/Combat test/UnitSpawner.gd" id="2_ewyk4"]
+[ext_resource type="Script" uid="uid://cb5o215gcolup" path="res://Scenes/Combat test/player_spawner.gd" id="2_xycmw"]
 [ext_resource type="PackedScene" uid="uid://bw7kjd8cye6tv" path="res://Scenes/Combat test/Unit.tscn" id="3_xycmw"]
 [ext_resource type="PackedScene" uid="uid://dthwo3j0ritfl" path="res://Assets/Sprites/Envirement/TileMap.tscn" id="4_1cbh1"]
 
-[node name="Combat_test_scene" type="Node2D"]
+[node name="Combat_test_scene" type="Node2D" node_paths=PackedStringArray("player_spawner", "enemy_spawner")]
 script = ExtResource("1_1cbh1")
+player_spawner = NodePath("PlayerSpawner")
+enemy_spawner = NodePath("EnemySpawner")
 
 [node name="PlayerSpawner" type="Node" parent="."]
-script = ExtResource("2_ewyk4")
+script = ExtResource("2_xycmw")
 unit_scene = ExtResource("3_xycmw")
 faction = 1
 
@@ -41,7 +43,7 @@ position = Vector2(-446, 46)
 position = Vector2(-414, 46)
 
 [node name="EnemySpawner" type="Node" parent="."]
-script = ExtResource("2_ewyk4")
+script = ExtResource("2_xycmw")
 unit_scene = ExtResource("3_xycmw")
 faction = 2
 
