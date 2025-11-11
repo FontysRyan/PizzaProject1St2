@@ -49,4 +49,5 @@ func check_battle_end():
 			await get_tree().create_timer(1).timeout
 			GameController.set_phase(GameController.GamePhase.POST_GAME)
 		else: 
+			Stats.wave += 1
 			enemy_spawner.enemy_wave_incoming()
