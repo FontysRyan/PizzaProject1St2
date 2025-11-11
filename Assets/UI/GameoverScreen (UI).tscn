@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cg8fagjmx1b1i"]
 
-[ext_resource type="Script" uid="uid://b1e8oso8oehhd" path="res://Assets/UI/Retry_btn.gd" id="1_lv2d4"]
-[ext_resource type="Script" uid="uid://bir7hxegb8bdm" path="res://Assets/UI/Return_menu.gd" id="2_fp1bh"]
+[ext_resource type="Script" uid="uid://b1e8oso8oehhd" path="res://Assets/UI/Scripts/Retry_btn.gd" id="1_lv2d4"]
+[ext_resource type="Script" uid="uid://bir7hxegb8bdm" path="res://Assets/UI/Scripts/Return_menu.gd" id="2_fp1bh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28hf2"]
 bg_color = Color(0.0702, 0.30510002, 0.54, 1)
