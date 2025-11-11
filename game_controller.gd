@@ -89,6 +89,7 @@ func begin_game():
 	Stats.round = 1
 	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
+	Stats.wave = 1
 func clear_run_data():
 	Stats.gold = 0
 	Stats.round = 1

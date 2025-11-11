@@ -78,7 +78,7 @@ var time_since_last_target: float = 0.0
 
 var time_since_last_attack: float = 0.0
 func _physics_process(delta):
-	if not Unit_in_Battle:
+	if not Unit_in_Battle or Current_hp <= 0:
 		return
 
 	# Update cooldown timer
@@ -108,13 +108,14 @@ func _physics_process(delta):
 		time_since_last_attack += delta
 		if time_since_last_attack >= stats.attack_speed or target == null or not is_instance_valid(target):
 			time_since_last_attack = 0.0
-			_on_target_in_range()
+			if Current_hp > 0:
+				_on_target_in_range()
 	
 	move_and_slide()
 
 
 func _on_battle_start():
-	print(name, " battle has started!")
+	#print(name, " battle has started!")
 	Unit_in_Battle = true
 	_choose_target()
 	# Enable AI, start moving/attacking, etc.
@@ -146,10 +147,19 @@ func _choose_target():
 	#sprite.play("run")
 
 func _on_target_in_range():
+	if not Unit_in_Battle or Current_hp <= 0:
+		return
 	if target == null or not is_instance_valid(target):
 		return
-	await get_tree().create_timer(0.2).timeout
+	if faction == Faction.ENEMY:
+		await get_tree().create_timer(0.25).timeout
+	else:
+		await  get_tree().create_timer(0.1).timeout
 	# Basic attack printout
+	if not Unit_in_Battle or Current_hp <= 0:
+		return
+	if Current_hp <= 0 or not is_instance_valid(self):
+		return
 	if stats.type == "melee":
 			# Deal damage
 		sprite.play("attack")
@@ -199,6 +209,8 @@ func on_shoot():
 func take_damage(amount):
 	#print(name, " took ", amount, " damage!")
 	Current_hp -= amount
+	if Current_hp < 0:
+		Current_hp = 0
 	var tween = get_tree().create_tween()
 	tween.tween_method(setshader_BlinkIntensity, 1.0, 0.0, 0.5)
 	
@@ -211,7 +223,7 @@ func take_damage(amount):
 		if sprite.animation != "dead":
 			sprite.play("dead")
 		await sprite.animation_finished
-		queue_free()
+		free()
 	# TODO: Subtract health, trigger animation, check death, etc.
 
 func update_health_bar():
