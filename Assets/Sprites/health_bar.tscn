@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c28tbanfcp5ab"]
+
+[node name="HealthBar" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -14.0
+offset_right = 9.0
+offset_bottom = -11.700001
+color = Color(0, 0, 0, 0.8)
+
+[node name="Foreground" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -14.0
+offset_right = 9.0
+offset_bottom = -11.700001
