@@ -19,6 +19,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="Tooltip" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -139,7 +140,11 @@ text = "This is a description
 lorem ipsum"
 fit_content = true
 
-[node name="RarityLabel" type="Label" parent="BackgroundContainer/VBoxContainer"]
+[node name="RichTextRarityLabel" type="RichTextLabel" parent="BackgroundContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Epic"
+fit_content = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
