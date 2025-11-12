@@ -1,6 +1,7 @@
 extends Node
 
 # Active stats
+var running: bool = false
 var gold: int = 10
 var round: int = 1
 var wave: int = 1
@@ -37,8 +38,3 @@ func _take_gold(price: int):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	units = GameController.get_build_slots()

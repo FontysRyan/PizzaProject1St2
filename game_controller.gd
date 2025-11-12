@@ -5,7 +5,8 @@ enum GamePhase {
 	BUILD,
 	FIGHT,
 	DEATH,
-	POST_GAME
+	POST_GAME,
+	MID_GAME
 }
 @export var Main_scene: String = "res://Scenes/Mainmenu.tscn"
 @export var Death_scene: String = "res://Scenes/Gameover.tscn"
@@ -15,15 +16,15 @@ var stats = Stats
 var current_phase: GamePhase = GamePhase.PRE_GAME
 
 # ===== UNIT SLOT EXPORTS =====
-@export var unit_slot1: UnitStats = null
-@export var unit_slot2: UnitStats = null
-@export var unit_slot3: UnitStats = null
-@export var unit_slot4: UnitStats = null
-@export var unit_slot5: UnitStats = null
-@export var unit_slot6: UnitStats = null
-@export var unit_slot7: UnitStats = null
-@export var unit_slot8: UnitStats = null
-@export var unit_slot9: UnitStats = null
+@export var unit_slot1: Unit_Panel = null
+@export var unit_slot2: Unit_Panel = null
+@export var unit_slot3: Unit_Panel = null
+@export var unit_slot4: Unit_Panel = null
+@export var unit_slot5: Unit_Panel = null
+@export var unit_slot6: Unit_Panel = null
+@export var unit_slot7: Unit_Panel = null
+@export var unit_slot8: Unit_Panel = null
+@export var unit_slot9: Unit_Panel = null
 
 func _ready():
 	Stats.round = 0
@@ -46,9 +47,15 @@ func set_phase(new_phase: GamePhase):
 		GamePhase.BUILD:
 			get_tree().change_scene_to_file(build_scene)
 		GamePhase.FIGHT:
+			Stats.units = get_build_slots()
 			get_tree().change_scene_to_file(fight_scene)
 		GamePhase.DEATH:
+			Stats.units.clear()
 			get_tree().change_scene_to_file(Death_scene)
+		GamePhase.MID_GAME:
+			Stats.units = get_build_slots()
+			get_tree().change_scene_to_file(Main_scene)
+			get_tree().paused = false
 		# You can add other scene changes if needed for DEATH/POST_GAME
 
 func phase_to_string(phase: GamePhase) -> String:
@@ -56,22 +63,22 @@ func phase_to_string(phase: GamePhase) -> String:
 		GamePhase.PRE_GAME:
 			set_game_speed(1)
 			clear_run_data()
-			TEMP_clear_build()
 			return "PRE_GAME"
 		GamePhase.BUILD:
 			return "BUILD"
 		GamePhase.FIGHT:
 			return "FIGHT"
 		GamePhase.DEATH:
-			TEMP_clear_build()
 			set_game_speed(1)
 			return "DEATH"
 		GamePhase.POST_GAME:
 			set_game_speed(1)
 			advance_round()
-			TEMP_clear_build()
 			set_phase(GamePhase.BUILD)
 			return "POST_GAME"
+		GamePhase.MID_GAME:
+			set_game_speed(1)
+			return "MID_GAME"
 		_:
 			return "UNKNOWN"
 
@@ -86,11 +93,13 @@ func advance_round():
 	#else:
 		#set_phase(GamePhase.POST_GAME)
 func begin_game():
+	Stats.running = true
 	Stats.round = 1
 	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.wave = 1
 func clear_run_data():
+	Stats.running = false
 	Stats.gold = 0
 	Stats.round = 1
 	Stats.wave = 1
@@ -111,7 +120,7 @@ func clear_run_data():
 	
 
 
-func update_build_slot(slot_index: int, resource_path: UnitStats) -> void:
+func update_build_slot(slot_index: int, resource_path: Unit_Panel) -> void:
 	# Remove ".tres" if present
 	var clean_name = resource_path if resource_path != null else null
 	
@@ -126,9 +135,6 @@ func update_build_slot(slot_index: int, resource_path: UnitStats) -> void:
 		8: unit_slot8 = clean_name
 		9: unit_slot9 = clean_name
 
-	# Debug print
-	print("[GameController] Slot", slot_index, "updated to:", clean_name)
-
 # Optional helper to get all slots in a list
 func get_build_slots() -> Array:
 	return [
@@ -136,17 +142,7 @@ func get_build_slots() -> Array:
 		unit_slot4, unit_slot5, unit_slot6,
 		unit_slot7, unit_slot8, unit_slot9
 	]
-	
-func TEMP_clear_build():
-	unit_slot1 = null
-	unit_slot2 = null
-	unit_slot3 = null
-	unit_slot4 = null
-	unit_slot5 = null
-	unit_slot6 = null
-	unit_slot7 = null
-	unit_slot8 = null
-	unit_slot9 = null
+
 
 func set_game_speed(scale: float) -> void:
 	# Clamp to prevent negative or absurd values
