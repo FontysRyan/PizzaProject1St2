@@ -60,6 +60,9 @@ func _process(delta):
 
 					var slot_index = int(panel.name.replace("Panel_", ""))
 					GameController.update_build_slot(slot_index, child_name)
+			else:
+				var slot_index = int(panel.name.replace("Panel_", ""))
+				GameController.clear_build_slot(slot_index)
 
 
 			unit_names.append(child_name)

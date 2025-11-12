@@ -147,6 +147,18 @@ func get_build_slots() -> Array:
 		unit_slot7, unit_slot8, unit_slot9
 	]
 
+func clear_build_slot(slot_index: int) -> void:
+	match slot_index:
+		1: unit_slot1 = null
+		2: unit_slot2 = null
+		3: unit_slot3 = null
+		4: unit_slot4 = null
+		5: unit_slot5 = null
+		6: unit_slot6 = null
+		7: unit_slot7 = null
+		8: unit_slot8 = null
+		9: unit_slot9 = null
+
 
 func set_game_speed(scale: float) -> void:
 	# Clamp to prevent negative or absurd values
