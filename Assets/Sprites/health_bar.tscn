@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c28tbanfcp5ab"]
+[gd_scene load_steps=0 format=3 uid="uid://c28tbanfcp5ab"]
 
 [node name="HealthBar" type="Node2D"]
 

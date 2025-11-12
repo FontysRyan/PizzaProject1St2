@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dapklguvhsdf2"]
+[gd_scene load_steps=5 format=3 uid="uid://dapklguvhsdf2"]
 
 [ext_resource type="Script" uid="uid://b8d82qhubvv2t" path="res://unit_panel.gd" id="1_7mbbl"]
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="2_86h88"]
+[ext_resource type="PackedScene" uid="uid://bmdw5marsb48u" path="res://Assets/UI/Popup Tooltip.tscn" id="3_d7tl5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mbbl"]
 
 [node name="UnitPanel" type="Panel"]
+z_index = 3
 custom_minimum_size = Vector2(75, 75)
 offset_right = 40.0
 offset_bottom = 40.0
@@ -38,3 +40,10 @@ label_settings = SubResource("LabelSettings_7mbbl")
 position = Vector2(65, 64)
 scale = Vector2(0.026, 0.025)
 texture = ExtResource("2_86h88")
+
+[node name="Tooltip" parent="." instance=ExtResource("3_d7tl5")]
+z_index = 10
+layout_mode = 0
+
+[connection signal="mouse_entered" from="." to="Tooltip" method="toggle" binds= [true]]
+[connection signal="mouse_exited" from="." to="Tooltip" method="toggle" binds= [false]]
