@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi7llxlror1tw"]
+[gd_scene load_steps=9 format=3 uid="uid://bi7llxlror1tw"]
 
 [ext_resource type="Script" uid="uid://17ri2p5alefk" path="res://Scenes/Combat test/combat_system.gd" id="1_5gxo4"]
 [ext_resource type="PackedScene" uid="uid://dndvobnqtd7ol" path="res://Assets/UI/BattleScreen (UI).tscn" id="1_m3alb"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bw7kjd8cye6tv" path="res://Scenes/Combat test/Unit.tscn" id="4_kmdb4"]
 [ext_resource type="Script" uid="uid://6f0jout702sg" path="res://Scripts/Scripts-Procedural/Enemy_Spawning.gd" id="5_16koh"]
 [ext_resource type="PackedScene" uid="uid://dthwo3j0ritfl" path="res://Assets/Sprites/Envirement/TileMap.tscn" id="6_kmdb4"]
+[ext_resource type="PackedScene" uid="uid://cpfjpechu6k75" path="res://Assets/Sprites/Envirement/Props/rock.tscn" id="7_5gdua"]
+[ext_resource type="PackedScene" uid="uid://ct37o381yqf0t" path="res://Assets/Sprites/Envirement/Props/lily.tscn" id="8_5bjwa"]
 
 [node name="Battlescreen" type="Node2D" node_paths=PackedStringArray("player_spawner", "enemy_spawner")]
 script = ExtResource("1_5gxo4")
@@ -95,3 +97,21 @@ scale = Vector2(1.2, 1.2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.2, 1.2)
+
+[node name="Rock" parent="." instance=ExtResource("7_5gdua")]
+position = Vector2(-310, 232)
+scale = Vector2(3, 3)
+
+[node name="Rock2" parent="." instance=ExtResource("7_5gdua")]
+position = Vector2(-490, -204)
+scale = Vector2(3, 3)
+
+[node name="Rock3" parent="." instance=ExtResource("7_5gdua")]
+position = Vector2(513, -227)
+scale = Vector2(3, 3)
+
+[node name="Lily" parent="." instance=ExtResource("8_5bjwa")]
+position = Vector2(-137, 245)
+
+[node name="Lily2" parent="." instance=ExtResource("8_5bjwa")]
+position = Vector2(151, 221)
