@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg8fagjmx1b1i"]
+[gd_scene load_steps=6 format=3 uid="uid://cg8fagjmx1b1i"]
 
 [ext_resource type="Script" uid="uid://b1e8oso8oehhd" path="res://Assets/UI/Scripts/Retry_btn.gd" id="1_lv2d4"]
+[ext_resource type="Script" uid="uid://cfmh8iuycsghu" path="res://Assets/UI/Scripts/gameover_screen_(ui).gd" id="1_lyxnr"]
 [ext_resource type="Script" uid="uid://bir7hxegb8bdm" path="res://Assets/UI/Scripts/Return_menu.gd" id="2_fp1bh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28hf2"]
@@ -16,6 +17,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lyxnr")
+time_played_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/TimePlayedContainer/TimePlayedAmount")
+rounds_survived_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/RoundsSurvivedContainer/RoundsSurvivedAmount")
+waves_survived_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/WavesSurvivedContainer/WaveSurvivedAmount")
+gold_spent_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/GoldSpendContainer/GoldSpentAmount")
+units_placed_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsPlacedContainer/UnitsPlacedAmount")
+units_merged_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsMergedContainer/UnitsMergedAmount")
+units_lost_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsLostContainer/UnitsLostAmount")
+units_sold_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsSoldContainer/UnitsSoldAmount")
+units_healed_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsHealedContainer/UnitsHealedAmount")
+heal_amount_done_label_path = NodePath("HBoxContainer/VBoxContainer/Panel/VBoxContainer/HealAmountDoneContainer/HealAmountDoneAmount")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -66,47 +78,50 @@ theme_override_font_sizes/font_size = 20
 text = "Gameplay Progress"
 vertical_alignment = 1
 
-[node name="Item1Container" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="TimePlayedContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container"]
+[node name="TimePlayedTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/TimePlayedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Time Played:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container"]
+[node name="TimePlayedAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/TimePlayedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "00:00:00"
 
-[node name="Item2Container" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="RoundsSurvivedContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item2Container"]
+[node name="RoundsSurvivedTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/RoundsSurvivedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Rounds Survived:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item2Container"]
+[node name="RoundsSurvivedAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/RoundsSurvivedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="Item3Container" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="WavesSurvivedContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item3Container"]
+[node name="WaveSurvivedTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/WavesSurvivedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Waves Survived:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item3Container"]
+[node name="WaveSurvivedAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/WavesSurvivedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -119,17 +134,18 @@ theme_override_font_sizes/font_size = 20
 text = "Economy"
 vertical_alignment = 1
 
-[node name="Item1Container2" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="GoldSpendContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container2"]
+[node name="GoldSpentTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/GoldSpendContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Gold Spent:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container2"]
+[node name="GoldSpentAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/GoldSpendContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
@@ -142,102 +158,108 @@ theme_override_font_sizes/font_size = 20
 text = "Unit Management"
 vertical_alignment = 1
 
-[node name="Item1Container3" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="UnitsPlacedContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container3"]
+[node name="UnitsPlacedTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsPlacedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Units Placed:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container3"]
+[node name="UnitsPlacedAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsPlacedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="Item1Container4" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="UnitsMergedContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container4"]
+[node name="UnitsMergedTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsMergedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Units Merged:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container4"]
+[node name="UnitsMergedAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsMergedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="Item1Container5" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="UnitsLostContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container5"]
+[node name="UnitsLostTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsLostContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Units Lost:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container5"]
+[node name="UnitsLostAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsLostContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="Item1Container6" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="UnitsSoldContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container6"]
+[node name="UnitsSoldTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsSoldContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Units Sold:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container6"]
+[node name="UnitsSoldAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsSoldContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="Item1Container7" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="UnitsHealedContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container7"]
+[node name="UnitsHealedTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsHealedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Units Healed:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container7"]
+[node name="UnitsHealedAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/UnitsHealedContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="Item1Container8" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="HealAmountDoneContainer" type="HSplitContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 5
+dragging_enabled = false
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container8"]
+[node name="HealAmountDoneTitle" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/HealAmountDoneContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Heal Amount Done:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/Item1Container8"]
+[node name="HealAmountDoneAmount" type="Label" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/HealAmountDoneContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 10
@@ -245,7 +267,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_lv2d4")
 text = "Retry"
 script = ExtResource("1_lv2d4")
 
-[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer/Panel/VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_vertical = 2
