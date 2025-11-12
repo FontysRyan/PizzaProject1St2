@@ -70,6 +70,7 @@ func phase_to_string(phase: GamePhase) -> String:
 			set_game_speed(1)
 			advance_round()
 			TEMP_clear_build()
+			run_timer.reset()
 			set_phase(GamePhase.BUILD)
 			return "POST_GAME"
 		_:
@@ -90,6 +91,7 @@ func begin_game():
 	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.wave = 1
+	run_timer.start()
 func clear_run_data():
 	Stats.gold = 0
 	Stats.round = 1
