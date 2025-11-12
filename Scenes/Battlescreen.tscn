@@ -1,18 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi7llxlror1tw"]
+[gd_scene load_steps=7 format=3 uid="uid://bi7llxlror1tw"]
 
 [ext_resource type="Script" uid="uid://17ri2p5alefk" path="res://Scenes/Combat test/combat_system.gd" id="1_5gxo4"]
 [ext_resource type="PackedScene" uid="uid://dndvobnqtd7ol" path="res://Assets/UI/BattleScreen (UI).tscn" id="1_m3alb"]
 [ext_resource type="Script" uid="uid://l2su46g4ecrn" path="res://Scenes/Combat test/UnitSpawner.gd" id="3_16koh"]
 [ext_resource type="PackedScene" uid="uid://bw7kjd8cye6tv" path="res://Scenes/Combat test/Unit.tscn" id="4_kmdb4"]
 [ext_resource type="Script" uid="uid://6f0jout702sg" path="res://Scripts/Scripts-Procedural/Enemy_Spawning.gd" id="5_16koh"]
+[ext_resource type="PackedScene" uid="uid://dthwo3j0ritfl" path="res://Assets/Sprites/Envirement/TileMap.tscn" id="6_kmdb4"]
 
-[node name="Battlescreen" type="Node2D"]
+[node name="Battlescreen" type="Node2D" node_paths=PackedStringArray("player_spawner", "enemy_spawner")]
 script = ExtResource("1_5gxo4")
+player_spawner = NodePath("PlayerSpawner")
+enemy_spawner = NodePath("EnemySpawner")
 
-[node name="Control" parent="." instance=ExtResource("1_m3alb")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("1_m3alb")]
 process_mode = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_right = 1152.0
 offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerSpawner" type="Node" parent="."]
 script = ExtResource("3_16koh")
@@ -20,31 +30,31 @@ unit_scene = ExtResource("4_kmdb4")
 faction = 1
 
 [node name="Tile0" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(66, 316)
+position = Vector2(-533, -28)
 
 [node name="Tile1" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(98, 316)
+position = Vector2(-501, -28)
 
 [node name="Tile2" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(130, 316)
+position = Vector2(-469, -28)
 
 [node name="Tile3" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(66, 348)
+position = Vector2(-533, 4)
 
 [node name="Tile4" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(98, 348)
+position = Vector2(-501, 4)
 
 [node name="Tile5" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(130, 348)
+position = Vector2(-469, 4)
 
 [node name="Tile6" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(66, 380)
+position = Vector2(-533, 36)
 
 [node name="Tile7" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(98, 380)
+position = Vector2(-501, 36)
 
 [node name="Tile8" type="Marker2D" parent="PlayerSpawner"]
-position = Vector2(130, 380)
+position = Vector2(-469, 36)
 
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("5_16koh")
@@ -52,28 +62,36 @@ unit_scene = ExtResource("4_kmdb4")
 faction = 2
 
 [node name="Tile0" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1018, 314)
+position = Vector2(481, -16)
 
 [node name="Tile1" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1050, 314)
+position = Vector2(513, -16)
 
 [node name="Tile2" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1082, 314)
+position = Vector2(545, -16)
 
 [node name="Tile3" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1018, 346)
+position = Vector2(481, 16)
 
 [node name="Tile4" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1050, 346)
+position = Vector2(513, 16)
 
 [node name="Tile5" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1082, 346)
+position = Vector2(545, 16)
 
 [node name="Tile6" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1018, 378)
+position = Vector2(481, 48)
 
 [node name="Tile7" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1050, 378)
+position = Vector2(513, 48)
 
 [node name="Tile8" type="Marker2D" parent="EnemySpawner"]
-position = Vector2(1082, 378)
+position = Vector2(545, 48)
+
+[node name="TileMap" parent="." instance=ExtResource("6_kmdb4")]
+z_index = -1
+position = Vector2(41, 89)
+scale = Vector2(1.2, 1.2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.2, 1.2)

@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_t1wl5"]
 [ext_resource type="Texture2D" uid="uid://bvf5yk8qs5jqj" path="res://Assets/Sprites/UI related sprites/puixel-icons/icons/flat/save.png" id="2_s1iif"]
 [ext_resource type="Script" uid="uid://dyt73r7af75q5" path="res://Assets/UI/Scripts/rounds_label.gd" id="3_cqpcw"]
-[ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Player_Build_manager.gd" id="3_hrd7a"]
+[ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Scripts/Player_Build_manager.gd" id="3_hrd7a"]
 [ext_resource type="Script" uid="uid://bqgw4x0it3st6" path="res://Game/Shop.gd" id="5_45w1l"]
-[ext_resource type="Script" uid="uid://ddmxi7aqtsxxu" path="res://Assets/UI/grid_container.gd" id="5_hrd7a"]
-[ext_resource type="Script" uid="uid://bxt5br8giet22" path="res://Assets/UI/fight_button.gd" id="7_eabrk"]
+[ext_resource type="Script" uid="uid://ddmxi7aqtsxxu" path="res://Assets/UI/Scripts/grid_container.gd" id="5_hrd7a"]
+[ext_resource type="Script" uid="uid://bxt5br8giet22" path="res://Assets/UI/Scripts/fight_button.gd" id="7_eabrk"]
 [ext_resource type="PackedScene" uid="uid://dapklguvhsdf2" path="res://unit_panel.tscn" id="7_t1wl5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gperi"]
@@ -273,6 +273,7 @@ text = ">"
 vertical_alignment = 1
 
 [node name="SavingIconContainer" type="VBoxContainer" parent="MarginContainer/RightPanel/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
@@ -378,10 +379,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Reroll"
 
 [node name="FightButton" type="Button" parent="MarginContainer/BottomBar"]
-custom_minimum_size = Vector2(100, 50)
+custom_minimum_size = Vector2(150, 75)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2x8r")
 text = "Fight"
 script = ExtResource("7_eabrk")

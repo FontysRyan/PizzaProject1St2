@@ -38,15 +38,12 @@ func _on_button_gui_input(event: InputEvent, btn: TextureButton) -> void:
 				play_button:
 					# TODO: handle play button press
 					GameController.set_game_speed(1)
-					pass
 				pause_button:
 					# TODO: handle pause button press
 					GameController.set_game_speed(0)
-					pass
 				fast_forward_button:
 					# TODO: handle fast forward button press
 					GameController.set_game_speed(5)
-					pass
 				_:
 					# Unknown button (fallback)
 					pass
@@ -95,10 +92,10 @@ func _update_button_colors() -> void:
 		if btn:
 			btn.modulate = _target_color(btn)
 
-
-func _on_pause_button_pressed() -> void:
-	get_tree().paused = true
-
-
-func _on_play_button_pressed() -> void:
-	get_tree().paused = false
+#
+#func _on_pause_button_pressed() -> void:
+	#get_tree().paused = true
+#
+#
+#func _on_play_button_pressed() -> void:
+	#get_tree().paused = false

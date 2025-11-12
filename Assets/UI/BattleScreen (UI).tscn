@@ -146,6 +146,7 @@ texture_normal = ExtResource("4_fu08q")
 stretch_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5

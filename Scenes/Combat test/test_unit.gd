@@ -9,8 +9,12 @@ var Unit_in_Battle: bool = false
 @export var Current_hp: int
 @export var Projectile: PackedScene
 @export var sprite: AnimatedSprite2D
+@onready var health_bar = $HealthBar
+@onready var camera2D : Camera2D = get_tree().current_scene.get_node("Camera2D")
+@export var cameraShakeNoise : FastNoiseLite
 
 func _ready():
+	cameraShakeNoise = FastNoiseLite.new()
 	# Load stats if none assigned
 	if stats == null:
 		var path = "res://Resources/units/%s.tres" % unit_type
@@ -19,7 +23,7 @@ func _ready():
 			stats = res
 		else:
 			push_warning("UnitStats resource not found at %s" % path)
-	var file_name = stats.get_basename()
+	var file_name = stats.resource_path.get_file().get_basename()
 
 	if faction == 1:
 		name = "Player_" + file_name + "_unit"
@@ -44,7 +48,8 @@ func _ready():
 
 	# Flip the unit if it's an enemy
 	sprite.flip_h = (faction == Faction.ENEMY)
-
+	if faction == Faction.ENEMY:
+		health_bar.position = Vector2(8,-4)
 	# Show correct faction ring
 	ring1.visible = (faction == Faction.FRIENDLY)
 	ring2.visible = (faction == Faction.ENEMY)
@@ -73,7 +78,7 @@ var time_since_last_target: float = 0.0
 
 var time_since_last_attack: float = 0.0
 func _physics_process(delta):
-	if not Unit_in_Battle:
+	if not Unit_in_Battle or Current_hp <= 0:
 		return
 
 	# Update cooldown timer
@@ -103,13 +108,14 @@ func _physics_process(delta):
 		time_since_last_attack += delta
 		if time_since_last_attack >= stats.attack_speed or target == null or not is_instance_valid(target):
 			time_since_last_attack = 0.0
-			_on_target_in_range()
+			if Current_hp > 0:
+				_on_target_in_range()
 	
 	move_and_slide()
 
 
 func _on_battle_start():
-	print(name, " battle has started!")
+	#print(name, " battle has started!")
 	Unit_in_Battle = true
 	_choose_target()
 	# Enable AI, start moving/attacking, etc.
@@ -141,10 +147,19 @@ func _choose_target():
 	#sprite.play("run")
 
 func _on_target_in_range():
+	if not Unit_in_Battle or Current_hp <= 0:
+		return
 	if target == null or not is_instance_valid(target):
 		return
-	await get_tree().create_timer(0.2).timeout
+	if faction == Faction.ENEMY:
+		await get_tree().create_timer(0.25).timeout
+	else:
+		await  get_tree().create_timer(0.1).timeout
 	# Basic attack printout
+	if not Unit_in_Battle or Current_hp <= 0:
+		return
+	if Current_hp <= 0 or not is_instance_valid(self):
+		return
 	if stats.type == "melee":
 			# Deal damage
 		sprite.play("attack")
@@ -194,14 +209,53 @@ func on_shoot():
 func take_damage(amount):
 	#print(name, " took ", amount, " damage!")
 	Current_hp -= amount
+	if Current_hp < 0:
+		Current_hp = 0
+	var tween = get_tree().create_tween()
+	tween.tween_method(setshader_BlinkIntensity, 1.0, 0.0, 0.5)
 	
+	var camera_tween = get_tree().create_tween()
+	camera_tween.tween_method(Callable(self, "StartCameraShake"), 5.0, 0.0, 0.5)
+
+	update_health_bar()
 	if Current_hp <= 0:
 		Log_combat(1,amount)
 		if sprite.animation != "dead":
 			sprite.play("dead")
 		await sprite.animation_finished
-		queue_free()
+		free()
 	# TODO: Subtract health, trigger animation, check death, etc.
+
+func update_health_bar():
+	if health_bar and health_bar.has_node("Foreground"):
+		var health_ratio = float(Current_hp) / float(stats.max_hp)
+		var foreground = health_bar.get_node("Foreground")
+		foreground.scale.x = health_ratio
+		
+		# Change color based on health
+		if health_ratio > 0.6:
+			foreground.modulate = Color.GREEN
+		elif health_ratio > 0.3:
+			foreground.modulate = Color.YELLOW
+		else:
+			foreground.modulate = Color.RED
+
+func StartCameraShake(intensity: float) -> void:
+	if camera2D == null:
+		return
+
+	# Time in seconds, scaled so noise changes quickly
+	var t := float(Time.get_ticks_msec()) * 0.01
+
+	var noise_x := cameraShakeNoise.get_noise_1d(t)
+	var noise_y := cameraShakeNoise.get_noise_1d(t + 200.0) # offset so x & y differ
+
+	# noise is usually in -1..1, so multiply by intensity for pixels
+	camera2D.offset.x = noise_x * intensity
+	camera2D.offset.y = noise_y * intensity
+
+func setshader_BlinkIntensity(newValue : float):
+	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
 func Log_combat(event, ammount):
 	print("COMBAT LOG: event " , event, " caused ", ammount, " damage")
