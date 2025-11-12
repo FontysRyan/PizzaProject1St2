@@ -9,6 +9,8 @@ var units_to_spawn = 9
 signal player_units_spawned
 signal enemy_units_spawned
 
+
+
 func _ready():
 	var spawned_count = 0
 	var spawn_points = get_children()
@@ -28,6 +30,11 @@ func _ready():
 				# Remove .tres if present
 				unit_type = unit_stats.get_basename()
 			# Instantiate unit scene
+			
+			var new_stats: UnitStats = unit_stats.duplicate()
+			# Apply buff
+			if faction == Marker_Faction.FRIENDLY:
+				_apply_buff_to_unit(new_stats, i)
 			
 			unit.global_position = marker.global_position
 			unit.faction = faction
@@ -65,3 +72,26 @@ func PickUnitType() -> String:
 		3: return "Knight"
 		4: return "Pirate"
 	return ""
+	
+func _apply_buff_to_unit(unit_stats: UnitStats, slot_index: int) -> void:
+	if not ("panel_buffs" in Stats):
+		return
+
+	if slot_index >= Stats.panel_buffs.size():
+		return
+
+	var buff = Stats.panel_buffs[slot_index]
+	if buff == null:
+		return
+
+	match buff:
+		"ATTACK":
+			unit_stats.damage *= 1.25
+		"TANKIER":
+			unit_stats.max_hp *= 1.5
+		"SPEED":
+			unit_stats.movement_speed *= 2
+		_:
+			return
+
+	print("Applied %s buff to unit in slot %d" % [buff, slot_index + 1])

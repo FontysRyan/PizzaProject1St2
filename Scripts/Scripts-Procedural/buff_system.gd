@@ -7,60 +7,51 @@ enum Buff {
 	SPEED
 }
 
-@onready var panel_scene = preload("res://unit_panel.tscn")
-# Tracks which unit is in which panel
 var build_slots := {}  # { "Panel_1": "Archer" / "empty" }
 
 func _ready():
-	for panel: Panel in get_children():
-		var j: int = 0
-		for i in Stats.units:
-			if i != null:
-				panel = get_child(j)
-				i.bought = true
-				panel.add_child(i)
-			j += 1
-			if panel is Panel:
-				if panel.get_child_count() > 0:
-					build_slots[panel.name] = panel.get_child(0).name
-				else:
-					build_slots[panel.name] = "empty"
+	randomize()
+
+	# Initialize build slots
+	for panel in get_children():
+		if panel is Panel:
+			if panel.get_child_count() > 0:
+				build_slots[panel.name] = panel.get_child(0).name
+			else:
+				build_slots[panel.name] = "empty"
 
 	# Assign buffs after setup
 	assign_buffs_to_panels()
 
 func _process(delta):
-	var unit_names := []  # Collects all 9 slot resource names
+	var unit_names := []
 
 	for panel in get_children():
 		if panel is Panel:
-			var child_name: Unit_Panel = null
+			var child_name: String = "empty"
 
 			if panel.get_child_count() > 0:
 				var unit_tile = panel.get_child(0)
-				
 				if "panel" in unit_tile and unit_tile.panel:
 					var p = unit_tile.panel
-					#print("q" + p.name)
 					if p is UnitPanel:
-						# If it's a resource, get the file name
-						var temp_panel = panel_scene.instantiate()
-						temp_panel.panel = unit_tile.panel
-						temp_panel._fill_panel()
-						child_name = temp_panel
+						child_name = p.unit_name
 					else:
-						child_name = null
+						child_name = "unknown"
 				else:
-					child_name = null
+					child_name = "unknown"
 
 			# Detect slot change
-			if child_name != null:
-				if build_slots.get(panel) != child_name.panel:
-					build_slots[panel] = child_name.panel
+			if build_slots.get(panel.name) != child_name:
+				build_slots[panel.name] = child_name
 
-					var slot_index = int(panel.name.replace("Panel_", ""))
-					GameController.update_build_slot(slot_index, child_name)
+				var slot_index = int(panel.name.replace("Panel", ""))
+				GameController.update_build_slot(slot_index, child_name)
 
+				if child_name != "empty" && child_name != "unknown" && child_name != null:
+					print(panel.name, " now has unit: ", child_name)
+				else:
+					print(panel.name, " is now empty")
 
 			unit_names.append(child_name)
 
@@ -69,11 +60,11 @@ func _process(delta):
 		pass
 
 
-
-# Public API
+# --- Public API ---
 func get_unit_at(panel_name: String) -> String:
 	return build_slots.get(panel_name, "empty")
-	
+
+
 # --- Buff Management ---
 func assign_buffs_to_panels():
 	var panels = get_children().filter(func(p): return p is Panel)
@@ -84,10 +75,12 @@ func assign_buffs_to_panels():
 
 	# Determine round progression (replace with your actual Stats logic)
 	var round = Stats.rounds_survived
-	# min_buffs is always 0
-	var min_buffs = 0
-	# max_buffs grows each round, but cannot exceed panels.size()
-	var max_buffs = clamp(round, 0, panels.size())
+
+	# Scale buff count
+	var min_buffs = clamp(round, 1, panels.size())
+	var max_buffs = clamp(round + 1, 1, panels.size())
+	if min_buffs > max_buffs:
+		min_buffs = max_buffs
 
 	var buffs_to_assign = randi_range(min_buffs, max_buffs)
 	print("Assigning %d buffs to %d panels (round %d)" % [buffs_to_assign, panels.size(), round])
@@ -108,7 +101,6 @@ func assign_buffs_to_panels():
 			match random_buff:
 				"ATTACK":
 					panel.modulate = Color.RED
-					
 				"TANKIER":
 					panel.modulate = Color.BLUE
 				"SPEED":
@@ -118,22 +110,3 @@ func assign_buffs_to_panels():
 			print("Assigned %s buff to %s" % [random_buff, panel.name])
 
 	print("Buff assignment complete! %d panels have buffs." % assigned.size())
-
-func export_buffs_to_stats():
-	if not Engine.has_singleton("Stats"):
-		print("No Stats singleton found to store buffs.")
-		return
-
-	var buff_data := []
-	for i in range(1, 10):
-		var panel_name = "Panel%d" % i
-		var panels = get_children().filter(func(p): return p is Panel and p.name == panel_name)
-		if panels.size() == 0:
-			buff_data.append(null)
-			continue
-		var panel = panels[0]
-		var buff = panel.get_meta("buff_data")
-		buff_data.append(buff)
-
-	Stats.panel_buffs = buff_data
-	print("Exported buffs to Stats:", buff_data)
