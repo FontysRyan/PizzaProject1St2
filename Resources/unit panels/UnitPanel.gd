@@ -4,4 +4,3 @@ extends Resource
 @export var unit_name: String
 @export var unit_stats: UnitStats
 @export var rarity: Rarity
-var bought: bool = false

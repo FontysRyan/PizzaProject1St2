@@ -17,27 +17,26 @@ func _ready():
 		var marker = spawn_points[i]
 		if not marker is Marker2D:
 			continue
-
-		# Get unit type from GameController
-		var slot_name = "unit_slot%d" % (i + 1)
 		var unit_type: String = ""
-		if slot_name in GameController:
-			unit_type = GameController.get(slot_name)
-			# Skip empty slots
-			if unit_type == "" or unit_type == "empty" or unit_type == null:
+		var unit = unit_scene.instantiate()
+		if Stats.units[i] != null:
+			var unit_stats: UnitStats = Stats.units[i].panel.unit_stats
+			unit_type = Stats.units[i].panel.unit_stats.get_basename()
+			if unit_type == "" or unit_type == "empty" or unit_type == null or unit_stats == null:
 				print("Slot %d empty, skipping" % (i + 1))
 				continue
-			# Remove .tres if present
-			unit_type = unit_type.get_basename()
+				# Remove .tres if present
+				unit_type = unit_stats.get_basename()
+			# Instantiate unit scene
+			
+			unit.global_position = marker.global_position
+			unit.faction = faction
+			unit.unit_type = unit_type
+			unit.stats = unit_stats
 		else:
 			print("Slot %d missing in GameController, skipping" % (i + 1))
 			continue
 
-		# Instantiate unit scene
-		var unit = unit_scene.instantiate()
-		unit.global_position = marker.global_position
-		unit.faction = faction
-		unit.unit_type = unit_type
 
 		if faction == Marker_Faction.FRIENDLY:
 			unit.add_to_group("Friendly_units")
