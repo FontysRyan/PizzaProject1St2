@@ -38,10 +38,12 @@ func reset():
 
 func _on_timer_tick():
 	seconds_passed += 1
-	if seconds_passed % 60 == 0:
+	if seconds_passed >= 60:
 		minutes_passed += 1
-	if minutes_passed % 60 == 0:
+		seconds_passed = 0
+	if minutes_passed >= 60:
 		hours_passed += 1
+		minutes_passed = 0
 
 	# You can remove this print if you don’t want spam
-	print("%02d:%02d:%02d" % [hours_passed, minutes_passed, seconds_passed % 60])
+	print("%02d:%02d:%02d" % [hours_passed, minutes_passed, seconds_passed])

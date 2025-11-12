@@ -70,7 +70,6 @@ func phase_to_string(phase: GamePhase) -> String:
 			set_game_speed(1)
 			advance_round()
 			TEMP_clear_build()
-			run_timer.reset()
 			set_phase(GamePhase.BUILD)
 			return "POST_GAME"
 		_:
