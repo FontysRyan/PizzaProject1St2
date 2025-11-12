@@ -40,7 +40,7 @@ func _on_timer_tick():
 	seconds_passed += 1
 	if seconds_passed % 60 == 0:
 		minutes_passed += 1
-	if seconds_passed % 3600 == 0:
+	if minutes_passed % 60 == 0:
 		hours_passed += 1
 
 	# You can remove this print if you don’t want spam
