@@ -26,8 +26,6 @@ var current_phase: GamePhase = GamePhase.PRE_GAME
 @export var unit_slot8: Unit_Panel = null
 @export var unit_slot9: Unit_Panel = null
 
-var timer = Timer.new()
-
 func _ready():
 	Stats.round = 0
 	Stats.units_placed = 0
@@ -75,8 +73,6 @@ func phase_to_string(phase: GamePhase) -> String:
 			return "FIGHT"
 		GamePhase.DEATH:
 			set_game_speed(1)
-			timer.stop()
-			Stats.time_played = timer.time_left
 			return "DEATH"
 		GamePhase.POST_GAME:
 			set_game_speed(1)
@@ -85,7 +81,6 @@ func phase_to_string(phase: GamePhase) -> String:
 			return "POST_GAME"
 		GamePhase.MID_GAME:
 			set_game_speed(1)
-			timer.stop()
 			return "MID_GAME"
 		_:
 			return "UNKNOWN"
@@ -101,16 +96,15 @@ func advance_round():
 	#else:
 		#set_phase(GamePhase.POST_GAME)
 func begin_game():
-	timer.start()
 	Stats.running = true
 	Stats.round = 1
 	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.wave = 1
+	run_timer.start()
 func clear_run_data():
 	Stats.running = false
 	Stats.units.clear()
-	clear_build()
 	Stats.gold = 0
 	Stats.round = 1
 	Stats.wave = 1
@@ -146,18 +140,6 @@ func update_build_slot(slot_index: int, resource_path: Unit_Panel) -> void:
 		8: unit_slot8 = clean_name
 		9: unit_slot9 = clean_name
 
-func get_unit_slot(slot_index: int) -> Unit_Panel:
-	match slot_index:
-		1: return unit_slot1
-		2: return unit_slot2
-		3: return unit_slot3
-		4: return unit_slot4
-		5: return unit_slot5
-		6: return unit_slot6
-		7: return unit_slot7
-		8: return unit_slot8
-		9: return unit_slot9
-		_: return null
 # Optional helper to get all slots in a list
 func get_build_slots() -> Array:
 	return [
@@ -178,16 +160,6 @@ func clear_build_slot(slot_index: int) -> void:
 		8: unit_slot8 = null
 		9: unit_slot9 = null
 
-func clear_build() -> void:
-	unit_slot1 = null
-	unit_slot2 = null
-	unit_slot3 = null
-	unit_slot4 = null
-	unit_slot5 = null
-	unit_slot6 = null
-	unit_slot7 = null
-	unit_slot8 = null
-	unit_slot9 = null
 
 func set_game_speed(scale: float) -> void:
 	# Clamp to prevent negative or absurd values
