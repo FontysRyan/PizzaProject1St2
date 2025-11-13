@@ -85,7 +85,7 @@ func assign_buffs_to_panels():
 		print("No panels found for buffs.")
 		return
 
-	# Determine round progression (replace with your actual Stats logic)
+	# Determine round progression
 	var round = Stats.rounds_survived
 	# min_buffs is always 0
 	var min_buffs = 0
@@ -111,7 +111,6 @@ func assign_buffs_to_panels():
 			match random_buff:
 				"ATTACK":
 					panel.modulate = Color.RED
-					
 				"TANKIER":
 					panel.modulate = Color.BLUE
 				"SPEED":
@@ -123,8 +122,8 @@ func assign_buffs_to_panels():
 	print("Buff assignment complete! %d panels have buffs." % assigned.size())
 
 func export_buffs_to_stats():
-	if not Engine.has_singleton("Stats"):
-		print("No Stats singleton found to store buffs.")
+	if not is_instance_valid(Stats):
+		print("Stats singleton invalid or missing.")
 		return
 
 	var buff_data := []

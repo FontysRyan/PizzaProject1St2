@@ -35,11 +35,11 @@ func _ready():
 			# Apply buff
 			if faction == Marker_Faction.FRIENDLY:
 				_apply_buff_to_unit(new_stats, i)
-			
+
 			unit.global_position = marker.global_position
 			unit.faction = faction
 			unit.unit_type = unit_type
-			unit.stats = unit_stats
+			unit.stats = new_stats  # <-- use the buffed stats here
 		else:
 			print("Slot %d missing in GameController, skipping" % (i + 1))
 			continue
