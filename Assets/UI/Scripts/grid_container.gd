@@ -27,7 +27,6 @@ func roll() -> void:
 	# Create new panels
 	for i in range(4):
 		var temp_panel = panel_scene.instantiate()
-		temp_panel.panel = shop._get_shop_unit()
+		temp_panel.premade_panel = shop._get_shop_unit()
 		temp_panel._fill_panel()
-		print("temp_panel.panel: ", temp_panel.panel)
 		self.add_child(temp_panel)
