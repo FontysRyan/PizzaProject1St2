@@ -122,9 +122,6 @@ func assign_buffs_to_panels():
 	print("Buff assignment complete! %d panels have buffs." % assigned.size())
 
 func export_buffs_to_stats():
-	if not is_instance_valid(Stats):
-		print("Stats singleton invalid or missing.")
-		return
 
 	var buff_data := []
 	# Build a dictionary mapping panel names to panel objects
