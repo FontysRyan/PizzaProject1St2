@@ -80,11 +80,11 @@ func _ready():
 	if parent != null:
 		name_text.text = str(parent.panel.unit_name).capitalize()
 		type_text.text = str(parent.panel.unit_stats.type).capitalize()
-		damage_text.text = str(parent.panel.unit_stats.damage)
-		max_hp_text.text = str(parent.panel.unit_stats.max_hp)
-		attack_speed_text.text = str(parent.panel.unit_stats.attack_speed)
-		range_text.text = str(parent.panel.unit_stats.range)
-		crit_text.text = str(parent.panel.unit_stats.crit_chance) + "%"
+		damage_text.text = str(snapped(parent.panel.unit_stats.damage, 0.01))
+		max_hp_text.text = str(snapped(parent.panel.unit_stats.max_hp, 0.01))
+		attack_speed_text.text = str(snapped(parent.panel.unit_stats.attack_speed, 0.01))
+		range_text.text = str(snapped(parent.panel.unit_stats.range, 0.01))
+		crit_text.text = str(snapped(parent.panel.unit_stats.crit_chance, 0.01)) + "%"
 		description_text.text = str(parent.panel.unit_stats.description).capitalize()
 		set_text_effect_rarity(parent.panel.rarity.name)
 	else:

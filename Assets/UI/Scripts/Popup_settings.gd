@@ -60,7 +60,7 @@ func _on_pressed():
 func _on_yes_pressed():
 	# yes: quit the application
 	run_timer.reset()
-	GameController.set_phase(GameController.GamePhase.PRE_GAME)
+	GameController.set_phase(GameController.GamePhase.MID_GAME)
 
 func _on_no_pressed():
 	GameController.set_game_speed(1)

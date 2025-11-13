@@ -15,7 +15,7 @@ func _ready():
 	# Auto-destroy after lifetime
 	await get_tree().create_timer(lifetime).timeout
 	if is_inside_tree():
-		queue_free()
+		self.queue_free()
 
 func _physics_process(delta):
 	#print("Moving: ", direction, " | Speed: ", speed)
@@ -39,7 +39,7 @@ func _on_body_entered(body):
 		has_hit = true
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-		queue_free()
+		self.queue_free()
 		return
 
 	# --- Case 2: Target is gone (null or freed) ---
@@ -47,7 +47,7 @@ func _on_body_entered(body):
 		has_hit = true
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-		queue_free()
+		self.queue_free()
 		return
 	
 func Pickname() -> int:
