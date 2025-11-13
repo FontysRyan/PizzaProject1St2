@@ -48,6 +48,9 @@ func set_phase(new_phase: GamePhase):
 			get_tree().change_scene_to_file(build_scene)
 		GamePhase.FIGHT:
 			Stats.units = get_build_slots()
+			var board_node = get_tree().get_root().find_child("Board", true, false)
+			if board_node and board_node.has_method("export_buffs_to_stats"):
+				board_node.export_buffs_to_stats()
 			get_tree().change_scene_to_file(fight_scene)
 		GamePhase.DEATH:
 			Stats.units.clear()
@@ -101,6 +104,7 @@ func begin_game():
 	run_timer.start()
 func clear_run_data():
 	Stats.running = false
+	Stats.units.clear()
 	Stats.gold = 0
 	Stats.round = 1
 	Stats.wave = 1
