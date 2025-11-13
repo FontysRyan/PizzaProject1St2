@@ -51,6 +51,7 @@ func _process(delta):
 						temp_panel.unit_level = unit_tile.unit_level
 						temp_panel._fill_panel()
 						child_name = temp_panel
+						temp_panel.queue_free()
 					else:
 						child_name = null
 				else:
