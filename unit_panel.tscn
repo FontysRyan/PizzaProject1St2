@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dapklguvhsdf2"]
+[gd_scene load_steps=6 format=3 uid="uid://dapklguvhsdf2"]
 
 [ext_resource type="Script" uid="uid://b8d82qhubvv2t" path="res://unit_panel.gd" id="1_7mbbl"]
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="2_86h88"]
+[ext_resource type="PackedScene" uid="uid://fweq3w3blexu" path="res://Assets/UI/PlacementIndicator.tscn" id="2_f65py"]
 [ext_resource type="PackedScene" uid="uid://bmdw5marsb48u" path="res://Assets/UI/Popup Tooltip.tscn" id="3_d7tl5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mbbl"]
@@ -12,6 +13,7 @@ custom_minimum_size = Vector2(75, 75)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7mbbl")
+placement_indicator_scene = ExtResource("2_f65py")
 
 [node name="SpriteTexture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(75, 75)
