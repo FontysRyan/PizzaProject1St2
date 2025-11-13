@@ -1,6 +1,15 @@
 extends Control
 
+var parent = null
 var opacity_tween: Tween = null
+@onready var name_text = $BackgroundContainer/VBoxContainer/NameLabel
+@onready var type_text = $BackgroundContainer/VBoxContainer/HSplitContainer/TypeLabel
+@onready var damage_text = $BackgroundContainer/VBoxContainer/HSplitContainer2/DamageLabel
+@onready var max_hp_text = $BackgroundContainer/VBoxContainer/HSplitContainer3/MaxHPLabel
+@onready var attack_speed_text = $BackgroundContainer/VBoxContainer/HSplitContainer4/AttackSpeedLabel
+@onready var range_text = $BackgroundContainer/VBoxContainer/HSplitContainer5/RangeLabel
+@onready var crit_text = $BackgroundContainer/VBoxContainer/HSplitContainer6/CritLabel
+@onready var description_text = $BackgroundContainer/VBoxContainer/RichTextLabel
 @onready var rich_text = $BackgroundContainer/VBoxContainer/RichTextRarityLabel
 
 func _input(event: InputEvent) -> void:
@@ -29,7 +38,6 @@ func _input(event: InputEvent) -> void:
 
 func toggle (on: bool):
 	if on:
-		print("Showing tooltip")
 		show()
 		modulate.a = 0.0
 		tween_opacity(1.0)
@@ -67,7 +75,18 @@ func set_text_effect_rarity(rarity: String):
 		_:
 			rich_text.text = rarity
 
-
 			
 func _ready():
-	set_text_effect_rarity(rich_text.text)
+	if parent != null:
+		name_text.text = str(parent.panel.unit_name).capitalize()
+		type_text.text = str(parent.panel.unit_stats.type).capitalize()
+		damage_text.text = str(parent.panel.unit_stats.damage)
+		max_hp_text.text = str(parent.panel.unit_stats.max_hp)
+		attack_speed_text.text = str(parent.panel.unit_stats.attack_speed)
+		range_text.text = str(parent.panel.unit_stats.range)
+		crit_text.text = str(parent.panel.unit_stats.crit_chance) + "%"
+		description_text.text = str(parent.panel.unit_stats.description).capitalize()
+		set_text_effect_rarity(parent.panel.rarity.name)
+	else:
+		pass
+	

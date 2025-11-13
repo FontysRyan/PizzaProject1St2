@@ -7,9 +7,13 @@ var original_parent: Node = null
 var original_position: Vector2 = Vector2.ZERO
 var in_shop: bool = true
 const ALLOW_SWAP: bool = true
-var panel = preload("res://Resources/unit panels/UnitPanel.gd")
+var premade_panel = preload("res://Resources/unit panels/UnitPanel.gd")
+var panel: UnitPanel
 var unit_level: int = 1
-
+var bought: bool = false
+var checked: bool = false
+var tile_buffed: bool = false
+var buff: String = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
@@ -24,6 +28,9 @@ func _create_empty_panel() -> void:
 		print("Error: LevelLabel node not found")
 
 func _fill_panel() -> void:
+	var temp_panel: UnitPanel = premade_panel
+	panel = temp_panel.duplicate()
+	panel.unit_stats = level_up()
 	var color = panel.rarity.color
 	add_theme_color_override("UnitPanel", color)
 	var texture = panel.unit_stats.texture
@@ -32,6 +39,20 @@ func _fill_panel() -> void:
 	$PriceLabel.text = str(price)
 	var level = "Lvl: " + str(unit_level)
 	$LevelLabel.text = level
+	$Tooltip.parent = self
+	
+func _update_self() -> void:
+	panel.unit_stats = level_up()
+	var color = panel.rarity.color
+	add_theme_color_override("UnitPanel", color)
+	var texture = panel.unit_stats.texture
+	$SpriteTexture.texture = texture
+	var price = panel.rarity.cost
+	$PriceLabel.text = str(price)
+	var level = "Lvl: " + str(unit_level)
+	$LevelLabel.text = level
+	$Tooltip.parent = self
+	$Tooltip.request_ready()
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -58,7 +79,14 @@ func _start_drag(event: InputEventMouseButton) -> void:
 
 func _stop_drag(event: InputEventMouseButton) -> void:
 	dragging = false
-	if Stats.gold >= panel.rarity.cost:
+	if bought:
+		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+		var drop_target: Control = _get_drop_target_at_point(mouse_pos)
+		if drop_target:
+			_place_on_drop_target(drop_target)
+		else:
+			_restore_original_position()
+	elif Stats.gold >= panel.rarity.cost:
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		var drop_target: Control = _get_drop_target_at_point(mouse_pos)
 		if drop_target:
@@ -70,6 +98,7 @@ func _stop_drag(event: InputEventMouseButton) -> void:
 
 func _place_on_drop_target(drop_target: Control) -> void:
 	# Find current slot dynamically (important for repeated swaps)
+	var price = panel.rarity.cost
 	var my_slot: Control = null
 	for node in get_tree().get_nodes_in_group("drop_zone"):
 		if node.has_meta("occupied_by") and node.get_meta("occupied_by") == self:
@@ -85,8 +114,34 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	if drop_target.has_meta("occupied_by"):
 		occupant = drop_target.get_meta("occupied_by")
 	# Swap only allowed if piece is NOT in shop and occupant is valid
-	if ALLOW_SWAP and occupant != null and is_instance_valid(occupant) and occupant != self and not in_shop:
-		_swap_with_occupant(drop_target, occupant, my_slot)
+	if occupant != null and is_instance_valid(occupant) and occupant != self and !occupant.in_shop:
+		if occupant.panel.unit_name == panel.unit_name:
+			if bought:
+				if occupant.unit_level == 5:
+					_restore_original_position()
+					return
+				else:
+					self.unit_level = occupant.unit_level + 1
+					self._update_self()
+					_swap_with_occupant(drop_target, occupant, my_slot)
+					occupant.queue_free()
+					in_shop = false
+					return
+			else:
+				if occupant.unit_level == 5:
+					_restore_original_position()
+					return
+				else:
+					bought = true
+					Stats._take_gold(price)
+					self.unit_level = occupant.unit_level + 1
+					self._update_self()
+					_swap_with_occupant(drop_target, occupant, my_slot)
+					occupant.queue_free()
+					in_shop = false
+					return
+		else:
+			_swap_with_occupant(drop_target, occupant, my_slot)
 		return
 	elif occupant != null:
 		_restore_original_position()
@@ -98,11 +153,10 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	in_shop = false
 
 	# Subtract the price when the panel is successfully placed on a drop target
-	var price = panel.rarity.cost
-	if panel.bought:
+	if bought:
 		return
 	else:
-		panel.bought = true
+		bought = true
 		Stats._take_gold(price)
 
 func _move_to_target(drop_target: Control) -> void:
@@ -180,3 +234,45 @@ func _get_drop_target_at_point(point: Vector2) -> Control:
 			if rect.has_point(point):
 				return node
 	return null
+
+func level_up() -> UnitStats:
+	var stats = premade_panel.unit_stats.duplicate()
+	match unit_level:
+		1: #nothing happens
+			return stats
+		2: #level 2 acquired
+			stats.max_hp *= 2.2
+			stats.attack_speed /= 1.1
+			stats.damage *= 1.9
+			stats.crit_chance *= 1.1
+			if stats.type == "ranged":
+				stats.range *= 1.2
+			return stats
+		3: #level 3 acquired
+			stats.max_hp *= 3.1
+			stats.attack_speed /= 1.2
+			stats.movement_speed *= 1.5
+			stats.damage *= 2.9
+			stats.crit_chance *= 1.2
+			if stats.type == "ranged":
+				stats.range *= 1.6
+			return stats
+		4: #level 4 acquired
+			stats.max_hp *= 1.3
+			stats.attack_speed /= 1.3
+			stats.damage *= 3.8
+			stats.crit_chance *= 1.3
+			if stats.type == "ranged":
+				stats.range *= 1.8
+			return stats
+		5: #level 5 acquired
+			stats.max_hp *= 2
+			stats.attack_speed /= 1.5
+			stats.movement_speed *= 2
+			stats.damage *= 4.7
+			stats.crit_chance *= 1.5
+			if stats.type == "ranged":
+				stats.range *= 2.1
+			return stats
+		_:
+			return stats
