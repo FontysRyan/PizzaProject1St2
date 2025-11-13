@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ct37o381yqf0t" path="res://Assets/Sprites/Envirement/Props/lily.tscn" id="3_wfe8h"]
 [ext_resource type="PackedScene" uid="uid://cpfjpechu6k75" path="res://Assets/Sprites/Envirement/Props/rock.tscn" id="4_mg8o1"]
 [ext_resource type="PackedScene" uid="uid://bjnopdpyd8os3" path="res://Assets/confetti.tscn" id="5_mg8o1"]
-[ext_resource type="Script" path="res://Assets/confetti.gd" id="6_ylh0w"]
+[ext_resource type="Script" uid="uid://cackj4kanx4pk" path="res://Assets/confetti.gd" id="6_ylh0w"]
 
 [node name="Buildscreen" type="Node2D"]
 

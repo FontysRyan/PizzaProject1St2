@@ -23,6 +23,8 @@ var heal_amount_done: int = 0
 
 var units: Array
 
+var panel_buffs: Array = []
+
 func _next_round():
 	rounds_survived += 1
 
