@@ -1,6 +1,9 @@
 class_name Unit_Panel
 extends Panel
 
+@export var placement_indicator_scene: PackedScene
+var placement_indicator: Control = null
+
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var original_parent: Node = null
@@ -17,6 +20,28 @@ var buff: String = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
+
+var active_indicators: Array = []
+
+func _show_valid_indicators():
+	# Clear any previous indicators
+	_hide_all_indicators()
+
+	for panel in get_tree().get_nodes_in_group("drop_zone"):
+		if not panel.has_meta("occupied_by") or panel.get_meta("occupied_by") == null:
+			if placement_indicator_scene:
+				var indicator_instance = placement_indicator_scene.instantiate()
+				panel.add_child(indicator_instance)
+				indicator_instance.global_position = panel.global_position + panel.size/1 - indicator_instance.size/1
+				indicator_instance.visible = true
+				active_indicators.append(indicator_instance)
+
+func _hide_all_indicators():
+	for indicator in active_indicators:
+		if is_instance_valid(indicator):
+			indicator.queue_free()
+	active_indicators.clear()
+
 
 func _create_empty_panel() -> void:
 	# Ensure these nodes are correctly referenced and instantiated if needed
@@ -70,15 +95,19 @@ func _start_drag(event: InputEventMouseButton) -> void:
 	dragging = true
 	original_parent = get_parent()
 	original_position = position
-	# Clear previous occupancy if picking up from a grid
 	if original_parent and original_parent.is_in_group("drop_zone") and original_parent.has_meta("occupied_by"):
 		if original_parent.get_meta("occupied_by") == self:
 			original_parent.set_meta("occupied_by", null)
 	drag_offset = get_viewport().get_mouse_position() - global_position
 	global_position = get_viewport().get_mouse_position() - drag_offset
 
+	# Show arrows on valid empty panels
+	_show_valid_indicators()
+
+
 func _stop_drag(event: InputEventMouseButton) -> void:
 	dragging = false
+	_hide_all_indicators()  # remove all arrows when drag ends
 	if bought:
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		var drop_target: Control = _get_drop_target_at_point(mouse_pos)
