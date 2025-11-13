@@ -104,6 +104,7 @@ func begin_game():
 	run_timer.start()
 func clear_run_data():
 	Stats.running = false
+	Stats.units.clear()
 	Stats.gold = 0
 	Stats.round = 1
 	Stats.wave = 1

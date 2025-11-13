@@ -19,5 +19,6 @@ extends Resource
 @export var range: float = 50.0
 @export var ability_type: Ability
 
+
 func get_basename() -> String:
 	return self.to_string()
