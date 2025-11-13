@@ -102,22 +102,22 @@ func assign_buffs_to_panels():
 
 	# Assign new buffs
 	var assigned = []
-	while assigned.size() < buffs_to_assign:
-		var panel = panels.pick_random()
-		if panel.get_meta("buff_data") == null:
-			var random_buff = Buff.keys().pick_random()
-			panel.set_meta("buff_data", random_buff)
+	panels.shuffle()
+	for i in range(buffs_to_assign):
+		var panel = panels[i]
+		var random_buff = Buff.keys().pick_random()
+		panel.set_meta("buff_data", random_buff)
 
-			match random_buff:
-				"ATTACK":
-					panel.modulate = Color.RED
-				"TANKIER":
-					panel.modulate = Color.BLUE
-				"SPEED":
-					panel.modulate = Color.GREEN
+		match random_buff:
+			"ATTACK":
+				panel.modulate = Color.RED
+			"TANKIER":
+				panel.modulate = Color.BLUE
+			"SPEED":
+				panel.modulate = Color.GREEN
 
-			assigned.append(panel)
-			print("Assigned %s buff to %s" % [random_buff, panel.name])
+		assigned.append(panel)
+		print("Assigned %s buff to %s" % [random_buff, panel.name])
 
 	print("Buff assignment complete! %d panels have buffs." % assigned.size())
 
