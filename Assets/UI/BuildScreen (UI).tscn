@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bn6smkpg6s5j7"]
+[gd_scene load_steps=18 format=3 uid="uid://bn6smkpg6s5j7"]
 
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="1_ahrpf"]
 [ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_t1wl5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cnsm6ivlx8e4v" path="res://Assets/UI/Scripts/Player_Build_manager.gd" id="3_hrd7a"]
 [ext_resource type="Script" uid="uid://bqgw4x0it3st6" path="res://Game/Shop.gd" id="5_45w1l"]
 [ext_resource type="Script" uid="uid://ddmxi7aqtsxxu" path="res://Assets/UI/Scripts/grid_container.gd" id="5_hrd7a"]
+[ext_resource type="Texture2D" uid="uid://df76eb6le0qeo" path="res://Assets/Sprites/UI related sprites/Enemy Icon/enemy icon sprite.png" id="6_dmg8w"]
 [ext_resource type="Script" uid="uid://bxt5br8giet22" path="res://Assets/UI/Scripts/fight_button.gd" id="7_eabrk"]
 [ext_resource type="PackedScene" uid="uid://dapklguvhsdf2" path="res://unit_panel.tscn" id="7_t1wl5"]
 
@@ -265,6 +266,7 @@ size_flags_vertical = 4
 alignment = 2
 
 [node name="RoundsLabel" type="Label" parent="MarginContainer/RightPanel/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0.3647059, 0.88235295, 0.9764706, 0.49411765)
@@ -295,6 +297,19 @@ texture = ExtResource("2_s1iif")
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s1iif")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/RightPanel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 2
+
+[node name="EnemiesIcon" type="TextureRect" parent="MarginContainer/RightPanel/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_dmg8w")
 
 [node name="BottomBar" type="HBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
