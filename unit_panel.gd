@@ -276,39 +276,3 @@ func level_up() -> UnitStats:
 			return stats
 		_:
 			return stats
-
-func _tile_buff(buff_type: String) -> void:
-	match buff_type:
-		"speed":
-			panel.unit_stats.movement_speed = panel.unit_stats.movement_speed * 1.5
-			buff = buff_type
-			tile_buffed = true
-		"damage":
-			panel.unit_stats.damage = panel.unit_stats.damage * 1.8
-			buff = buff_type
-			tile_buffed = true
-		"health":
-			panel.unit_stats.max_hp = panel.unit_stats.max_hp * 1.4
-			buff = buff_type
-			tile_buffed = true
-		#"range":
-			#panel.unit_stats.range = panel.unit_stats.range * 1.3
-			#buff = buff_type
-			#tile_buffed = true
-
-func _remove_tile_buff() -> void:
-	if tile_buffed:
-		match panel.unit_stats.buff:
-			"speed":
-				panel.unit_stats.movement_speed = panel.unit_stats.movement_speed / 1.5
-				tile_buffed = false
-			"damage":
-				panel.unit_stats.damage = panel.unit_stats.damage / 1.8
-				tile_buffed = false
-			"health":
-				panel.unit_stats.max_hp = panel.unit_stats.max_hp / 1.4
-				tile_buffed = false
-			#"range":
-				#panel.unit_stats.range = panel.unit_stats.range / 1.3
-				#tile_buffed = false
-	else: pass
