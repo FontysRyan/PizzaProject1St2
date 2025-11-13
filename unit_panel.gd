@@ -1,6 +1,7 @@
 class_name Unit_Panel
 extends Panel
 
+var re_placed: bool = false
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var original_parent: Node = null
@@ -127,7 +128,7 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	if occupant != null and is_instance_valid(occupant) and occupant != self and !occupant.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
 			if bought:
-				if occupant.unit_level == 5:
+				if occupant.unit_level == 5 or self.unit_level == 5:
 					_restore_original_position()
 					return
 				else:
@@ -139,7 +140,7 @@ func _place_on_drop_target(drop_target: Control) -> void:
 					in_shop = false
 					return
 			else:
-				if occupant.unit_level == 5:
+				if occupant.unit_level == 5 or self.unit_level == 5:
 					_restore_original_position()
 					return
 				else:
@@ -227,6 +228,7 @@ func _snap_to_target(drop_target: Control) -> void:
 		position = (drop_target.size - size) / 2
 	else:
 		position = _clamp_inside(drop_target, local_pos)
+	re_placed = true
 
 func _snap_to_grid(pos: Vector2, cell_size: Vector2 = Vector2(100, 100)) -> Vector2:
 	return Vector2(
