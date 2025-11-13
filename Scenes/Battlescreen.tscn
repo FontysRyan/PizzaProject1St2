@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bi7llxlror1tw"]
+[gd_scene load_steps=10 format=3 uid="uid://bi7llxlror1tw"]
 
 [ext_resource type="Script" uid="uid://17ri2p5alefk" path="res://Scenes/Combat test/combat_system.gd" id="1_5gxo4"]
 [ext_resource type="PackedScene" uid="uid://dndvobnqtd7ol" path="res://Assets/UI/BattleScreen (UI).tscn" id="1_m3alb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dthwo3j0ritfl" path="res://Assets/Sprites/Envirement/TileMap.tscn" id="6_kmdb4"]
 [ext_resource type="PackedScene" uid="uid://cpfjpechu6k75" path="res://Assets/Sprites/Envirement/Props/rock.tscn" id="7_5gdua"]
 [ext_resource type="PackedScene" uid="uid://ct37o381yqf0t" path="res://Assets/Sprites/Envirement/Props/lily.tscn" id="8_5bjwa"]
+[ext_resource type="PackedScene" uid="uid://j4f8yex14eh7" path="res://Assets/Sprites/Envirement/Props/berg.tscn" id="9_5bjwa"]
 
 [node name="Battlescreen" type="Node2D" node_paths=PackedStringArray("player_spawner", "enemy_spawner")]
 script = ExtResource("1_5gxo4")
@@ -115,3 +116,11 @@ position = Vector2(-137, 245)
 
 [node name="Lily2" parent="." instance=ExtResource("8_5bjwa")]
 position = Vector2(151, 221)
+
+[node name="Berg" parent="." instance=ExtResource("9_5bjwa")]
+position = Vector2(-276, 108)
+scale = Vector2(3, 3)
+
+[node name="Berg2" parent="." instance=ExtResource("9_5bjwa")]
+position = Vector2(184.99998, -177.99998)
+scale = Vector2(5, 5)
