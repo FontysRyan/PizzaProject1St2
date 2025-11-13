@@ -127,13 +127,17 @@ func export_buffs_to_stats():
 		return
 
 	var buff_data := []
+	# Build a dictionary mapping panel names to panel objects
+	var panel_map = {}
+	for p in get_children():
+		if p is Panel:
+			panel_map[p.name] = p
 	for i in range(1, 10):
 		var panel_name = "Panel%d" % i
-		var panels = get_children().filter(func(p): return p is Panel and p.name == panel_name)
-		if panels.size() == 0:
+		if not panel_map.has(panel_name):
 			buff_data.append(null)
 			continue
-		var panel = panels[0]
+		var panel = panel_map[panel_name]
 		var buff = panel.get_meta("buff_data")
 		buff_data.append(buff)
 
