@@ -22,6 +22,8 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="TileMap" parent="." instance=ExtResource("2_54rdj")]
+show_behind_parent = true
+top_level = true
 position = Vector2(492, 73)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -47,6 +49,5 @@ position = Vector2(-134, -114)
 scale = Vector2(2, 2)
 
 [node name="Confetti" parent="." instance=ExtResource("5_mg8o1")]
-position = Vector2(-5, -8)
-scale = Vector2(10, 10)
+position = Vector2(0, -218)
 script = ExtResource("6_ylh0w")
