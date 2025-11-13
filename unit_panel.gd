@@ -2,9 +2,12 @@ class_name Unit_Panel
 extends Panel
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @export var placement_indicator_scene: PackedScene
 var placement_indicator: Control = null
 
+=======
+>>>>>>> parent of db6ad90 (fuck yeah)
 =======
 >>>>>>> parent of db6ad90 (fuck yeah)
 var dragging: bool = false
