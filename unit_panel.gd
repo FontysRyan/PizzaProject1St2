@@ -9,6 +9,8 @@ var in_shop: bool = true
 const ALLOW_SWAP: bool = true
 var panel = preload("res://Resources/unit panels/UnitPanel.gd")
 var unit_level: int = 1
+var bought: bool = false
+var checked: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +34,7 @@ func _fill_panel() -> void:
 	$PriceLabel.text = str(price)
 	var level = "Lvl: " + str(unit_level)
 	$LevelLabel.text = level
+	$Tooltip.parent = self
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -58,7 +61,14 @@ func _start_drag(event: InputEventMouseButton) -> void:
 
 func _stop_drag(event: InputEventMouseButton) -> void:
 	dragging = false
-	if Stats.gold >= panel.rarity.cost:
+	if bought:
+		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+		var drop_target: Control = _get_drop_target_at_point(mouse_pos)
+		if drop_target:
+			_place_on_drop_target(drop_target)
+		else:
+			_restore_original_position()
+	elif Stats.gold >= panel.rarity.cost:
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		var drop_target: Control = _get_drop_target_at_point(mouse_pos)
 		if drop_target:
@@ -99,10 +109,10 @@ func _place_on_drop_target(drop_target: Control) -> void:
 
 	# Subtract the price when the panel is successfully placed on a drop target
 	var price = panel.rarity.cost
-	if panel.bought:
+	if bought:
 		return
 	else:
-		panel.bought = true
+		bought = true
 		Stats._take_gold(price)
 
 func _move_to_target(drop_target: Control) -> void:
