@@ -19,6 +19,7 @@ func _ready():
 				panel = get_child(j)
 				i.bought = true
 				panel.add_child(i)
+				i._place_on_drop_target(panel)
 			j += 1
 			if panel is Panel:
 				if panel.get_child_count() > 0:
@@ -37,7 +38,8 @@ func _process(delta):
 			var child_name: Unit_Panel = null
 
 			if panel.get_child_count() > 0:
-				var unit_tile = panel.get_child(0)
+				var i = panel.get_child_count() - 1
+				var unit_tile = panel.get_child(i)
 				
 				if "panel" in unit_tile and unit_tile.panel:
 					var p = unit_tile.panel
@@ -45,7 +47,8 @@ func _process(delta):
 					if p is UnitPanel:
 						# If it's a resource, get the file name
 						var temp_panel = panel_scene.instantiate()
-						temp_panel.panel = unit_tile.panel
+						temp_panel.premade_panel = unit_tile.premade_panel
+						temp_panel.unit_level = unit_tile.unit_level
 						temp_panel._fill_panel()
 						child_name = temp_panel
 					else:
@@ -58,12 +61,11 @@ func _process(delta):
 				if build_slots.get(panel) != child_name.panel:
 					build_slots[panel] = child_name.panel
 
-					var slot_index = int(panel.name.replace("Panel_", ""))
-					GameController.update_build_slot(slot_index, child_name)
+				var slot_index = int(panel.name.replace("Panel_", ""))
+				GameController.update_build_slot(slot_index, child_name)
 			else:
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				GameController.clear_build_slot(slot_index)
-
 
 			unit_names.append(child_name)
 
