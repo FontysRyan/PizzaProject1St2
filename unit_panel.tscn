@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 [gd_scene load_steps=6 format=3 uid="uid://dapklguvhsdf2"]
 =======
 [gd_scene load_steps=17 format=3 uid="uid://dapklguvhsdf2"]
 >>>>>>> Stashed changes
+=======
+[gd_scene load_steps=5 format=3 uid="uid://dapklguvhsdf2"]
+>>>>>>> parent of dcdecd2 (Merge branch 'DEV' into Data-management)
 
 [ext_resource type="Script" uid="uid://cstbxpmtsra10" path="res://Assets/UI/Scripts/Popup_settings.gd" id="1_2qq7u"]
 [ext_resource type="Texture2D" uid="uid://rycsoe04v3ks" path="res://Assets/Sprites/UI related sprites/Coin/Coin-1.png.png" id="2_86h88"]
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://fweq3w3blexu" path="res://Assets/UI/PlacementIndicator.tscn" id="2_f65py"]
+=======
+>>>>>>> parent of dcdecd2 (Merge branch 'DEV' into Data-management)
 [ext_resource type="PackedScene" uid="uid://bmdw5marsb48u" path="res://Assets/UI/Popup Tooltip.tscn" id="3_d7tl5"]
 =======
 [ext_resource type="Script" uid="uid://dyt73r7af75q5" path="res://Assets/UI/Scripts/rounds_label.gd" id="3_dises"]
@@ -29,11 +36,14 @@ custom_minimum_size = Vector2(75, 75)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7mbbl")
+<<<<<<< HEAD
 placement_indicator_scene = ExtResource("2_f65py")
 =======
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2x8r"]
 bg_color = Color(0, 0.6039216, 0.85882354, 0.5882353)
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of dcdecd2 (Merge branch 'DEV' into Data-management)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1iif"]
 bg_color = Color(0.8007565, 0.49518055, 0.5903154, 1)
