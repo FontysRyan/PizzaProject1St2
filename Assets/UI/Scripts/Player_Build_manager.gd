@@ -58,9 +58,8 @@ func _process(delta):
 
 			# Detect slot change
 			if child_name != null:
-				if build_slots.get(panel) != child_name.panel:
-					build_slots[panel] = child_name.panel
-
+				if build_slots.get(panel.name) != child_name.name:
+					build_slots[panel.name] = child_name.name
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				GameController.update_build_slot(slot_index, child_name)
 			else:

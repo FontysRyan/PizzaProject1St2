@@ -100,6 +100,15 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	# Find current slot dynamically (important for repeated swaps)
 	var price = panel.rarity.cost
 	var my_slot: Control = null
+	if drop_target.name == "SavingLabel":
+		if bought:
+			var value = price - 1
+			Stats.gold += value
+			self.queue_free()
+			return
+		else:
+			_restore_original_position()
+			return
 	for node in get_tree().get_nodes_in_group("drop_zone"):
 		if node.has_meta("occupied_by") and node.get_meta("occupied_by") == self:
 			my_slot = node
@@ -112,7 +121,8 @@ func _place_on_drop_target(drop_target: Control) -> void:
 		return
 	var occupant: Control = null
 	if drop_target.has_meta("occupied_by"):
-		occupant = drop_target.get_meta("occupied_by")
+		if drop_target.get_meta("occupied_by") != null:
+			occupant = drop_target.get_meta("occupied_by")
 	# Swap only allowed if piece is NOT in shop and occupant is valid
 	if occupant != null and is_instance_valid(occupant) and occupant != self and !occupant.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
@@ -121,7 +131,8 @@ func _place_on_drop_target(drop_target: Control) -> void:
 					_restore_original_position()
 					return
 				else:
-					self.unit_level = occupant.unit_level + 1
+					original_parent.remove_meta("occupied_by")
+					self.unit_level += occupant.unit_level
 					self._update_self()
 					_swap_with_occupant(drop_target, occupant, my_slot)
 					occupant.queue_free()
@@ -134,7 +145,8 @@ func _place_on_drop_target(drop_target: Control) -> void:
 				else:
 					bought = true
 					Stats._take_gold(price)
-					self.unit_level = occupant.unit_level + 1
+					original_parent.remove_meta("occupied_by")
+					self.unit_level += occupant.unit_level
 					self._update_self()
 					_swap_with_occupant(drop_target, occupant, my_slot)
 					occupant.queue_free()
@@ -258,7 +270,7 @@ func level_up() -> UnitStats:
 				stats.range *= 1.6
 			return stats
 		4: #level 4 acquired
-			stats.max_hp *= 1.3
+			stats.max_hp *= 4.1
 			stats.attack_speed /= 1.3
 			stats.damage *= 3.8
 			stats.crit_chance *= 1.3
@@ -266,7 +278,7 @@ func level_up() -> UnitStats:
 				stats.range *= 1.8
 			return stats
 		5: #level 5 acquired
-			stats.max_hp *= 2
+			stats.max_hp *= 5
 			stats.attack_speed /= 1.5
 			stats.movement_speed *= 2
 			stats.damage *= 4.7
