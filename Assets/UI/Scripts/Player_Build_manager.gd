@@ -8,8 +8,6 @@ enum Buff {
 }
 
 @onready var panel_scene = preload("res://unit_panel.tscn")
-# Tracks which unit is in which panel
-var build_slots := {}  # { "Panel_1": "Archer" / "empty" }
 
 func _ready():
 	for panel: Panel in get_children():
@@ -21,11 +19,6 @@ func _ready():
 				panel.add_child(i)
 				i._place_on_drop_target(panel)
 			j += 1
-			if panel is Panel:
-				if panel.get_child_count() > 0:
-					build_slots[panel.name] = panel.get_child(0).name
-				else:
-					build_slots[panel.name] = "empty"
 
 	# Assign buffs after setup
 	assign_buffs_to_panels()
@@ -38,28 +31,25 @@ func _process(delta):
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				var unit = GameController.get_unit_slot(slot_index)
 				if unit == null:
-					if "panel" in unit_tile and unit_tile.panel:
-						var child_name: Unit_Panel = null
-						var p = unit_tile.panel
-						if p is UnitPanel:
-							var temp_panel = panel_scene.instantiate()
-							print(temp_panel)
-							temp_panel.premade_panel = unit_tile.premade_panel
-							temp_panel.unit_level = unit_tile.unit_level
-							temp_panel._fill_panel()
-							child_name = temp_panel
-							GameController.update_build_slot(slot_index, child_name)
-						else:
-							GameController.clear_build_slot(slot_index)
+					if unit_tile == null:
+						if "panel" in unit_tile and unit_tile.panel:
+							var child_name: Unit_Panel = null
+							var p = unit_tile.panel
+							if p is UnitPanel:
+								var temp_panel = panel_scene.instantiate()
+								print(temp_panel)
+								temp_panel.premade_panel = unit_tile.premade_panel
+								temp_panel.unit_level = unit_tile.unit_level
+								temp_panel._fill_panel()
+								child_name = temp_panel
+								GameController.update_build_slot(slot_index, child_name)
+							else:
+								GameController.clear_build_slot(slot_index)
+					else:
+						GameController.update_build_slot(slot_index, unit_tile)
 				else:
 					GameController.update_build_slot(slot_index, unit)
 
-
-
-# Public API
-func get_unit_at(panel_name: String) -> String:
-	return build_slots.get(panel_name, "empty")
-	
 # --- Buff Management ---
 func assign_buffs_to_panels():
 	var panels = get_children().filter(func(p): return p is Panel)
