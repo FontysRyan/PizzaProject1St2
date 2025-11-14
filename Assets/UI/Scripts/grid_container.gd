@@ -1,6 +1,5 @@
 extends GridContainer
 
-@onready var shop = get_parent()
 @onready var panel_scene = preload("res://unit_panel.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +26,6 @@ func roll() -> void:
 	# Create new panels
 	for i in range(4):
 		var temp_panel = panel_scene.instantiate()
-		temp_panel.premade_panel = shop._get_shop_unit()
+		temp_panel.premade_panel = game_shop._get_shop_unit()
 		temp_panel._fill_panel()
 		self.add_child(temp_panel)
