@@ -47,3 +47,4 @@ func _on_timer_tick():
 
 	# You can remove this print if you don’t want spam
 	print("%02d:%02d:%02d" % [hours_passed, minutes_passed, seconds_passed])
+	#testchang
