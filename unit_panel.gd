@@ -240,7 +240,7 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	if occupant != null and is_instance_valid(occupant) and occupant != self and !occupant.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
 			if bought:
-				if occupant.unit_level == 5 or self.unit_level == 5:
+				if occupant.unit_level == 5:
 					_restore_original_position()
 					return
 				else:
@@ -252,7 +252,7 @@ func _place_on_drop_target(drop_target: Control) -> void:
 					in_shop = false
 					return
 			else:
-				if occupant.unit_level == 5 or self.unit_level == 5:
+				if occupant.unit_level == 5:
 					_restore_original_position()
 					return
 				else:
