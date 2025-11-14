@@ -13,6 +13,7 @@ func _ready():
 	for panel: Panel in get_children():
 		var slot_index = int(panel.name.replace("Panel_", ""))
 		if Stats.units.size() != 0:
+			$"../../BottomBar/FightButton".disabled = false
 			var unit = Stats.units[slot_index-1]
 			if unit != null:
 				var child_name: Unit_Panel = null
@@ -42,6 +43,7 @@ func _process(delta):
 				if panel.get_child_count() > 0:
 					var unit_tile = panel.get_child(0)
 					if unit_tile.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
+						$"../../BottomBar/FightButton".disabled = false
 						if "panel" in unit_tile and unit_tile.panel:
 							var child_name: Unit_Panel = null
 							var p = unit_tile.panel
@@ -68,6 +70,7 @@ func _process(delta):
 				if panel.get_child_count() > 0:
 					var unit_tile = panel.get_child(0)
 					if unit_tile.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
+						$"../../BottomBar/FightButton".disabled = false
 						if "panel" in unit_tile and unit_tile.panel:
 							var child_name: Unit_Panel = null
 							var p = unit_tile.panel
