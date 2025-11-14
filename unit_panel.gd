@@ -31,8 +31,17 @@ func _show_valid_indicators():
 	_hide_all_indicators()  # remove old indicators first
 
 	for zone in get_tree().get_nodes_in_group("drop_zone"):
+		# Decide which icons to show
+		var show_glove = false
+		var show_rewind = false
+		
 		if zone.name == "SellUnitZone":
-			continue  # skip sell zone
+			#if !self.in_shop:
+				#show_glove = true
+			#else:
+				#show_glove = false
+				#show_rewind = false
+			continue
 
 		if not placement_indicator_scene:
 			continue
@@ -59,14 +68,14 @@ func _show_valid_indicators():
 		else:
 			zone.set_meta("occupied_by", null)
 
-		# Decide which icons to show
-		var show_glove = false
-		var show_rewind = false
 
 		if occupied and occupant != null and is_instance_valid(occupant) and occupant.panel != null:
 			if occupant.panel.unit_name == panel.unit_name and occupant.unit_level < 5:
 				# Same unit → mergeable
 				show_glove = true
+			elif self.in_shop:
+				show_glove = false
+				show_rewind = false
 			else:
 				# Different unit → rotation/replacement
 				show_rewind = true
@@ -234,8 +243,8 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	var occupant: Control = null
 	if drop_target.has_meta("occupied_by"):
 		occupant = drop_target.get_meta("occupied_by")
-
-	if occupant != null and occupant != self and !occupant.in_shop and !self.in_shop:
+	
+	if occupant != null and occupant != self and !occupant.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
 			if bought:
 				if occupant.unit_level == 5 or self.unit_level == 5:
@@ -269,9 +278,12 @@ func _place_on_drop_target(drop_target: Control) -> void:
 					GameController.update_build_slot(slot_index, self)
 					Stats.units = GameController.get_build_slots()
 					return
+		elif self.in_shop:
+			_restore_original_position()
+			return
 		else:
 			_swap_with_occupant(drop_target, occupant, my_slot)
-		return
+			return
 	elif occupant != null:
 		_restore_original_position()
 		return
