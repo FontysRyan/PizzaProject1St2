@@ -14,7 +14,6 @@ signal enemy_units_spawned
 func _ready():
 	var spawned_count = 0
 	var spawn_points = get_children()
-
 	for i in range(spawn_points.size()):
 		var marker = spawn_points[i]
 		if not marker is Marker2D:

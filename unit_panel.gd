@@ -14,9 +14,9 @@ var premade_panel = preload("res://Resources/unit panels/UnitPanel.gd")
 var panel: UnitPanel
 var unit_level: int = 1
 var bought: bool = false
-var checked: bool = false
 var tile_buffed: bool = false
 var buff: String = ""
+var checked: bool = false
 
 var active_indicators: Array = []
 
