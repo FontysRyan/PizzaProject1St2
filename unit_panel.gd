@@ -237,14 +237,14 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	if drop_target.has_meta("occupied_by"):
 		occupant = drop_target.get_meta("occupied_by")
 
-	if occupant != null and is_instance_valid(occupant) and occupant != self and !occupant.in_shop:
+	if occupant != null and !occupant.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
 			if bought:
 				if occupant.unit_level == 5 or self.unit_level == 5:
 					_restore_original_position()
 					return
 				else:
-					original_parent.remove_meta("occupied_by")
+					original_parent.set_meta("occupied_by", null)
 					self.unit_level += occupant.unit_level
 					self._update_self()
 					_swap_with_occupant(drop_target, occupant, my_slot)
@@ -258,7 +258,7 @@ func _place_on_drop_target(drop_target: Control) -> void:
 				else:
 					bought = true
 					Stats._take_gold(price)
-					original_parent.remove_meta("occupied_by")
+					original_parent.set_meta("occupied_by", null)
 					self.unit_level += occupant.unit_level
 					self._update_self()
 					_swap_with_occupant(drop_target, occupant, my_slot)
