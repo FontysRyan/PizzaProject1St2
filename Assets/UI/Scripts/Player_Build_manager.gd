@@ -10,29 +10,29 @@ enum Buff {
 @onready var panel_scene = preload("res://unit_panel.tscn")
 
 func _ready():
-	GameController.update_build()
 	for panel: Panel in get_children():
-		var j: int = 0
-		for i in Stats.units:
-			if i != null:
-				panel = get_child(j)
-				i.bought = true
-				panel.add_child(i)
-				i._place_on_drop_target(panel)
-			j += 1
-
+		var slot_index = int(panel.name.replace("Panel_", ""))
+		if Stats.units.size() != 0:
+			var unit = Stats.units[slot_index-1]
+			if unit != null:
+				if unit.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
+					unit.bought = true
+					unit.checked = false
+					panel.add_child(unit)
+					GameController.update_build_slot(slot_index, unit)
+					Stats.units = GameController.get_build_slots()
 	# Assign buffs after setup
 	assign_buffs_to_panels()
 
 func _process(delta):
 	for panel in get_children():
 		if panel is Panel:
-			if panel.get_child_count() > 0:
-				var unit_tile = panel.get_child(0)
-				var slot_index = int(panel.name.replace("Panel_", ""))
-				var unit = GameController.get_unit_slot(slot_index)
-				if unit_tile.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
-					if unit == null:
+			var slot_index = int(panel.name.replace("Panel_", ""))
+			var unit = GameController.get_unit_slot(slot_index)
+			if unit == null:
+				if panel.get_child_count() > 0:
+					var unit_tile = panel.get_child(0)
+					if unit_tile.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
 						if "panel" in unit_tile and unit_tile.panel:
 							var child_name: Unit_Panel = null
 							var p = unit_tile.panel
@@ -43,11 +43,33 @@ func _process(delta):
 								temp_panel.unit_level = unit_tile.unit_level
 								temp_panel._fill_panel()
 								child_name = temp_panel
+								child_name.checked = true
 								GameController.update_build_slot(slot_index, child_name)
+								Stats.units = GameController.get_build_slots()
 							else:
 								GameController.clear_build_slot(slot_index)
-					else:
-						GameController.update_build_slot(slot_index, unit)
+			elif !unit.checked:
+				if panel.get_child_count() > 0:
+					var unit_tile = panel.get_child(0)
+					if unit_tile.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
+						if "panel" in unit_tile and unit_tile.panel:
+							var child_name: Unit_Panel = null
+							var p = unit_tile.panel
+							if p is UnitPanel:
+								var temp_panel = panel_scene.instantiate()
+								print(temp_panel)
+								temp_panel.premade_panel = unit_tile.premade_panel
+								temp_panel.unit_level = unit_tile.unit_level
+								temp_panel._fill_panel()
+								child_name = temp_panel
+								child_name.checked = true
+								GameController.update_build_slot(slot_index, child_name)
+								Stats.units = GameController.get_build_slots()
+							else:
+								GameController.clear_build_slot(slot_index)
+			else:
+				GameController.update_build_slot(slot_index, unit)
+				Stats.units = GameController.get_build_slots()
 
 # --- Buff Management ---
 func assign_buffs_to_panels():
