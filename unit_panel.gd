@@ -237,7 +237,7 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	if drop_target.has_meta("occupied_by"):
 		occupant = drop_target.get_meta("occupied_by")
 
-	if occupant != null and occupant != self and !occupant.in_shop and !self.in_shop:
+	if occupant != null and !occupant.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
 			if bought:
 				if occupant.unit_level == 5 or self.unit_level == 5:
@@ -250,9 +250,6 @@ func _place_on_drop_target(drop_target: Control) -> void:
 					_swap_with_occupant(drop_target, occupant, my_slot)
 					occupant.queue_free()
 					in_shop = false
-					var slot_index = int(drop_target.name.replace("Panel_", ""))
-					GameController.update_build_slot(slot_index, self)
-					Stats.units = GameController.get_build_slots()
 					return
 			else:
 				if occupant.unit_level == 5 or self.unit_level == 5:
@@ -267,9 +264,6 @@ func _place_on_drop_target(drop_target: Control) -> void:
 					_swap_with_occupant(drop_target, occupant, my_slot)
 					occupant.queue_free()
 					in_shop = false
-					var slot_index = int(drop_target.name.replace("Panel_", ""))
-					GameController.update_build_slot(slot_index, self)
-					Stats.units = GameController.get_build_slots()
 					return
 		else:
 			_swap_with_occupant(drop_target, occupant, my_slot)
