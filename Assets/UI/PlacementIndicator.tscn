@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://fweq3w3blexu"]
+
+[ext_resource type="Texture2D" uid="uid://cd8aot7unrxkw" path="res://Assets/Sprites/UI related sprites/Select icon/Select.png" id="1_vqvxn"]
+[ext_resource type="Texture2D" uid="uid://cw6jiextxok3a" path="res://Assets/Sprites/UI related sprites/Rewind icon/Rewind icon.png" id="2_lupaj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GloveIcon" type="TextureRect" parent="."]
+z_index = 20
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.5
+offset_right = 75.0
+offset_bottom = 37.5
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("1_vqvxn")
+stretch_mode = 3
+flip_v = true
+
+[node name="RewindIcon" type="TextureRect" parent="."]
+z_index = 20
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.5
+offset_right = 75.0
+offset_bottom = 37.5
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_lupaj")
+stretch_mode = 3
+flip_v = true

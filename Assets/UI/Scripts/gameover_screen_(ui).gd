@@ -14,9 +14,6 @@ extends Control
 @export var units_healed_label_path: NodePath
 @export var heal_amount_done_label_path: NodePath
 
-const StatsScript = preload("res://Game/Stats.gd")
-var stats
-
 # Helper: safely get a Label node from a NodePath, or null if missing/wrong type.
 func get_label(path: NodePath) -> Label:
 	if not path or str(path) == "":
@@ -29,42 +26,39 @@ func get_label(path: NodePath) -> Label:
 
 
 func _ready():
-	stats = get_node("/root/Stats")  # uses the already-running singleton instance
-
-
 	# assign values (skip if node missing)
 	var lbl = get_label(time_played_label_path)
 	if lbl:
-		lbl.text = str(stats.time_played if "time_played" in stats else "Cannot read data")
+		lbl.text = str(Stats.time_played if "time_played" in Stats else "Cannot read data")
 
 	lbl = get_label(rounds_survived_label_path)
 	if lbl:
-		lbl.text = str(stats.rounds_survived if "rounds_survived" in stats else "Cannot read data")
+		lbl.text = str(Stats.rounds_survived if "rounds_survived" in Stats else "Cannot read data")
 	lbl = get_label(waves_survived_label_path)
 	if lbl:
-		lbl.text = str(stats.waves_survived if "waves_survived" in stats else "Cannot read data")
+		lbl.text = str(Stats.waves_survived if "waves_survived" in Stats else "Cannot read data")
 
 	lbl = get_label(gold_spent_label_path)
 	if lbl:
-		lbl.text = str(stats.gold_spent if "gold_spent" in stats else "Cannot read data")
+		lbl.text = str(Stats.gold_spent if "gold_spent" in Stats else "Cannot read data")
 	lbl = get_label(units_placed_label_path)
 	if lbl:
-		lbl.text = str(stats.units_placed if "units_placed" in stats else "Cannot read data")
+		lbl.text = str(Stats.units_placed if "units_placed" in Stats else "Cannot read data")
 
 	lbl = get_label(units_merged_label_path)
 	if lbl:
-		lbl.text = str(stats.units_merged if "units_merged" in stats else "Cannot read data")
+		lbl.text = str(Stats.units_merged if "units_merged" in Stats else "Cannot read data")
 	lbl = get_label(units_lost_label_path)
 	if lbl:
-		lbl.text = str(stats.units_lost if "units_lost" in stats else "Cannot read data")
+		lbl.text = str(Stats.units_lost if "units_lost" in Stats else "Cannot read data")
 
 	lbl = get_label(units_sold_label_path)
 	if lbl:
-		lbl.text = str(stats.units_sold if "units_sold" in stats else "Cannot read data")
+		lbl.text = str(Stats.units_sold if "units_sold" in Stats else "Cannot read data")
 	lbl = get_label(units_healed_label_path)
 	if lbl:
-		lbl.text = str(stats.units_healed if "units_healed" in stats else "Cannot read data")
+		lbl.text = str(Stats.units_healed if "units_healed" in Stats else "Cannot read data")
 
 	lbl = get_label(heal_amount_done_label_path)
 	if lbl:
-		lbl.text = str(stats.heal_amount_done if "heal_amount_done" in stats else "Cannot read data")
+		lbl.text = str(Stats.heal_amount_done if "heal_amount_done" in Stats else "Cannot read data")
