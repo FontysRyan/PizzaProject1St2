@@ -40,7 +40,7 @@ func _ready():
 			unit.unit_type = unit_type
 			unit.stats = new_stats  # <-- use the buffed stats here
 		else:
-			print("Slot %d missing in GameController, skipping" % (i + 1))
+			#print("Slot %d missing in GameController, skipping" % (i + 1))
 			continue
 
 
@@ -54,7 +54,7 @@ func _ready():
 		unit.add_to_group("units")
 		add_child(unit)
 		spawned_count += 1
-		print("Spawned %s at marker %s" % [unit_type, marker.name])
+		#print("Spawned %s at marker %s" % [unit_type, marker.name])
 
 	if spawned_count > 0:
 		if faction == Marker_Faction.FRIENDLY:
