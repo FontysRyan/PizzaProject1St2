@@ -15,11 +15,20 @@ func _ready():
 		if Stats.units.size() != 0:
 			var unit = Stats.units[slot_index-1]
 			if unit != null:
+				var child_name: Unit_Panel = null
 				if unit.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
-					unit.bought = true
-					unit.checked = false
-					panel.add_child(unit)
-					GameController.update_build_slot(slot_index, unit)
+					var temp_panel = panel_scene.instantiate()
+					print(temp_panel)
+					temp_panel.premade_panel = unit.premade_panel
+					temp_panel.unit_level = unit.unit_level
+					temp_panel.bought = true
+					temp_panel.checked = false
+					temp_panel.in_shop = false
+					temp_panel._fill_panel()
+					child_name = temp_panel
+					panel.add_child(child_name)
+					panel.set_meta("occupied_by", child_name)
+					GameController.update_build_slot(slot_index, child_name)
 					Stats.units = GameController.get_build_slots()
 	# Assign buffs after setup
 	assign_buffs_to_panels()
@@ -48,6 +57,13 @@ func _process(delta):
 								Stats.units = GameController.get_build_slots()
 							else:
 								GameController.clear_build_slot(slot_index)
+								Stats.units = GameController.get_build_slots()
+					else:
+						GameController.clear_build_slot(slot_index)
+						Stats.units = GameController.get_build_slots()
+				else:
+					GameController.clear_build_slot(slot_index)
+					Stats.units = GameController.get_build_slots()
 			elif !unit.checked:
 				if panel.get_child_count() > 0:
 					var unit_tile = panel.get_child(0)
@@ -67,9 +83,20 @@ func _process(delta):
 								Stats.units = GameController.get_build_slots()
 							else:
 								GameController.clear_build_slot(slot_index)
+								Stats.units = GameController.get_build_slots()
+					else:
+						GameController.clear_build_slot(slot_index)
+						Stats.units = GameController.get_build_slots()
+				else:
+					GameController.clear_build_slot(slot_index)
+					Stats.units = GameController.get_build_slots()
 			else:
-				GameController.update_build_slot(slot_index, unit)
-				Stats.units = GameController.get_build_slots()
+				if panel.get_child_count() == 0:
+					GameController.clear_build_slot(slot_index)
+					Stats.units = GameController.get_build_slots()
+				else:
+					GameController.update_build_slot(slot_index, unit)
+					Stats.units = GameController.get_build_slots()
 
 # --- Buff Management ---
 func assign_buffs_to_panels():
