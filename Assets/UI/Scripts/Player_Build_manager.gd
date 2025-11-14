@@ -10,7 +10,6 @@ enum Buff {
 @onready var panel_scene = preload("res://unit_panel.tscn")
 
 func _ready():
-	GameController.update_build()
 	for panel: Panel in get_children():
 		var j: int = 0
 		for i in Stats.units:
@@ -31,8 +30,8 @@ func _process(delta):
 				var unit_tile = panel.get_child(0)
 				var slot_index = int(panel.name.replace("Panel_", ""))
 				var unit = GameController.get_unit_slot(slot_index)
-				if unit_tile.scene_file_path != "res://Assets/UI/PlacementIndicator.tscn":
-					if unit == null:
+				if unit == null:
+					if unit_tile == null:
 						if "panel" in unit_tile and unit_tile.panel:
 							var child_name: Unit_Panel = null
 							var p = unit_tile.panel
@@ -47,7 +46,9 @@ func _process(delta):
 							else:
 								GameController.clear_build_slot(slot_index)
 					else:
-						GameController.update_build_slot(slot_index, unit)
+						GameController.update_build_slot(slot_index, unit_tile)
+				else:
+					GameController.update_build_slot(slot_index, unit)
 
 # --- Buff Management ---
 func assign_buffs_to_panels():
