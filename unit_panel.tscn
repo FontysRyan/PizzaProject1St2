@@ -44,7 +44,7 @@ scale = Vector2(0.026, 0.025)
 texture = ExtResource("2_86h88")
 
 [node name="Tooltip" parent="." instance=ExtResource("3_d7tl5")]
-z_index = 10
+z_index = 100
 layout_mode = 0
 
 [connection signal="mouse_entered" from="." to="Tooltip" method="toggle" binds= [true]]
