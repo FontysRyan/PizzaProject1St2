@@ -14,7 +14,6 @@ signal enemy_units_spawned
 func _ready():
 	var spawned_count = 0
 	var spawn_points = get_children()
-
 	for i in range(spawn_points.size()):
 		var marker = spawn_points[i]
 		if not marker is Marker2D:
@@ -41,7 +40,7 @@ func _ready():
 			unit.unit_type = unit_type
 			unit.stats = new_stats  # <-- use the buffed stats here
 		else:
-			print("Slot %d missing in GameController, skipping" % (i + 1))
+			#print("Slot %d missing in GameController, skipping" % (i + 1))
 			continue
 
 
@@ -55,7 +54,7 @@ func _ready():
 		unit.add_to_group("units")
 		add_child(unit)
 		spawned_count += 1
-		print("Spawned %s at marker %s" % [unit_type, marker.name])
+		#print("Spawned %s at marker %s" % [unit_type, marker.name])
 
 	if spawned_count > 0:
 		if faction == Marker_Faction.FRIENDLY:

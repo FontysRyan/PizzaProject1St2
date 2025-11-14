@@ -97,7 +97,7 @@ func load_unit_types(folder_path: String) -> Array:
 func enemy_wave_incoming():
 	print("Starting wave:", Stats.wave, " Total waves: ", Stats.waves_in_round)
 	var unit_types = load_unit_types(units_folder_path)
-	print("Loaded unit types:", unit_types.size())
+	#print("Loaded unit types:", unit_types.size())
 	var spawn_points: Array = []
 	for child in get_children():
 		if child is Marker2D:
@@ -135,9 +135,9 @@ func enemy_wave_incoming():
 	
 		if unit.has_method("initialize_unit"):
 			unit.initialize_unit()
-
-		if unit.stats:
-			print("Spawned:", unit.name, "| Type:", unit.unit_type, "| Faction:", faction)
-		else:
-			print("Unit stats missing for:", unit.unit_type)
+			#===================================================================
+		#if unit.stats:
+			#print("Spawned:", unit.name, "| Type:", unit.unit_type, "| Faction:", faction)
+		#else:
+			#print("Unit stats missing for:", unit.unit_type)
 	call_deferred("emit_signal", "enemy_units_spawned")

@@ -12,7 +12,6 @@ enum GamePhase {
 @export var Death_scene: String = "res://Scenes/Gameover.tscn"
 @export var build_scene: String = "res://Scenes/Buildscreen.tscn"
 @export var fight_scene: String = "res://Scenes/Battlescreen.tscn"
-var stats = Stats
 var current_phase: GamePhase = GamePhase.PRE_GAME
 
 # ===== UNIT SLOT EXPORTS =====
@@ -87,7 +86,9 @@ func phase_to_string(phase: GamePhase) -> String:
 
 func advance_round():
 	Stats.round += 1
+	Stats.wave = 1
 	Stats.waves_in_round = int(ceil(Stats.round / 2.0))
+	print("⭕-Round ", Stats.round, ": Player must survive wave: ", Stats.wave , " of ", Stats.waves_in_round)
 	Stats.gold = 8 + (2 * Stats.round)
 	Stats.rounds_survived = Stats.round - 1
 #func advance_wave():
@@ -105,6 +106,7 @@ func begin_game():
 func clear_run_data():
 	Stats.running = false
 	Stats.units.clear()
+	clear_build()
 	Stats.gold = 0
 	Stats.round = 1
 	Stats.wave = 1
@@ -122,13 +124,11 @@ func clear_run_data():
 	Stats.units_sold = 0
 	Stats.units_healed = 0
 	Stats.heal_amount_done = 0
-	
 
 
 func update_build_slot(slot_index: int, resource_path: Unit_Panel) -> void:
 	# Remove ".tres" if present
 	var clean_name = resource_path if resource_path != null else null
-	
 	match slot_index:
 		1: unit_slot1 = clean_name
 		2: unit_slot2 = clean_name
@@ -160,6 +160,29 @@ func clear_build_slot(slot_index: int) -> void:
 		8: unit_slot8 = null
 		9: unit_slot9 = null
 
+func get_unit_slot(slot_index: int) -> Unit_Panel:
+	match slot_index:
+		1: return unit_slot1
+		2: return unit_slot2
+		3: return unit_slot3
+		4: return unit_slot4
+		5: return unit_slot5
+		6: return unit_slot6
+		7: return unit_slot7
+		8: return unit_slot8
+		9: return unit_slot9
+		_: return null
+
+func clear_build() -> void:
+	unit_slot1 = null
+	unit_slot2 = null
+	unit_slot3 = null
+	unit_slot4 = null
+	unit_slot5 = null
+	unit_slot6 = null
+	unit_slot7 = null
+	unit_slot8 = null
+	unit_slot9 = null
 
 func set_game_speed(scale: float) -> void:
 	# Clamp to prevent negative or absurd values

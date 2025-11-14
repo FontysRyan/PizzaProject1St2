@@ -219,7 +219,7 @@ func take_damage(amount):
 
 	update_health_bar()
 	if Current_hp <= 0:
-		Log_combat(1,amount)
+		#Log_combat(1,amount)
 		if sprite.animation != "dead":
 			sprite.play("dead")
 		await sprite.animation_finished
@@ -257,5 +257,5 @@ func StartCameraShake(intensity: float) -> void:
 func setshader_BlinkIntensity(newValue : float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
-func Log_combat(event, ammount):
-	print("COMBAT LOG: event " , event, " caused ", ammount, " damage")
+#func Log_combat(event, ammount):
+	#print("COMBAT LOG: event " , event, " caused ", ammount, " damage")
