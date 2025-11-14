@@ -125,6 +125,21 @@ func clear_run_data():
 	Stats.heal_amount_done = 0
 	
 
+func update_build() -> void:
+	var slot: int = 1
+	for unit in Stats.units:
+		match slot:
+			1: unit_slot1 = unit
+			2: unit_slot2 = unit
+			3: unit_slot3 = unit
+			4: unit_slot4 = unit
+			5: unit_slot5 = unit
+			6: unit_slot6 = unit
+			7: unit_slot7 = unit
+			8: unit_slot8 = unit
+			9: unit_slot9 = unit
+			_: return
+		slot += 1
 
 func update_build_slot(slot_index: int, resource_path: Unit_Panel) -> void:
 	# Remove ".tres" if present
