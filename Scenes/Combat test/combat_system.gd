@@ -38,16 +38,17 @@ func check_battle_end():
 	var enemy_alive = get_tree().get_nodes_in_group("Enemy_units").size() > 0
 	
 	if not friendly_alive:
-		print("Player lost!")
+		#rint("Player lost!")
 		Battle_has_begun = false
 		await get_tree().create_timer(1).timeout
 		GameController.set_phase(GameController.GamePhase.DEATH)
 	elif not enemy_alive:
-		print("Player won!")
+		#print("Player won!")
 		if(Stats.wave == Stats.waves_in_round):
 			Battle_has_begun = false
 			await get_tree().create_timer(1).timeout
 			GameController.set_phase(GameController.GamePhase.POST_GAME)
 		else: 
+			print("⭕-Round ", Stats.round, ": Player defeated wave: ", Stats.wave , " of ", Stats.waves_in_round)
 			Stats.wave += 1
 			enemy_spawner.enemy_wave_incoming()
