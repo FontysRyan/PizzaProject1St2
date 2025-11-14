@@ -12,7 +12,6 @@ enum GamePhase {
 @export var Death_scene: String = "res://Scenes/Gameover.tscn"
 @export var build_scene: String = "res://Scenes/Buildscreen.tscn"
 @export var fight_scene: String = "res://Scenes/Battlescreen.tscn"
-var stats = Stats
 var current_phase: GamePhase = GamePhase.PRE_GAME
 
 # ===== UNIT SLOT EXPORTS =====
@@ -123,13 +122,11 @@ func clear_run_data():
 	Stats.units_sold = 0
 	Stats.units_healed = 0
 	Stats.heal_amount_done = 0
-	
 
 
 func update_build_slot(slot_index: int, resource_path: Unit_Panel) -> void:
 	# Remove ".tres" if present
 	var clean_name = resource_path if resource_path != null else null
-	
 	match slot_index:
 		1: unit_slot1 = clean_name
 		2: unit_slot2 = clean_name

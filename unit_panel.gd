@@ -12,9 +12,9 @@ var premade_panel = preload("res://Resources/unit panels/UnitPanel.gd")
 var panel: UnitPanel
 var unit_level: int = 1
 var bought: bool = false
-var checked: bool = false
 var tile_buffed: bool = false
 var buff: String = ""
+var checked: bool = false
 
 var active_indicators: Array = []
 
@@ -235,19 +235,22 @@ func _place_on_drop_target(drop_target: Control) -> void:
 	if drop_target.has_meta("occupied_by"):
 		occupant = drop_target.get_meta("occupied_by")
 
-	if occupant != null and is_instance_valid(occupant) and occupant != self and !occupant.in_shop:
+	if occupant != null and occupant != self and !occupant.in_shop and !self.in_shop:
 		if occupant.panel.unit_name == panel.unit_name:
 			if bought:
 				if occupant.unit_level == 5 or self.unit_level == 5:
 					_restore_original_position()
 					return
 				else:
-					original_parent.remove_meta("occupied_by")
+					original_parent.set_meta("occupied_by", null)
 					self.unit_level += occupant.unit_level
 					self._update_self()
 					_swap_with_occupant(drop_target, occupant, my_slot)
 					occupant.queue_free()
 					in_shop = false
+					var slot_index = int(drop_target.name.replace("Panel_", ""))
+					GameController.update_build_slot(slot_index, self)
+					Stats.units = GameController.get_build_slots()
 					return
 			else:
 				if occupant.unit_level == 5 or self.unit_level == 5:
@@ -256,12 +259,15 @@ func _place_on_drop_target(drop_target: Control) -> void:
 				else:
 					bought = true
 					Stats._take_gold(price)
-					original_parent.remove_meta("occupied_by")
+					original_parent.set_meta("occupied_by", null)
 					self.unit_level += occupant.unit_level
 					self._update_self()
 					_swap_with_occupant(drop_target, occupant, my_slot)
 					occupant.queue_free()
 					in_shop = false
+					var slot_index = int(drop_target.name.replace("Panel_", ""))
+					GameController.update_build_slot(slot_index, self)
+					Stats.units = GameController.get_build_slots()
 					return
 		else:
 			_swap_with_occupant(drop_target, occupant, my_slot)
