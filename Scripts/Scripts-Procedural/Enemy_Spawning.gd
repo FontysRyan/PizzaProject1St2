@@ -73,31 +73,69 @@ func start_waves():
 			#print("Unit stats missing for:", unit.unit_type)
 	#call_deferred("emit_signal", "enemy_units_spawned")
 
-
 func load_unit_types(folder_path: String) -> Array:
 	var unit_types: Array = []
-	var dir = DirAccess.open(folder_path)
+	print("Loading enemy units from: ", folder_path)
+
+	var dir := DirAccess.open(folder_path)
 	if dir == null:
-		push_error("Could not open directory: " + folder_path)
+		push_error("Enemy_Spawning.gd: Cannot open directory: " + folder_path)
 		return unit_types
 
 	dir.list_dir_begin()
-	var file_name = dir.get_next()
+	var file_name := dir.get_next()
+
 	while file_name != "":
-		if file_name.ends_with(".tres") and file_name != "UnitStats.tres":
-			var res = load(folder_path + file_name)
+		var is_dir := dir.current_is_dir()
+		print("Found entry:", file_name, " | is_dir:", is_dir)
+
+		if not is_dir:
+			var path_for_load := ""
+			var name_for_meta := file_name
+
+			# Handle .tres and .tres.remap
+			if file_name.ends_with(".tres.remap"):
+				# What we load is the original .tres
+				path_for_load = folder_path + file_name.trim_suffix(".remap")
+				name_for_meta = file_name.trim_suffix(".remap")
+			elif file_name.ends_with(".tres"):
+				path_for_load = folder_path + file_name
+			else:
+				# Skip non-.tres stuff like UnitStats.gd.gdc etc.
+				file_name = dir.get_next()
+				continue
+
+			# Skip UnitStats in any form
+			var base_for_skip := name_for_meta.get_file().get_basename()
+			if base_for_skip.begins_with("UnitStats"):
+				file_name = dir.get_next()
+				continue
+
+			print("  Trying to load unit resource:", path_for_load)
+			var res := load(path_for_load)
 			if res:
-				res.set_meta("unit_type_name", file_name.get_basename())
+				# Clean name: file name without extension
+				var meta_name := name_for_meta.get_file().get_basename()
+				res.set_meta("unit_type_name", meta_name)
 				unit_types.append(res)
+			else:
+				push_error("Enemy_Spawning.gd: Failed to load resource: " + path_for_load)
+
 		file_name = dir.get_next()
+
 	dir.list_dir_end()
 
+	print("Loaded enemy units:", unit_types)
 	return unit_types
+
 
 func enemy_wave_incoming():
 	print("Starting wave:", Stats.wave, " Total waves: ", Stats.waves_in_round)
 	var unit_types = load_unit_types(units_folder_path)
 	#print("Loaded unit types:", unit_types.size())
+	if unit_types.is_empty():
+		push_error("Enemy_Spawning.gd: No enemy unit resources found in folder: " + units_folder_path)
+		return
 	var spawn_points: Array = []
 	for child in get_children():
 		if child is Marker2D:
