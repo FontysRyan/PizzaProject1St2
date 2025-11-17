@@ -1,7 +1,7 @@
 extends GridContainer
 
 @onready var panel_scene = preload("res://unit_panel.tscn")
-
+@onready var game_shop: Shop = get_parent() as Shop
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	roll()

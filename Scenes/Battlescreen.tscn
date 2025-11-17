@@ -63,6 +63,7 @@ position = Vector2(-469, 36)
 script = ExtResource("5_16koh")
 unit_scene = ExtResource("4_kmdb4")
 faction = 2
+units_folder_path = null
 
 [node name="Tile0" type="Marker2D" parent="EnemySpawner"]
 position = Vector2(481, -16)
